@@ -5,6 +5,10 @@
     "extensions": [".js", ".ts", "html"]
   },
 
+  "eslint.rules.customizations": [
+    { "rule": "no-console", "severity": "error" }
+  ],
+
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "always",
   }
