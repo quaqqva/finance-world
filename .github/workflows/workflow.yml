@@ -22,6 +22,6 @@ jobs:
         run: npm install && MSYS2_ARG_CONV_EXCL="--base-href" npm run build -- --base-href="/Simbirsoft-PP/" && cp dist/browser/index.html dist/browser/404.html
 
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@4.6.0
+        uses: JamesIves/github-pages-deploy-action@v4.6.0
         with:
           folder: .
