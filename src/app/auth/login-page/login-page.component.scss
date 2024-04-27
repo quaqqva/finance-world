@@ -33,6 +33,11 @@
   margin: 0;
 }
 
+.login-page__password-input,
+.login-page__login-input {
+  width: 100%;
+}
+
 .login-page__submit-button {
   width: 70%;
   text-align: center;

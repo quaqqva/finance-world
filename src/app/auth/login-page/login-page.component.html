@@ -1,0 +1,17 @@
+<div class="login-page">
+  <form class="login-page__form" [formGroup]="formGroup">
+    <div class="login-page__heading-wrapper">
+      <h2 class="login-page__heading">Вход</h2>
+      <p-divider></p-divider>
+    </div>
+    <app-login-input
+      class="login-page__login-input"
+      [control]="formGroup.controls.login"
+    ></app-login-input>
+    <app-password-input
+      class="login-page__password-input"
+      [control]="formGroup.controls.password"
+    ></app-password-input>
+    <p-button class="login-page__submit-button">Войти</p-button>
+  </form>
+</div>

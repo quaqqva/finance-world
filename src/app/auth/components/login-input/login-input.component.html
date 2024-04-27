@@ -1,0 +1,18 @@
+<p-inputGroup>
+  <p-inputGroupAddon>
+    <i class="pi pi-user"></i>
+  </p-inputGroupAddon>
+  <input
+    class="login-page__login-input"
+    type="text"
+    placeholder="Логин"
+    pInputText
+    [formControl]="control"
+    (input)="op.show($event)"
+  />
+  <p-overlayPanel #op>
+    <ng-template pTemplate="content">
+      <h5>Почта не валидна</h5>
+    </ng-template>
+  </p-overlayPanel>
+</p-inputGroup>
