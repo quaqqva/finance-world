@@ -50,6 +50,12 @@
       "rules": {
         "import/prefer-default-export": "off"
       }
+    },
+    {
+      "files": ["*.pipe.ts"],
+      "rules": {
+        "class-methods-use-this": "off"
+      }
     }
   ]
 }
