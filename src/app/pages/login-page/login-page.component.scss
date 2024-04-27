@@ -1,0 +1,31 @@
+@import 'mixins';
+
+.login-page__form {
+  margin: 0 auto;
+  padding: 30px 20px;
+  @include flex($direction: column, $gap: 25px);
+
+  width: clamp(300px, 60%, 600px);
+  border-radius: 25px;
+
+  @include drop-shadow();
+}
+
+.login-page__heading-wrapper {
+  width: 100%;
+}
+
+.login-page__heading {
+  text-align: center;
+  margin: 0;
+}
+
+.login-page__submit-button {
+  width: 70%;
+  text-align: center;
+}
+
+.login-page__submit-button ::ng-deep button {
+  width: 100%;
+  justify-content: center;
+}
