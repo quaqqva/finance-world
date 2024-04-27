@@ -3,3 +3,9 @@ $background: #ffffff;
 $primary: #c7f3fa;
 $secondary: #facef9;
 $accent: #6c0fe6;
+
+$gradient-primary-secondary: linear-gradient(
+  to right,
+  $primary 0%,
+  $secondary 100%
+);

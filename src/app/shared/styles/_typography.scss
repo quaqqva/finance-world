@@ -1,3 +1,5 @@
+@import 'colors';
+
 @font-face {
   font-family: Roboto;
   src: url('../../../assets/RobotoFlex.ttf');
@@ -16,6 +18,7 @@ h6 {
 }
 
 html {
+  color: $text;
   font-family: $body-font;
 }
 
