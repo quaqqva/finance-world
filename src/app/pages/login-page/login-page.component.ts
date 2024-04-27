@@ -5,7 +5,13 @@ import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { DividerModule } from 'primeng/divider';
 import { ButtonModule } from 'primeng/button';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-login-page',
@@ -18,13 +24,22 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     DividerModule,
     ButtonModule,
+    OverlayPanelModule,
   ],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.scss',
 })
 export class LoginPageComponent {
   formGroup = new FormGroup({
-    login: new FormControl(''),
-    password: new FormControl(''),
+    login: new FormControl('', [
+      Validators.maxLength(150),
+      Validators.required,
+      Validators.email,
+    ]),
+    password: new FormControl('', [
+      Validators.minLength(8),
+      Validators.maxLength(150),
+      Validators.required,
+    ]),
   });
 }

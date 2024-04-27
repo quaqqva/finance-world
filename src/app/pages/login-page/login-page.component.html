@@ -14,7 +14,13 @@
         placeholder="Логин"
         pInputText
         formControlName="login"
+        (input)="op.show($event)"
       />
+      <p-overlayPanel #op>
+        <ng-template pTemplate="content">
+          <h5>Почта не валидна</h5>
+        </ng-template>
+      </p-overlayPanel>
     </p-inputGroup>
     <p-inputGroup>
       <p-inputGroupAddon>
@@ -26,7 +32,22 @@
         [toggleMask]="true"
         formControlName="password"
         [style]="{ width: '100%' }"
-      ></p-password>
+        [promptLabel]="'Введите пароль'"
+        [weakLabel]="'Слабый'"
+        [mediumLabel]="'Средний'"
+        [strongLabel]="'Сильный'"
+      >
+        <ng-template pTemplate="footer">
+          <p-divider></p-divider>
+          <p class="mt-2">Требования</p>
+          <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+            <li>Одна строчная буква</li>
+            <li>Одна заглавная буква</li>
+            <li>Одна цифра</li>
+            <li>Минимум 8 символов</li>
+          </ul>
+        </ng-template>
+      </p-password>
     </p-inputGroup>
     <p-button class="login-page__submit-button">Войти</p-button>
   </form>
