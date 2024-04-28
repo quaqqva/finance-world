@@ -1,21 +1,28 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-password-input',
   templateUrl: './password-input.component.html',
   styleUrl: './password-input.component.scss',
 })
-export class PasswordInputComponent implements OnChanges {
+export class PasswordInputComponent implements OnChanges, OnDestroy {
   @Input() control!: FormControl;
 
   requrements: { [key: string]: boolean } = {};
 
+  subscription!: Subscription;
+
   ngOnChanges(): void {
-    this.control.valueChanges.subscribe(() => {
+    this.subscription = this.control.valueChanges.subscribe(() => {
       this.updateRequirements();
     });
     this.updateRequirements();
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   updateRequirements(): void {
