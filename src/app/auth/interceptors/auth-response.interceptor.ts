@@ -8,8 +8,8 @@ const authResponseInterceptor: HttpInterceptorFn = (req, next) => {
       if (event instanceof HttpResponse) {
         return event.clone({
           body: {
-            accessToken: JwtHelper.GenerateToken(),
-            refreshToken: JwtHelper.GenerateToken(),
+            accessToken: JwtHelper.GenerateAccessToken(),
+            refreshToken: JwtHelper.GenerateRefreshToken(),
           },
         });
       }
