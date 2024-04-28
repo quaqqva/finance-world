@@ -1,7 +1,24 @@
 import crypto from 'crypto-js';
+import { jwtDecode } from 'jwt-decode';
 
 export default class JwtHelper {
   private static JWT_SECRET = 'simbirsoft';
+
+  public static CheckIfTokenIsValid(token: string): boolean {
+    try {
+      const decoded = jwtDecode(token);
+      if (decoded === null) {
+        return false;
+      }
+      const currentTime = Math.floor(Date.now() / 1000);
+      if (decoded.exp! > currentTime) {
+        return true;
+      }
+      return false;
+    } catch (err) {
+      return false;
+    }
+  }
 
   public static GenerateAccessToken(): string {
     const accessTokenExpTime = 20 * 60;

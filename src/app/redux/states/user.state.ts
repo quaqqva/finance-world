@@ -1,10 +1,11 @@
-import { Action, State, StateContext } from '@ngxs/store';
+import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { Injectable } from '@angular/core';
 import { EMPTY, catchError, take, tap } from 'rxjs';
 import { UserStateModel } from './user-state.model';
 import { AuthService } from '../../auth/services/auth/auth.service';
 import Login from '../actions/login.action';
 import Logout from '../actions/logout.action';
+import JwtHelper from '../../auth/utils/jwt/jwt-helper';
 
 @State<UserStateModel>({
   name: 'user',
@@ -42,5 +43,14 @@ export default class UserState {
       accessToken: '',
       refreshToken: '',
     });
+  }
+
+  @Selector()
+  static isAuthorized(state: UserStateModel) {
+    return () => {
+      return (
+        state.login !== '' && JwtHelper.CheckIfTokenIsValid(state.refreshToken)
+      );
+    };
   }
 }
