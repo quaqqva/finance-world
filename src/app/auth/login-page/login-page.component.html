@@ -12,10 +12,13 @@
       class="login-page__password-input"
       [control]="formGroup.controls.password"
     ></app-password-input>
-    <p-button class="login-page__submit-button" (onClick)="onSubmit($event, op)"
+    <p-button
+      class="login-page__submit-button"
+      (mouseleave)="onSubmitButtonMouseOut()"
+      (onClick)="onSubmit($event)"
       >Войти</p-button
     >
-    <p-overlayPanel class="login-page__error-panel" #op>
+    <p-overlayPanel class="login-page__error-panel" #submitErrorPanel>
       <ng-template pTemplate="content">
         <h5 class="login-page__error-text">
           Пожалуйста, заполните все поля правильно

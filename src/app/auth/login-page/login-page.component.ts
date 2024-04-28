@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { OverlayPanel } from 'primeng/overlaypanel';
 import passwordValidator from '../validators/password.validator';
@@ -9,6 +9,8 @@ import passwordValidator from '../validators/password.validator';
   styleUrl: './login-page.component.scss',
 })
 export class LoginPageComponent {
+  @ViewChild('submitErrorPanel') submitErrorPanel!: OverlayPanel;
+
   formGroup = new FormGroup({
     login: new FormControl('', [
       Validators.maxLength(150),
@@ -23,14 +25,18 @@ export class LoginPageComponent {
     ]),
   });
 
-  onSubmit(event: Event, panel: OverlayPanel): void {
+  onSubmit(event: Event): void {
     if (this.formGroup.valid) {
       const values = this.formGroup.getRawValue();
     } else {
       Object.values(this.formGroup.controls).forEach((control) => {
         control.markAsDirty();
       });
-      panel.show(event);
+      this.submitErrorPanel.show(event);
     }
+  }
+
+  onSubmitButtonMouseOut() {
+    this.submitErrorPanel.hide();
   }
 }
