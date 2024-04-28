@@ -41,6 +41,7 @@
 .login-page__submit-button {
   width: 70%;
   text-align: center;
+  cursor: pointer;
 }
 
 .login-page__submit-button ::ng-deep button {
@@ -49,4 +50,8 @@
   background: $gradient-primary-secondary;
   border: 2px solid $primary;
   font-weight: bold;
+}
+
+.login-page__error-text {
+  color: $error;
 }

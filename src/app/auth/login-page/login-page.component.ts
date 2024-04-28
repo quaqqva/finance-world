@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { OverlayPanel } from 'primeng/overlaypanel';
 import passwordValidator from '../validators/password.validator';
 
 @Component({
@@ -21,4 +22,15 @@ export class LoginPageComponent {
       passwordValidator(),
     ]),
   });
+
+  onSubmit(event: Event, panel: OverlayPanel): void {
+    if (this.formGroup.valid) {
+      const values = this.formGroup.getRawValue();
+    } else {
+      Object.values(this.formGroup.controls).forEach((control) => {
+        control.markAsDirty();
+      });
+      panel.show(event);
+    }
+  }
 }

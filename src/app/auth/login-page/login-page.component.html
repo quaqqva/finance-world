@@ -12,6 +12,15 @@
       class="login-page__password-input"
       [control]="formGroup.controls.password"
     ></app-password-input>
-    <p-button class="login-page__submit-button">Войти</p-button>
+    <p-button class="login-page__submit-button" (onClick)="onSubmit($event, op)"
+      >Войти</p-button
+    >
+    <p-overlayPanel class="login-page__error-panel" #op>
+      <ng-template pTemplate="content">
+        <h5 class="login-page__error-text">
+          Пожалуйста, заполните все поля правильно
+        </h5>
+      </ng-template>
+    </p-overlayPanel>
   </form>
 </div>
