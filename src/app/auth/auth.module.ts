@@ -13,12 +13,14 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import routes from './auth.routes';
 import { PasswordInputComponent } from './components/password-input/password-input.component';
 import { LoginInputComponent } from './components/login-input/login-input.component';
+import { FormatPasswordRequirementPipe } from './pipes/format-password-requirement.pipe';
 
 @NgModule({
   declarations: [
     LoginPageComponent,
     PasswordInputComponent,
     LoginInputComponent,
+    FormatPasswordRequirementPipe,
   ],
   exports: [LoginPageComponent],
   imports: [

@@ -11,7 +11,7 @@ export class LoginInputComponent {
   @Input() control!: FormControl;
 
   onInput(event: Event, errorOverlayPanel: OverlayPanel) {
-    if (!this.control.valid) {
+    if (this.control.hasError('email')) {
       errorOverlayPanel.show(event);
     } else {
       errorOverlayPanel.hide();

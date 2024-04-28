@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import passwordValidator from '../validators/password.validator';
 
 @Component({
   selector: 'app-login-page',
@@ -17,6 +18,7 @@ export class LoginPageComponent {
       Validators.minLength(8),
       Validators.maxLength(150),
       Validators.required,
+      passwordValidator(),
     ]),
   });
 }
