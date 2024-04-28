@@ -30,6 +30,7 @@
     "@angular/router": "^17.0.0",
     "@ngneat/until-destroy": "^10.0.0",
     "@ngxs/store": "^3.8.2",
+    "@ngxs/devtools-plugin": "^3.8.2",
     "jest-preset-angular": "^14.0.3",
     "jsonwebtoken": "^9.0.2",
     "primeicons": "^7.0.0",
