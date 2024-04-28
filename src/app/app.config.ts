@@ -7,6 +7,7 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import routes from './app.routes';
 import urlInterceptor from './shared/interceptors/url.interceptor';
 import authResponseInterceptor from './auth/interceptors/auth-response.interceptor';
+import UserState from './redux/states/user.state';
 
 const appConfig: ApplicationConfig = {
   providers: [
@@ -15,8 +16,10 @@ const appConfig: ApplicationConfig = {
     provideHttpClient(
       withInterceptors([urlInterceptor, authResponseInterceptor]),
     ),
-    importProvidersFrom(NgxsModule.forRoot([])),
-    importProvidersFrom(NgxsReduxDevtoolsPluginModule.forRoot()),
+    importProvidersFrom(
+      NgxsModule.forRoot([UserState]),
+      NgxsReduxDevtoolsPluginModule.forRoot(),
+    ),
   ],
 };
 

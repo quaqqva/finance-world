@@ -1,6 +1,6 @@
 import { Action, State, StateContext } from '@ngxs/store';
 import { Injectable } from '@angular/core';
-import { EMPTY, catchError, tap } from 'rxjs';
+import { EMPTY, catchError, take, tap } from 'rxjs';
 import { UserStateModel } from './user-state.model';
 import { AuthService } from '../../auth/services/auth/auth.service';
 import Login from '../actions/login.action';
@@ -18,6 +18,7 @@ export default class UserState {
     this.authService
       .login(action.login, action.password)
       .pipe(
+        take(1),
         tap((tokens) => {
           ctx.patchState({
             login: action.login,
@@ -36,6 +37,10 @@ export default class UserState {
   // eslint-disable-next-line class-methods-use-this
   @Action(Logout)
   logout(ctx: StateContext<UserStateModel>) {
-    ctx.patchState({});
+    ctx.setState({
+      login: '',
+      accessToken: '',
+      refreshToken: '',
+    });
   }
 }

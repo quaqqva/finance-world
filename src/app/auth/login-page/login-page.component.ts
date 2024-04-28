@@ -1,7 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { OverlayPanel } from 'primeng/overlaypanel';
+import { Store } from '@ngxs/store';
 import passwordValidator from '../validators/password.validator';
+import Login from '../../redux/actions/login.action';
 
 @Component({
   selector: 'app-login-page',
@@ -25,9 +27,12 @@ export class LoginPageComponent {
     ]),
   });
 
+  public constructor(private store: Store) {}
+
   onSubmit(event: Event): void {
     if (this.formGroup.valid) {
       const values = this.formGroup.getRawValue();
+      this.store.dispatch(new Login(values.login!, values.password!));
     } else {
       Object.values(this.formGroup.controls).forEach((control) => {
         control.markAsDirty();
