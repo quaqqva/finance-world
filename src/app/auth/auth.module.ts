@@ -9,7 +9,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { PasswordModule } from 'primeng/password';
 import { RouterModule } from '@angular/router';
-import { LoginPageComponent } from './login-page/login-page.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
 import routes from './auth.routes';
 import { PasswordInputComponent } from './components/password-input/password-input.component';
 import { LoginInputComponent } from './components/login-input/login-input.component';

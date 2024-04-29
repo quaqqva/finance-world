@@ -4,8 +4,8 @@ import { OverlayPanel } from 'primeng/overlaypanel';
 import { Store } from '@ngxs/store';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import passwordValidator from '../validators/password.validator';
-import Login from '../../redux/actions/login.action';
+import passwordValidator from '../../validators/password.validator';
+import Login from '../../../redux/actions/login.action';
 
 @Component({
   selector: 'app-login-page',
