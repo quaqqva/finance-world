@@ -32,6 +32,7 @@ export class PasswordInputComponent implements OnChanges, OnDestroy {
       'Одна цифра': this.control.hasError('hasDigit'),
       'Минимум 8 символов':
         this.control.hasError('minlength') || this.control.hasError('required'),
+      'Максимум 150 символов': this.control.hasError('maxlength'),
     };
   }
 }
