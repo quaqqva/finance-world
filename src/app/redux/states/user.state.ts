@@ -15,24 +15,21 @@ export default class UserState {
   public constructor(private authService: AuthService) {}
 
   @Action(Login)
-  login(ctx: StateContext<UserStateModel>, action: Login) {
-    this.authService
-      .login(action.login, action.password)
-      .pipe(
-        take(1),
-        tap((tokens) => {
-          ctx.patchState({
-            login: action.login,
-            accessToken: tokens.accessToken,
-            refreshToken: tokens.refreshToken,
-          });
-        }),
-        catchError(() => {
-          ctx.patchState({});
-          return EMPTY;
-        }),
-      )
-      .subscribe();
+  async login(ctx: StateContext<UserStateModel>, action: Login) {
+    return this.authService.login(action.login, action.password).pipe(
+      take(1),
+      tap((tokens) => {
+        ctx.patchState({
+          login: action.login,
+          accessToken: tokens.accessToken,
+          refreshToken: tokens.refreshToken,
+        });
+      }),
+      catchError(() => {
+        ctx.patchState({});
+        return EMPTY;
+      }),
+    );
   }
 
   // eslint-disable-next-line class-methods-use-this
