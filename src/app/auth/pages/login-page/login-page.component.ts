@@ -1,4 +1,9 @@
-import { Component, OnDestroy, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  ViewChild,
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { OverlayPanel } from 'primeng/overlaypanel';
 import { Store } from '@ngxs/store';
@@ -11,6 +16,7 @@ import Login from '../../../redux/actions/login.action';
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginPageComponent implements OnDestroy {
   @ViewChild('submitErrorPanel') submitErrorPanel!: OverlayPanel;

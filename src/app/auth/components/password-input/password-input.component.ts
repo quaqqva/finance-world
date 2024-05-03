@@ -1,4 +1,10 @@
-import { Component, Input, OnChanges, OnDestroy } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnChanges,
+  OnDestroy,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
@@ -6,6 +12,7 @@ import { Subscription } from 'rxjs';
   selector: 'app-password-input',
   templateUrl: './password-input.component.html',
   styleUrl: './password-input.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PasswordInputComponent implements OnChanges, OnDestroy {
   @Input() control!: FormControl;

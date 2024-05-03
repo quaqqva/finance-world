@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { OverlayPanel } from 'primeng/overlaypanel';
 
@@ -6,6 +6,7 @@ import { OverlayPanel } from 'primeng/overlaypanel';
   selector: 'app-login-input',
   templateUrl: './login-input.component.html',
   styleUrl: './login-input.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginInputComponent {
   @Input() control!: FormControl;
