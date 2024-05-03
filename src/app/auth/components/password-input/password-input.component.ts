@@ -2,11 +2,10 @@ import {
   ChangeDetectionStrategy,
   Component,
   Input,
-  OnChanges,
-  OnDestroy,
+  OnInit,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 @Component({
   selector: 'app-password-input',
@@ -14,22 +13,17 @@ import { Subscription } from 'rxjs';
   styleUrl: './password-input.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PasswordInputComponent implements OnChanges, OnDestroy {
+@UntilDestroy()
+export class PasswordInputComponent implements OnInit {
   @Input() control!: FormControl;
 
   requrements: { [key: string]: boolean } = {};
 
-  subscription!: Subscription;
-
-  ngOnChanges(): void {
-    this.subscription = this.control.valueChanges.subscribe(() => {
+  ngOnInit(): void {
+    this.control.valueChanges.pipe(untilDestroyed(this)).subscribe(() => {
       this.updateRequirements();
     });
     this.updateRequirements();
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
   }
 
   updateRequirements(): void {

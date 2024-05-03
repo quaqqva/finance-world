@@ -1,14 +1,9 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnDestroy,
-  ViewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { OverlayPanel } from 'primeng/overlaypanel';
 import { Store } from '@ngxs/store';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import passwordValidator from '../../validators/password.validator';
 import Login from '../../../redux/actions/login.action';
 
@@ -18,10 +13,9 @@ import Login from '../../../redux/actions/login.action';
   styleUrl: './login-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoginPageComponent implements OnDestroy {
+@UntilDestroy()
+export class LoginPageComponent {
   @ViewChild('submitErrorPanel') submitErrorPanel!: OverlayPanel;
-
-  loginSubscription: Subscription | null = null;
 
   formGroup = new FormGroup({
     login: new FormControl('', [
@@ -45,8 +39,9 @@ export class LoginPageComponent implements OnDestroy {
   onSubmit(event: Event): void {
     if (this.formGroup.valid) {
       const values = this.formGroup.getRawValue();
-      this.loginSubscription = this.store
+      this.store
         .dispatch(new Login(values.login!, values.password!))
+        .pipe(untilDestroyed(this))
         .subscribe(() => {
           this.router.navigate(['/']);
         });
@@ -60,9 +55,5 @@ export class LoginPageComponent implements OnDestroy {
 
   onSubmitButtonMouseOut() {
     this.submitErrorPanel.hide();
-  }
-
-  ngOnDestroy(): void {
-    this.loginSubscription?.unsubscribe();
   }
 }
