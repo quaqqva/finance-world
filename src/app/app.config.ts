@@ -6,7 +6,7 @@ import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import routes from './app.routes';
 import urlInterceptor from './shared/interceptors/url.interceptor';
-import authResponseInterceptor from './auth/interceptors/auth-response.interceptor';
+import authResponseInterceptor from './pages/auth/interceptors/auth-response.interceptor';
 import UserState from './redux/states/user.state';
 
 const appConfig: ApplicationConfig = {

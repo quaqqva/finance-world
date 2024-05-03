@@ -1,7 +1,7 @@
 import { HttpInterceptorFn, HttpResponse } from '@angular/common/http';
 import { map } from 'rxjs';
 import JwtHelper from '../utils/jwt/jwt-helper';
-import ENDPOINTS from '../../shared/enums/endpoints';
+import ENDPOINTS from '../../../shared/enums/endpoints';
 
 const authResponseInterceptor: HttpInterceptorFn = (req, next) => {
   return next(req).pipe(
