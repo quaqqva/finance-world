@@ -1,0 +1,16 @@
+@mixin flex(
+  $justify-content: center,
+  $align-items: center,
+  $direction: row,
+  $gap: 0px
+) {
+  display: flex;
+  justify-content: $justify-content;
+  align-items: $align-items;
+  flex-direction: $direction;
+  gap: $gap;
+}
+
+@mixin drop-shadow() {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}

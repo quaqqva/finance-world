@@ -1,0 +1,12 @@
+$text: #555555;
+$background: #ffffff;
+$primary: #c7f3fa;
+$secondary: #facef9;
+$accent: #6c0fe6;
+$error: rgb(199, 9, 9);
+
+$gradient-primary-secondary: linear-gradient(
+  to right,
+  $primary 0%,
+  $secondary 100%
+);

@@ -1,0 +1,30 @@
+<div class="login-page">
+  <form class="login-page__form" [formGroup]="formGroup">
+    <div class="login-page__heading-wrapper">
+      <h2 class="login-page__heading">Вход</h2>
+      <p-divider></p-divider>
+    </div>
+    <app-login-input
+      class="login-page__login-input"
+      [control]="formGroup.controls.login"
+    ></app-login-input>
+    <app-password-input
+      class="login-page__password-input"
+      [control]="formGroup.controls.password"
+    ></app-password-input>
+    <p-button
+      class="login-page__submit-button-wrapper"
+      [styleClass]="'login-page__submit-button'"
+      (mouseleave)="onSubmitButtonMouseOut()"
+      (onClick)="onSubmit($event)"
+      >Войти</p-button
+    >
+    <p-overlayPanel class="login-page__error-panel" #submitErrorPanel>
+      <ng-template pTemplate="content">
+        <h5 class="login-page__error-text">
+          Пожалуйста, заполните все поля правильно
+        </h5>
+      </ng-template>
+    </p-overlayPanel>
+  </form>
+</div>
