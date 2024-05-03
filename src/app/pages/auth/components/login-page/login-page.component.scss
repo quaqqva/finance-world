@@ -1,17 +1,36 @@
 @import 'mixins';
 @import 'colors';
 
+:host::ng-deep {
+  .login-page__submit-button {
+    width: 100%;
+    justify-content: center;
+    background: $gradient-primary-secondary;
+    border: 2px solid $primary;
+    font-weight: bold;
+  }
+
+  .login-page__submit-button-wrapper {
+    width: 70%;
+    text-align: center;
+    cursor: pointer;
+
+    transition: scale ease-in-out 0.3s;
+
+    &:hover {
+      scale: 1.05;
+    }
+  }
+}
+
 .login-page {
   width: 100%;
   height: 100vh;
 
-  @include flex($direction: column);
+  @include flex();
 }
 
 .login-page__form {
-  position: relative;
-  margin: 0 auto;
-
   padding: 30px 20px;
   @include flex($direction: column, $gap: 30px);
 
@@ -30,32 +49,11 @@
 
 .login-page__heading {
   text-align: center;
-  margin: 0;
 }
 
 .login-page__password-input,
 .login-page__login-input {
   width: 100%;
-}
-
-.login-page__submit-button {
-  width: 70%;
-  text-align: center;
-  cursor: pointer;
-
-  transition: scale ease-in-out 0.3s;
-
-  &:hover {
-    scale: 1.05;
-  }
-}
-
-.login-page__submit-button ::ng-deep button {
-  width: 100%;
-  justify-content: center;
-  background: $gradient-primary-secondary;
-  border: 2px solid $primary;
-  font-weight: bold;
 }
 
 .login-page__error-text {
