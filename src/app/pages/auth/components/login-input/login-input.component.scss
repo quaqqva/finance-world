@@ -1,10 +1,12 @@
 @import 'colors';
 
-.login-input__error-text {
-  margin: 0;
-  color: $error;
-}
+.login-input {
+  &__error-text {
+    margin: 0;
+    color: $error;
+  }
 
-.login-input__field {
-  border-radius: 0 6px 6px 0;
+  &__field {
+    border-radius: 0 6px 6px 0;
+  }
 }

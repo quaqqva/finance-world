@@ -2,21 +2,61 @@
 @import 'colors';
 @import 'animations';
 
-:host::ng-deep {
-  .login-page__submit-button {
-    width: 100%;
-    justify-content: center;
-    background: $gradient-primary-secondary;
+:host {
+  .login-page {
+    &__submit-button ::ng-deep .p-button {
+      width: 100%;
+      justify-content: center;
+      background: $gradient-primary-secondary;
+      border: 2px solid $primary;
+      font-weight: bold;
+    }
+
+    &__form.ng-valid .login-page__submit-button ::ng-deep .p-button {
+      background-size: 180% 180%;
+      background-color: $gradient-primary-secondary-darkened;
+      animation: gradient-bg 2s ease-in-out infinite;
+    }
+  }
+}
+
+.login-page {
+  width: 100%;
+  height: 100vh;
+
+  @include flex();
+
+  &__form {
+    padding: 30px 20px;
+    @include flex($direction: column, $gap: 30px);
+
+    background-color: $background;
+
+    width: clamp(300px, 60%, 600px);
+    @include drop-shadow();
+
+    border-radius: 25px;
     border: 2px solid $primary;
-    font-weight: bold;
   }
 
-  .login-page__form.ng-valid .login-page__submit-button {
-    background-size: 180% 180%;
-    animation: gradient-bg 2s ease-in-out infinite;
+  &__heading-wrapper {
+    width: 100%;
   }
 
-  .login-page__submit-button-wrapper {
+  &__heading {
+    text-align: center;
+  }
+
+  &__password-input,
+  &__login-input {
+    width: 100%;
+  }
+
+  &__error-text {
+    color: $error;
+  }
+
+  &__submit-button {
     width: 70%;
     text-align: center;
     cursor: pointer;
@@ -27,41 +67,4 @@
       scale: 1.05;
     }
   }
-}
-
-.login-page {
-  width: 100%;
-  height: 100vh;
-
-  @include flex();
-}
-
-.login-page__form {
-  padding: 30px 20px;
-  @include flex($direction: column, $gap: 30px);
-
-  background-color: $background;
-
-  width: clamp(300px, 60%, 600px);
-  @include drop-shadow();
-
-  border-radius: 25px;
-  border: 2px solid $primary;
-}
-
-.login-page__heading-wrapper {
-  width: 100%;
-}
-
-.login-page__heading {
-  text-align: center;
-}
-
-.login-page__password-input,
-.login-page__login-input {
-  width: 100%;
-}
-
-.login-page__error-text {
-  color: $error;
 }

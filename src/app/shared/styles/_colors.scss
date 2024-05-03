@@ -10,3 +10,9 @@ $gradient-primary-secondary: linear-gradient(
   $primary 0%,
   $secondary 100%
 );
+
+$gradient-primary-secondary-darkened: linear-gradient(
+  to right,
+  darken($primary, 25) 0%,
+  darken($secondary, 25) 100%
+);
