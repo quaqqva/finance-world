@@ -17,12 +17,13 @@ export default class AuthrorizedGuard implements CanActivate {
   public constructor(private store: Store) {}
 
   canActivate(route: ActivatedRouteSnapshot): MaybeAsync<GuardResult> {
-    return this.store.select(UserState.isAuthorized).pipe(
-      map((isAuthorizedFn) => {
-        const isAuthorized = isAuthorizedFn();
-        if (isAuthorized) return true;
-        return createUrlTreeFromSnapshot(route, ['/login']);
-      }),
-    );
+    return this.store
+      .select(UserState.isAuthorized)
+      .pipe(
+        map(
+          (isAuthorized) =>
+            isAuthorized || createUrlTreeFromSnapshot(route, ['/login']),
+        ),
+      );
   }
 }

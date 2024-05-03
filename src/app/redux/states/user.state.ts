@@ -47,11 +47,9 @@ export default class UserState {
   }
 
   @Selector()
-  static isAuthorized(state: UserStateModel) {
-    return () => {
-      return (
-        state.login !== '' && JwtHelper.CheckIfTokenIsValid(state.refreshToken)
-      );
-    };
+  static isAuthorized(state: UserStateModel): boolean {
+    return (
+      state.login !== '' && JwtHelper.CheckIfTokenIsValid(state.refreshToken)
+    );
   }
 }

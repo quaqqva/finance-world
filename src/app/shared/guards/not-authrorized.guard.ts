@@ -11,10 +11,8 @@ export default class NotAuthrorizedGuard implements CanActivate {
   public constructor(private store: Store) {}
 
   canActivate(): MaybeAsync<GuardResult> {
-    return this.store.select(UserState.isAuthorized).pipe(
-      map((isAuthorizedFn) => {
-        return !isAuthorizedFn();
-      }),
-    );
+    return this.store
+      .select(UserState.isAuthorized)
+      .pipe(map((isAuthorized) => !isAuthorized));
   }
 }
