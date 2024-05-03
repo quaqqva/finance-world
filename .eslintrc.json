@@ -52,7 +52,7 @@
       }
     },
     {
-      "files": ["*.pipe.ts"],
+      "files": ["*.pipe.ts", "*.state.ts"],
       "rules": {
         "class-methods-use-this": "off"
       }

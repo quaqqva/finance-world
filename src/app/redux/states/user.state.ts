@@ -37,7 +37,7 @@ export default class UserState {
   }
 
   @Action(Logout)
-  public static logout(ctx: StateContext<UserStateModel>): void {
+  public logout(ctx: StateContext<UserStateModel>): void {
     ctx.setState({
       login: '',
       accessToken: '',
