@@ -1,5 +1,6 @@
 @import 'mixins';
 @import 'colors';
+@import 'animations';
 
 :host::ng-deep {
   .login-page__submit-button {
@@ -8,6 +9,11 @@
     background: $gradient-primary-secondary;
     border: 2px solid $primary;
     font-weight: bold;
+  }
+
+  .login-page__form.ng-valid .login-page__submit-button {
+    background-size: 180% 180%;
+    animation: gradient-bg 2s ease-in-out infinite;
   }
 
   .login-page__submit-button-wrapper {
