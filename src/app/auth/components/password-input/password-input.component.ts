@@ -15,7 +15,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 })
 @UntilDestroy()
 export class PasswordInputComponent implements OnInit {
-  @Input() control!: FormControl;
+  @Input({ required: true }) control!: FormControl;
 
   requrements: { [key: string]: boolean } = {};
 

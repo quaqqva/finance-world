@@ -18,17 +18,23 @@ export class LoginPageComponent {
   @ViewChild('submitErrorPanel') submitErrorPanel!: OverlayPanel;
 
   formGroup = new FormGroup({
-    login: new FormControl('', [
-      Validators.maxLength(150),
-      Validators.required,
-      Validators.email,
-    ]),
-    password: new FormControl('', [
-      Validators.minLength(8),
-      Validators.maxLength(150),
-      Validators.required,
-      passwordValidator(),
-    ]),
+    login: new FormControl('', {
+      nonNullable: true,
+      validators: [
+        Validators.maxLength(150),
+        Validators.required,
+        Validators.email,
+      ],
+    }),
+    password: new FormControl('', {
+      nonNullable: true,
+      validators: [
+        Validators.minLength(8),
+        Validators.maxLength(150),
+        Validators.required,
+        passwordValidator(),
+      ],
+    }),
   });
 
   public constructor(
@@ -40,7 +46,7 @@ export class LoginPageComponent {
     if (this.formGroup.valid) {
       const values = this.formGroup.getRawValue();
       this.store
-        .dispatch(new Login(values.login!, values.password!))
+        .dispatch(new Login(values.login, values.password))
         .pipe(untilDestroyed(this))
         .subscribe(() => {
           this.router.navigate(['/']);
@@ -53,7 +59,7 @@ export class LoginPageComponent {
     }
   }
 
-  onSubmitButtonMouseOut() {
+  onSubmitButtonMouseOut(): void {
     this.submitErrorPanel.hide();
   }
 }
