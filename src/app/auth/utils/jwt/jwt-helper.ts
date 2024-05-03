@@ -10,8 +10,8 @@ export default class JwtHelper {
       if (decoded === null) {
         return false;
       }
-      const currentTime = Math.floor(Date.now() / 1000);
-      if (decoded.exp! > currentTime) {
+      const currentTimeInSeconds = Math.floor(Date.now() / 1000);
+      if (decoded.exp! > currentTimeInSeconds) {
         return true;
       }
       return false;
@@ -21,17 +21,19 @@ export default class JwtHelper {
   }
 
   public static GenerateAccessToken(): string {
-    const accessTokenExpTime = 20 * 60;
+    const currentTimeInSeconds = Math.floor(Date.now() / 1000);
+    const twentyMinutesInSeconds = 20 * 60;
     const payload = {
-      exp: Math.floor(Date.now() / 1000) + accessTokenExpTime,
+      exp: currentTimeInSeconds + twentyMinutesInSeconds,
     };
     return this.GenerateToken(payload);
   }
 
   public static GenerateRefreshToken(): string {
-    const refreshTokenExpTime = 7 * 24 * 60 * 60;
+    const currentTimeInSeconds = Math.floor(Date.now() / 1000);
+    const oneWeekInSeconds = 7 * 24 * 60 * 60;
     const payload = {
-      exp: Math.floor(Date.now() / 1000) + refreshTokenExpTime,
+      exp: currentTimeInSeconds + oneWeekInSeconds,
     };
     return this.GenerateToken(payload);
   }
