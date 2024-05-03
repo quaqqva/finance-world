@@ -15,18 +15,18 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 })
 @UntilDestroy()
 export class PasswordInputComponent implements OnInit {
-  @Input({ required: true }) control!: FormControl;
+  @Input({ required: true }) public control!: FormControl;
 
-  requrements: { [key: string]: boolean } = {};
+  public requrements: { [key: string]: boolean } = {};
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.control.valueChanges.pipe(untilDestroyed(this)).subscribe(() => {
       this.updateRequirements();
     });
     this.updateRequirements();
   }
 
-  updateRequirements(): void {
+  private updateRequirements(): void {
     this.requrements = {
       'Одна строчная буква': this.control.hasError('hasLowerCase'),
       'Одна заглавная буква': this.control.hasError('hasUpperCase'),

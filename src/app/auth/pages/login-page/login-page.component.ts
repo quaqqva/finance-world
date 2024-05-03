@@ -15,9 +15,9 @@ import Login from '../../../redux/actions/login.action';
 })
 @UntilDestroy()
 export class LoginPageComponent {
-  @ViewChild('submitErrorPanel') submitErrorPanel!: OverlayPanel;
+  @ViewChild('submitErrorPanel') private submitErrorPanel!: OverlayPanel;
 
-  formGroup = new FormGroup({
+  public formGroup = new FormGroup({
     login: new FormControl('', {
       nonNullable: true,
       validators: [
@@ -42,7 +42,7 @@ export class LoginPageComponent {
     private router: Router,
   ) {}
 
-  onSubmit(event: Event): void {
+  public onSubmit(event: Event): void {
     if (this.formGroup.valid) {
       const values = this.formGroup.getRawValue();
       this.store
@@ -59,7 +59,7 @@ export class LoginPageComponent {
     }
   }
 
-  onSubmitButtonMouseOut(): void {
+  public onSubmitButtonMouseOut(): void {
     this.submitErrorPanel.hide();
   }
 }

@@ -16,7 +16,7 @@ import UserState from '../../redux/states/user.state';
 export default class AuthrorizedGuard implements CanActivate {
   public constructor(private store: Store) {}
 
-  canActivate(route: ActivatedRouteSnapshot): MaybeAsync<GuardResult> {
+  public canActivate(route: ActivatedRouteSnapshot): MaybeAsync<GuardResult> {
     return this.store
       .select(UserState.isAuthorized)
       .pipe(

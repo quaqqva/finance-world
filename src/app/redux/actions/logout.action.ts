@@ -1,3 +1,3 @@
 export default class Logout {
-  static readonly type = '[Auth] Logout';
+  public static readonly type = '[Auth] Logout';
 }

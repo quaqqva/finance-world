@@ -1,7 +1,7 @@
 export default class Login {
-  static readonly type = '[Auth] Login';
+  public static readonly type = '[Auth] Login';
 
-  constructor(
+  public constructor(
     public login: string,
     public password: string,
   ) {}

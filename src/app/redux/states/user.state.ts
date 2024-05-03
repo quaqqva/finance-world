@@ -16,7 +16,7 @@ export default class UserState {
   public constructor(private authService: AuthService) {}
 
   @Action(Login)
-  login(
+  public login(
     ctx: StateContext<UserStateModel>,
     action: Login,
   ): Observable<AuthToken> {
@@ -36,9 +36,8 @@ export default class UserState {
     );
   }
 
-  // eslint-disable-next-line class-methods-use-this
   @Action(Logout)
-  logout(ctx: StateContext<UserStateModel>): void {
+  public static logout(ctx: StateContext<UserStateModel>): void {
     ctx.setState({
       login: '',
       accessToken: '',
@@ -47,7 +46,7 @@ export default class UserState {
   }
 
   @Selector()
-  static isAuthorized(state: UserStateModel): boolean {
+  public static isAuthorized(state: UserStateModel): boolean {
     return (
       state.login !== '' && JwtHelper.CheckIfTokenIsValid(state.refreshToken)
     );

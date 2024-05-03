@@ -9,9 +9,9 @@ import { OverlayPanel } from 'primeng/overlaypanel';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginInputComponent {
-  @Input({ required: true }) control!: FormControl;
+  @Input({ required: true }) public control!: FormControl;
 
-  onInput(event: Event, errorOverlayPanel: OverlayPanel): void {
+  public onInput(event: Event, errorOverlayPanel: OverlayPanel): void {
     if (this.control.hasError('email')) {
       errorOverlayPanel.show(event);
     } else {

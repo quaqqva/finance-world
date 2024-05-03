@@ -7,13 +7,11 @@ import { AuthToken } from '../../models/auth-token.model';
   providedIn: 'root',
 })
 export class AuthService {
-  private httpClient: HttpClient;
-
-  constructor(httpClient: HttpClient) {
+  public constructor(private httpClient: HttpClient) {
     this.httpClient = httpClient;
   }
 
-  login(login: string, password: string): Observable<AuthToken> {
+  public login(login: string, password: string): Observable<AuthToken> {
     return this.httpClient.post<AuthToken>('pair_settings', {
       login,
       password,
