@@ -7,9 +7,18 @@ import Login from '../actions/login.action';
 import Logout from '../actions/logout.action';
 import JwtHelper from '../../pages/auth/utils/jwt/jwt-helper';
 import { AuthToken } from '../../pages/auth/models/auth-token.model';
+import LocalStorageHelper from '../utils/local-storage-helper';
+import LocalStorageStates from '../enums/local-storage-key';
 
 @State<UserStateModel>({
   name: 'user',
+  defaults: LocalStorageHelper.GetItem<UserStateModel>(
+    LocalStorageStates.User,
+  ) || {
+    login: '',
+    accessToken: '',
+    refreshToken: '',
+  },
 })
 @Injectable()
 export default class UserState {
@@ -23,14 +32,15 @@ export default class UserState {
     return this.authService.login(action.login, action.password).pipe(
       take(1),
       tap((tokens) => {
-        ctx.patchState({
+        const newState = {
           login: action.login,
           accessToken: tokens.accessToken,
           refreshToken: tokens.refreshToken,
-        });
+        };
+        LocalStorageHelper.SetItem(LocalStorageStates.User, newState);
+        ctx.patchState(newState);
       }),
       catchError(() => {
-        ctx.patchState({});
         return EMPTY;
       }),
     );
@@ -43,6 +53,7 @@ export default class UserState {
       accessToken: '',
       refreshToken: '',
     });
+    LocalStorageHelper.RemoveItem(LocalStorageStates.User);
   }
 
   @Selector()
