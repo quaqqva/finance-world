@@ -16,6 +16,8 @@
       class="login-page__submit-button"
       (mouseleave)="onSubmitButtonMouseOut()"
       (onClick)="onSubmit($event)"
+      [raised]="formGroup.valid"
+      severity="submit"
       >Войти</p-button
     >
     <p-overlayPanel class="login-page__error-panel" #submitErrorPanel>

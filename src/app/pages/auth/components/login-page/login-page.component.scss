@@ -1,24 +1,4 @@
 @import 'mixins';
-@import 'colors';
-@import 'animations';
-
-:host {
-  .login-page {
-    &__submit-button ::ng-deep .p-button {
-      width: 100%;
-      justify-content: center;
-      background: $gradient-primary-secondary;
-      border: 2px solid $primary;
-      font-weight: bold;
-    }
-
-    &__form.ng-valid .login-page__submit-button ::ng-deep .p-button {
-      background-size: 180% 180%;
-      background-color: $gradient-primary-secondary-darkened;
-      animation: gradient-bg 2s ease-in-out infinite;
-    }
-  }
-}
 
 .login-page {
   width: 100%;
@@ -30,13 +10,13 @@
     padding: 30px 20px;
     @include flex($direction: column, $gap: 30px);
 
-    background-color: $background;
+    background-color: var(--white-500);
 
     width: clamp(300px, 60%, 600px);
     @include drop-shadow();
 
     border-radius: 25px;
-    border: 2px solid $primary;
+    border: 2px solid var(--primary-500);
   }
 
   &__heading-wrapper {
@@ -53,7 +33,7 @@
   }
 
   &__error-text {
-    color: $error;
+    color: var(--red-500);
   }
 
   &__submit-button {

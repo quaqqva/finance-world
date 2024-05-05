@@ -1,16 +1,17 @@
-@import 'primeng/resources/themes/lara-light-blue/theme.css';
+@import 'app/shared/styles/theme/theme.scss';
 @import 'primeng/resources/primeng.css';
 @import 'primeicons/primeicons.css';
-@import 'typography';
 
 * {
   box-sizing: border-box;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
 body {
   margin: 0;
-}
-
-.p-overlaypanel-content {
-  padding: 8px;
 }
