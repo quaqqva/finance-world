@@ -1,5 +1,5 @@
-enum ENDPOINTS {
-  AUTH = 'pair_settings',
+enum Endpoints {
+  Auth = 'pair_settings',
 }
 
-export default ENDPOINTS;
+export default Endpoints;
