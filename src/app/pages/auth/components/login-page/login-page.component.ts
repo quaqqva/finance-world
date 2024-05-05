@@ -49,7 +49,7 @@ export class LoginPageComponent {
         .dispatch(new Login(values.login, values.password))
         .pipe(untilDestroyed(this))
         .subscribe(() => {
-          this.router.navigate(['/']);
+          this.router.navigate(['/home']);
         });
     } else {
       Object.values(this.formGroup.controls).forEach((control) => {

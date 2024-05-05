@@ -4,11 +4,9 @@ import notAuthrorizedGuard from './shared/guards/not-authorized.guard';
 
 const routes: Routes = [
   {
-    path: '',
-    loadComponent: () =>
-      import('./pages/main-page/main-page.component').then(
-        (m) => m.MainPageComponent,
-      ),
+    path: 'home',
+    loadChildren: () =>
+      import('./pages/home/home.module').then((m) => m.HomeModule),
     canActivate: [authorizedGuard],
   },
   {
