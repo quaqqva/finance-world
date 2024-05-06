@@ -1,8 +1,10 @@
 @import 'mixins';
 
 :host ::ng-deep {
-  @media screen and (max-width: 960px) {
-    .p-menubar-root-list {
+  .p-menubar-root-list {
+    font-weight: bold;
+
+    @media screen and (max-width: 960px) {
       top: 135%;
       left: 15%;
       background-color: var(--grey-500);
