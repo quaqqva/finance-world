@@ -1,0 +1,39 @@
+@import 'mixins';
+
+.footer {
+  width: 95%;
+  border-top-left-radius: 50px;
+  background-color: var(--grey-800);
+
+  padding: 30px;
+
+  margin-left: auto;
+
+  @include flex($align-items: flex-end, $direction: column, $gap: 15px);
+
+  &__social-links {
+    @include flex($gap: 15px);
+  }
+
+  &__year {
+    padding-right: 0.2em;
+
+    @include gradient-font-color(var(--primary-secondary-gradient));
+    font-size: 1.2em;
+  }
+}
+
+.footer-link {
+  cursor: pointer;
+  padding: 0.75rem;
+
+  &__icon {
+    font-size: 1.5rem;
+  }
+
+  transition: translate ease-in-out 300ms;
+
+  &:hover {
+    translate: 0 -10px;
+  }
+}

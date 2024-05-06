@@ -14,3 +14,10 @@
 @mixin drop-shadow() {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
+
+@mixin gradient-font-color($font-color) {
+  background: $font-color;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
