@@ -1,4 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostListener,
+} from '@angular/core';
 import { MenuItem } from 'primeng/api';
 
 @Component({
@@ -8,5 +12,12 @@ import { MenuItem } from 'primeng/api';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
-  public menuItems: MenuItem[] = [{ label: 'Главная', routerLink: 'home' }];
+  public menuItems: MenuItem[] = [{ label: 'Главная', routerLink: '' }];
+
+  public isShrunk: boolean = false;
+
+  @HostListener('window:scroll')
+  onWindowScroll() {
+    this.isShrunk = window.scrollY > 48;
+  }
 }

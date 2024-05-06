@@ -1,0 +1,25 @@
+.p-menubar {
+  &.menubar-align-right {
+    & > .p-element {
+      flex-grow: 1;
+    }
+    .p-menubar-root-list {
+      justify-content: flex-end;
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 960px) {
+    &.menubar-large-icon .p-icon {
+      width: 2rem;
+      height: 2rem;
+    }
+
+    &.menubar-align-right {
+      .p-menubar-button {
+        order: 2;
+        justify-content: flex-end;
+      }
+    }
+  }
+}

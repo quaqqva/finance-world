@@ -1,0 +1,42 @@
+@import 'mixins';
+
+:host ::ng-deep {
+  @media screen and (max-width: 960px) {
+    .p-menubar-root-list {
+      top: 135%;
+      left: 15%;
+      background-color: var(--grey-500);
+    }
+  }
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  right: 0;
+
+  width: 95%;
+  height: 95px;
+  padding: 0 10vw 0 20px;
+  transition: height ease-in-out 300ms;
+
+  border-bottom-left-radius: 50px;
+  background-color: var(--grey-700);
+
+  @include flex();
+
+  &__navigation {
+    display: block;
+    width: 100%;
+  }
+
+  &__heading {
+    position: relative;
+    bottom: 5px;
+    padding-right: 10px;
+  }
+
+  &_shrunk {
+    height: 70px;
+  }
+}

@@ -1,3 +1,11 @@
-<header class="header">
-  <p-menubar [model]="menuItems"></p-menubar>
+<header class="header" [ngClass]="{ header_shrunk: isShrunk }">
+  <p-menubar
+    class="header__navigation"
+    [model]="menuItems"
+    [styleClass]="'menubar-align-right menubar-large-icon'"
+  >
+    <ng-template pTemplate="start">
+      <h1 class="header__heading">Финансы</h1>
+    </ng-template>
+  </p-menubar>
 </header>
