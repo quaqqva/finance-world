@@ -1,4 +1,5 @@
 @import 'mixins';
+@import 'variables';
 
 :host ::ng-deep {
   .p-menubar-root-list {
@@ -16,6 +17,7 @@
   position: fixed;
   top: 0;
   right: 0;
+  z-index: $header-layer;
 
   width: 95%;
   height: 95px;
