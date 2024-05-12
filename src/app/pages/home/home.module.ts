@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { MenubarModule } from 'primeng/menubar';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
+import { CarouselModule } from 'primeng/carousel';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import routes from './home.routes';
 import { HomeComponent } from './components/home/home.component';
@@ -25,6 +26,7 @@ import { LogoComponent } from './components/logo/logo.component';
     MenubarModule,
     ButtonModule,
     RippleModule,
+    CarouselModule,
   ],
 })
 export class HomeModule {}

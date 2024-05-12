@@ -1,0 +1,39 @@
+@import 'mixins';
+@import 'functions';
+
+.hero-section {
+  &__carousel {
+    display: block;
+    padding-bottom: 30px;
+  }
+}
+
+.carousel-block {
+  height: calc(100vh - 150px);
+  width: 100%;
+
+  @include flex($justify-content: space-around);
+
+  &_reversed {
+    flex-direction: row-reverse;
+  }
+
+  &__image {
+    max-width: 40%;
+    height: auto;
+    max-height: 90%;
+  }
+
+  &__text-wrapper {
+    width: 40%;
+    font-size: to-responsive(24px, $relative-to: 1500px, $min: 10px);
+  }
+
+  &__heading {
+    font-size: 2em;
+  }
+
+  &__description {
+    width: 85%;
+  }
+}
