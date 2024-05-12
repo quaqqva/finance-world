@@ -1,5 +1,16 @@
 @import 'mixins';
 @import 'functions';
+@import 'variables';
+
+.home-page {
+  &__portfolio-image {
+    width: 25%;
+    display: block;
+    margin-left: auto;
+
+    translate: -25px -45%;
+  }
+}
 
 .hero-section {
   &__carousel {
@@ -34,5 +45,30 @@
 
   &__description {
     width: 85%;
+  }
+}
+
+.diversification-section {
+  width: 95%;
+  padding: 50px 20px 50px 10vw;
+
+  border-radius: 0 $one-sided-section-border-radius
+    $one-sided-section-border-radius 0;
+  background-color: var(--teal-500);
+
+  font-size: to-responsive(24px, $relative-to: 1500px, $min: 10px);
+
+  &__heading {
+    font-size: 2em;
+    translate: -30px;
+  }
+
+  &__main-text {
+    width: 60%;
+  }
+
+  &__emphasized-text {
+    color: var(--purple-800);
+    font-weight: bold;
   }
 }

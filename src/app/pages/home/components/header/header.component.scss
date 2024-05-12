@@ -24,7 +24,7 @@
   padding: 0 10vw 0 20px;
   transition: height ease-in-out 300ms;
 
-  border-bottom-left-radius: 50px;
+  border-bottom-left-radius: $one-sided-section-border-radius;
   background-color: var(--grey-800);
 
   @include flex();
@@ -43,6 +43,8 @@
     position: relative;
     bottom: 15px;
     padding: 0 10px;
+
+    color: var(--white-500);
 
     @media (max-width: 400px) {
       display: none;
