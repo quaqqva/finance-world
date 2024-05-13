@@ -10,7 +10,6 @@ import routes from './home.routes';
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { LogoComponent } from './components/logo/logo.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +17,6 @@ import { LogoComponent } from './components/logo/logo.component';
     HomePageComponent,
     HeaderComponent,
     FooterComponent,
-    LogoComponent,
   ],
   imports: [
     CommonModule,

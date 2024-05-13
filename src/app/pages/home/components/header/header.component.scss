@@ -35,13 +35,14 @@
   }
 
   &__logo {
+    width: 60px;
     height: 60px;
+    translate: 0 -2.5px;
   }
 
   &__heading {
     display: inline-block;
-    position: relative;
-    bottom: 15px;
+    translate: 0 -15px;
     padding: 0 10px;
 
     color: var(--white-500);
