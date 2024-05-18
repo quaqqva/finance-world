@@ -1,0 +1,46 @@
+@import 'mixins';
+
+.currencies-section {
+  padding: 50px 0;
+  background-color: var(--surface-50);
+
+  &__charts-wrapper {
+    margin: 0 auto;
+  }
+
+  &__heading-wrapper {
+    font-size: 2em;
+    padding-bottom: 10px;
+
+    width: 100%;
+    overflow: hidden;
+
+    @include flex();
+  }
+
+  &__heading {
+    max-width: 80vw;
+    text-align: center;
+  }
+
+  &__description {
+    width: max(300px, 50%);
+    font-size: 1.5em;
+    margin: 0 auto;
+    text-align: justify;
+    padding: 2.5rem;
+  }
+}
+
+.charts-wrapper {
+  width: max(300px, 90%);
+  max-height: calc(100vh - 100px);
+
+  background-color: var(--white-500);
+
+  border-radius: 0 0 50px 50px;
+
+  &__main {
+    padding: 0 50px 50px;
+  }
+}

@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
-import { HomePageComponent } from './components/home-page/home-page.component';
-import { HomeComponent } from './components/home/home.component';
+import { HomePageComponent } from './components/home-page/home-page/home-page.component';
+import { HomeEntryComponent } from './components/home-entry/home-entry.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
+    component: HomeEntryComponent,
     children: [
       {
         path: '',

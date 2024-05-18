@@ -1,0 +1,24 @@
+<section class="hero-section">
+  <p-carousel
+    class="hero-section__carousel"
+    [autoplayInterval]="8000"
+    [showNavigators]="false"
+    [numVisible]="1"
+    [numScroll]="1"
+    [circular]="true"
+    [value]="carouselItems"
+  >
+    <ng-template let-item pTemplate="item">
+      <div
+        class="carousel-block"
+        [ngClass]="{ 'carousel-block_reversed': item.isReversed || false }"
+      >
+        <img class="carousel-block__image" src="{{ item.image }}" alt="" />
+        <div class="carousel-block__text-wrapper">
+          <h2 class="carousel-block__heading">{{ item.text }}</h2>
+          <p class="carousel-block__description">{{ item.subtext }}</p>
+        </div>
+      </div>
+    </ng-template>
+  </p-carousel>
+</section>
