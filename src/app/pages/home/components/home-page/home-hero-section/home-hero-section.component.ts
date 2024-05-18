@@ -14,7 +14,7 @@ type HeroSectionCarouselItem = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeHeroSectionComponent {
-  public carouselItems: HeroSectionCarouselItem[] = [
+  public carouselSlides: HeroSectionCarouselItem[] = [
     {
       text: 'Добро пожаловать в Мир Финансов!',
       subtext:
@@ -36,7 +36,7 @@ export class HomeHeroSectionComponent {
   ];
 
   public constructor() {
-    this.carouselItems.forEach((item, index) => {
+    this.carouselSlides.forEach((item, index) => {
       const curItem = item;
       curItem.isReversed = index % 2 === 0;
     });

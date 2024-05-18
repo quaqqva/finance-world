@@ -14,12 +14,6 @@
 }
 
 .header {
-  position: fixed;
-  top: 0;
-  right: 0;
-  z-index: $header-layer;
-
-  width: 95%;
   height: 95px;
   padding: 0 10vw 0 20px;
   transition: height ease-in-out 300ms;
@@ -35,24 +29,30 @@
   }
 
   &__logo {
-    width: 60px;
-    height: 60px;
     translate: 0 -2.5px;
   }
 
   &__heading {
     display: inline-block;
     translate: 0 -15px;
-    padding: 0 10px;
-
-    color: var(--white-500);
-
-    @media (max-width: 400px) {
-      display: none;
-    }
   }
 
   &_shrunk {
     height: 70px;
+  }
+}
+
+.logo {
+  width: 60px;
+  height: 60px;
+}
+
+.heading {
+  padding: 0 10px;
+
+  color: var(--white-500);
+
+  @media (max-width: 400px) {
+    display: none;
   }
 }

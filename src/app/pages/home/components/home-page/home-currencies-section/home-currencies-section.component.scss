@@ -8,19 +8,8 @@
     margin: 0 auto;
   }
 
-  &__heading-wrapper {
-    font-size: 2em;
-    padding-bottom: 10px;
-
-    width: 100%;
-    overflow: hidden;
-
-    @include flex();
-  }
-
   &__heading {
-    max-width: 80vw;
-    text-align: center;
+    width: 100%;
   }
 
   &__description {
@@ -29,6 +18,19 @@
     margin: 0 auto;
     text-align: justify;
     padding: 2.5rem;
+  }
+}
+
+.heading {
+  font-size: 2em;
+
+  padding-bottom: 10px;
+  overflow: hidden;
+  @include flex();
+
+  &__main-text {
+    max-width: 80vw;
+    text-align: center;
   }
 }
 

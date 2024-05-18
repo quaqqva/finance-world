@@ -1,7 +1,7 @@
 <footer class="footer">
-  <div class="footer__social-links">
+  <div class="social-links">
     <a
-      class="footer-link"
+      class="social-links__link link"
       pButton
       pRipple
       [rounded]="true"
@@ -9,8 +9,8 @@
       *ngFor="let item of socialLinks"
       [href]="item.url!"
     >
-      <i class="{{ item.icon }} footer-link__icon"></i
+      <i class="{{ item.icon }} link__icon"></i
     ></a>
   </div>
-  <span class="footer__year">{{ currentYear }}</span>
+  <span class="footer__year year">{{ currentYear }}</span>
 </footer>

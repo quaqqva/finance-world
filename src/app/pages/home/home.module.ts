@@ -12,7 +12,7 @@ import { HomeEntryComponent } from './components/home-entry/home-entry.component
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeCurrenciesSectionComponent } from './components/home-page/home-currencies-section/home-currencies-section.component';
-import { HomePageComponent } from './components/home-page/home-page/home-page.component';
+import { HomePageComponent } from './components/home-page/home-page.component';
 import { HomeDiversificationSectionComponent } from './components/home-page/home-diversification-section/home-diversification-section.component';
 import { HomeHeroSectionComponent } from './components/home-page/home-hero-section/home-hero-section.component';
 

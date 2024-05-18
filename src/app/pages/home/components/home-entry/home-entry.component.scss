@@ -1,8 +1,25 @@
+@import 'variables';
+
 :host {
   display: block;
   min-height: 100vh;
 }
 
+.header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: $header-layer;
+
+  width: 95%;
+}
+
 .main {
   padding-top: 90px;
+}
+
+.footer {
+  display: block;
+  width: 95%;
+  margin-left: auto;
 }

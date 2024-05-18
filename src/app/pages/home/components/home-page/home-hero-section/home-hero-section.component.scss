@@ -1,15 +1,16 @@
 @import 'mixins';
 
-.hero-section {
-  &__carousel {
-    display: block;
-    padding-bottom: 30px;
+.carousel {
+  display: block;
+  padding-bottom: 30px;
+
+  &__slide {
+    width: 100%;
   }
 }
 
-.carousel-block {
+.slide {
   height: calc(100vh - 150px);
-  width: 100%;
 
   @include flex($justify-content: space-around);
 
@@ -22,16 +23,19 @@
     max-height: 90%;
   }
 
-  &__text-wrapper {
+  &__text-block {
     width: max(40%, 150px);
-    font-size: 1.5em;
   }
+}
 
-  &__heading {
-    font-size: 1.75em;
-  }
+.text-block {
+  font-size: 1.5em;
 
   &__description {
     width: max(85%, 150px);
   }
+}
+
+.heading {
+  font-size: 1.75em;
 }
