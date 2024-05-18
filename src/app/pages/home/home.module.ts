@@ -5,6 +5,8 @@ import { MenubarModule } from 'primeng/menubar';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
 import { CarouselModule } from 'primeng/carousel';
+import { ChartModule } from 'primeng/chart';
+import { TabMenuModule } from 'primeng/tabmenu';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import routes from './home.routes';
 import { HomeComponent } from './components/home/home.component';
@@ -25,6 +27,8 @@ import { FooterComponent } from './components/footer/footer.component';
     ButtonModule,
     RippleModule,
     CarouselModule,
+    ChartModule,
+    TabMenuModule,
   ],
 })
 export class HomeModule {}

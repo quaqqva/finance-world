@@ -2,16 +2,6 @@
 @import 'functions';
 @import 'variables';
 
-.home-page {
-  &__portfolio-image {
-    width: 25%;
-    display: block;
-    margin-left: auto;
-
-    translate: -25px -45%;
-  }
-}
-
 .hero-section {
   &__carousel {
     display: block;
@@ -35,40 +25,111 @@
   }
 
   &__text-wrapper {
-    width: 40%;
-    font-size: to-responsive(24px, $relative-to: 1500px, $min: 10px);
+    width: max(40%, 150px);
+    font-size: 1.5em;
   }
 
   &__heading {
-    font-size: 2em;
+    font-size: 1.75em;
   }
 
   &__description {
-    width: 85%;
+    width: max(85%, 150px);
   }
 }
 
 .diversification-section {
-  width: 95%;
-  padding: 50px 20px 50px 10vw;
+  padding-top: 50px;
+  background: linear-gradient(
+    100deg,
+    var(--white-500) 0%,
+    var(--pink-500) 30%,
+    var(--pink-500) 50%,
+    var(--green-600) 80%,
+    var(--white-500) 100%
+  );
 
-  border-radius: 0 $one-sided-section-border-radius
-    $one-sided-section-border-radius 0;
-  background-color: var(--teal-500);
+  &__text-block {
+    width: 95%;
+    padding: 50px 20px 50px 10vw;
 
-  font-size: to-responsive(24px, $relative-to: 1500px, $min: 10px);
+    border-radius: 0 $one-sided-section-border-radius
+      $one-sided-section-border-radius 0;
+    background: linear-gradient(
+      100deg,
+      var(--white-500) 0%,
+      var(--teal-500) 20%
+    );
+
+    @include drop-shadow();
+
+    font-size: 1.5em;
+  }
 
   &__heading {
-    font-size: 2em;
+    font-size: 1.75em;
     translate: -30px;
   }
 
   &__main-text {
-    width: 60%;
+    width: max(60%, 250px);
   }
 
   &__emphasized-text {
-    color: var(--purple-800);
+    color: var(--grey-900);
     font-weight: bold;
+  }
+
+  &__portfolio-image {
+    width: 25%;
+    display: block;
+    margin-left: auto;
+
+    translate: -25px -45%;
+  }
+}
+
+.currencies-section {
+  padding: 50px 0;
+  background-color: var(--surface-50);
+
+  &__charts-wrapper {
+    margin: 0 auto;
+  }
+
+  &__heading-wrapper {
+    font-size: 2em;
+    padding-bottom: 10px;
+
+    width: 100%;
+    overflow: hidden;
+
+    @include flex();
+  }
+
+  &__heading {
+    max-width: 80vw;
+    text-align: center;
+  }
+
+  &__description {
+    width: max(300px, 50%);
+    font-size: 1.5em;
+    margin: 0 auto;
+    text-align: justify;
+    padding: 2.5rem;
+  }
+}
+
+.charts-wrapper {
+  width: max(300px, 90%);
+  max-height: calc(100vh - 100px);
+
+  background-color: var(--white-500);
+
+  border-radius: 0 0 50px 50px;
+
+  &__main {
+    padding: 0 50px 50px;
   }
 }

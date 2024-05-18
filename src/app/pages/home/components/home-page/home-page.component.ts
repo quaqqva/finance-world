@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { MenuItem, PrimeIcons } from 'primeng/api';
 
 type HeroSectionCarouselItem = {
   text: string;
@@ -14,7 +15,7 @@ type HeroSectionCarouselItem = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomePageComponent {
-  carouselItems: HeroSectionCarouselItem[] = [
+  public carouselItems: HeroSectionCarouselItem[] = [
     {
       text: 'Добро пожаловать в Мир Финансов!',
       subtext:
@@ -34,6 +35,19 @@ export class HomePageComponent {
       image: '../../../../../assets/images/home-page/calculator.jpeg',
     },
   ];
+
+  public currenciesMenuItems: MenuItem[] = [
+    {
+      icon: PrimeIcons.BITCOIN,
+      label: 'BTC',
+    },
+    {
+      icon: 'pi pi-ethereum',
+      label: 'ETH',
+    },
+  ];
+
+  public activeCurrency?: MenuItem;
 
   public constructor() {
     this.carouselItems.forEach((item, index) => {
