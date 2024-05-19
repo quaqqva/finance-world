@@ -20,6 +20,4 @@ export class HomeCurrenciesSectionComponent {
   ];
 
   public activeCurrency?: MenuItem;
-
-  public heading: string = '📈Изучите Пульс Криптовалюты📉';
 }
