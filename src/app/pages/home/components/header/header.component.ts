@@ -1,9 +1,6 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  HostListener,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { Observable, fromEvent, map, throttleTime } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -14,10 +11,14 @@ import { MenuItem } from 'primeng/api';
 export class HeaderComponent {
   public menuItems: MenuItem[] = [{ label: 'Главная', routerLink: '' }];
 
-  public isShrunk: boolean = false;
+  public isShrunk$: Observable<boolean> = fromEvent(window, 'scroll').pipe(
+    throttleTime(100),
+    map(() => {
+      const { lastScrollY } = this;
+      this.lastScrollY = window.scrollY;
+      return lastScrollY < window.scrollY;
+    }),
+  );
 
-  @HostListener('window:scroll')
-  onWindowScroll() {
-    this.isShrunk = window.scrollY > 48;
-  }
+  private lastScrollY: number = 0;
 }

@@ -1,4 +1,4 @@
-<header class="header" [ngClass]="{ header_shrunk: isShrunk }">
+<header class="header" [ngClass]="{ header_shrunk: isShrunk$ | async }">
   <p-menubar
     class="header__navigation"
     [model]="menuItems"
