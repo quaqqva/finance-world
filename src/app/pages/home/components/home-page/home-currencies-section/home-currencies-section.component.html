@@ -1,6 +1,6 @@
 <section class="currencies-section">
   <app-text-block
-    class="currencies-section__heading-wrapper"
+    class="currencies-section__heading heading"
     [heading]="textblockHeading"
     [colorVariant]="'bright'"
     [shadowEffect]="'duplicate'"
@@ -11,23 +11,23 @@
     проникнуть в сердце финансового мира будущего. Отслеживайте динамику курсов,
     анализируйте тренды и делайте обоснованные решения.
   </p>
-  <div class="currencies-section__charts-wrapper charts-wrapper">
-    <div class="charts-wrapper__heading">
+  <div class="currencies-section__charts charts">
+    <div class="charts__heading">
       <p-tabMenu
-        class="charts-wrapper__tab-menu"
+        class="charts__tab-menu"
         [model]="currenciesMenuItems"
       ></p-tabMenu>
     </div>
-    <div class="charts-wrapper__main">
+    <div class="charts__inner">
       <p-chart></p-chart>
     </div>
   </div>
 </section>
 
 <ng-template #textblockHeading>
-  <div class="currencies-section__heading heading">
+  <div class="heading__inner">
     <span class="heading__emoji">📈</span>
-    <h2 class="heading__main-text">Изучите Пульс Криптовалюты</h2>
+    <h2 class="heading__text">Изучите пульс криптовалюты</h2>
     <span class="heading__emoji">📉</span>
   </div>
 </ng-template>

@@ -10,12 +10,14 @@
   >
     <ng-template let-slide pTemplate="slide">
       <div
-        class="hero-section__slide slide"
-        [ngClass]="{ slide_reversed: slide.isReversed || false }"
+        class="hero-section__slide"
+        [ngClass]="{
+          'hero-section__slide_reversed': slide.isReversed || false
+        }"
       >
-        <img class="slide__image" src="{{ slide.image }}" alt="" />
+        <img class="hero-section__image" src="{{ slide.image }}" alt="" />
         <app-text-block
-          class="slide__text-block"
+          class="hero-section__text-block"
           [heading]="slide.text"
           [description]="slide.subtext"
           [shadowEffect]="'duplicate'"

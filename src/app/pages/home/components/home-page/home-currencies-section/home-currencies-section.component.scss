@@ -4,7 +4,7 @@
   padding: 50px 0;
   background-color: var(--surface-50);
 
-  &__charts-wrapper {
+  &__charts {
     margin: 0 auto;
   }
 
@@ -18,7 +18,7 @@
     text-align: justify;
   }
 
-  &__heading-wrapper {
+  &__heading {
     display: block;
     margin: 0 auto;
     width: max(300px, 75%);
@@ -26,13 +26,16 @@
 }
 
 .heading {
-  @include flex();
+  &__inner {
+    @include flex();
+  }
 
-  &__main-text {
+  &__text {
     color: var(--surface-200);
     text-align: center;
+    font-size: 1em;
 
-    @media (max-width: 615px) {
+    @media (max-width: 750px) {
       width: min-content;
     }
   }
@@ -42,7 +45,7 @@
   }
 }
 
-.charts-wrapper {
+.charts {
   width: max(300px, 90%);
   max-height: calc(100vh - 100px);
 
@@ -50,7 +53,7 @@
 
   border-radius: 0 0 50px 50px;
 
-  &__main {
+  &__inner {
     padding: 0 50px 50px;
   }
 }
