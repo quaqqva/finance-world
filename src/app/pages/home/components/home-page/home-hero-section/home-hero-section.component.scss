@@ -1,4 +1,5 @@
 @import 'mixins';
+@import 'variables';
 
 .carousel {
   display: block;
@@ -24,18 +25,18 @@
   }
 
   &__text-block {
-    width: max(40%, 150px);
+    width: max(40%, 250px);
   }
-}
 
-.text-block {
-  font-size: 1.5em;
+  @media (max-width: 500px) {
+    &,
+    &_reversed {
+      flex-direction: column-reverse;
+    }
 
-  &__description {
-    width: max(85%, 150px);
+    &__text-block {
+      width: max(90%, 300px);
+      max-height: 70%;
+    }
   }
-}
-
-.heading {
-  font-size: 1.75em;
 }

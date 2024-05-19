@@ -1,17 +1,23 @@
 <section class="diversification-section">
-  <div class="diversification-section__text-block text-block">
-    <h2 class="text-block__heading heading">Мир банковских услуг изменился</h2>
-    <p class="text-block__main-text">
-      <span class="text-block__emphasized-text emphasized-text"
-        >Диверсификация является стратегическим приоритетом.</span
-      >
-      Финансовым учреждениям необходимо повышать уровень потребительских и малых
-      бизнес-кредитов, предоставляя при этом современный цифровой опыт.
-    </p>
-  </div>
+  <app-text-block
+    class="diversification-section__text-block"
+    [heading]="heading"
+    [description]="textBlockDescription"
+    [offsetDescription]="true"
+    [shadowEffect]="'normal'"
+  ></app-text-block>
   <img
     src="../../../../../assets/images/home-page/portfolio.svg"
     alt="Картинка портфолио"
     class="diversification-section__portfolio-image"
   />
 </section>
+<ng-template #textBlockDescription>
+  <p class="diversification-section__description">
+    <span class="emphasized-text"
+      >Диверсификация является стратегическим приоритетом.</span
+    >
+    Финансовым учреждениям необходимо повышать уровень потребительских и малых
+    бизнес-кредитов, предоставляя при этом современный цифровой опыт.
+  </p>
+</ng-template>

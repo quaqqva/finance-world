@@ -20,31 +20,30 @@
 
     width: 25%;
   }
-}
 
-.text-block {
-  width: 95%;
-  padding: 50px 20px 50px 10vw;
-
-  border-radius: 0 $one-sided-section-border-radius
-    $one-sided-section-border-radius 0;
-  background: linear-gradient(100deg, var(--white-500) 0%, var(--teal-500) 20%);
-
-  @include drop-shadow();
-
-  font-size: 1.5em;
-
-  &__heading {
-    translate: -30px;
+  &__text-block {
+    display: block;
+    width: 95%;
   }
 
-  &__main-text {
-    width: max(60%, 250px);
+  &__description {
+    width: max(70%, 250px);
   }
 }
 
-.heading {
-  font-size: 1.75em;
+:host ::ng-deep {
+  .text-block {
+    padding: 50px 20px 50px 8vw !important;
+
+    border: none !important;
+    border-radius: 0 $one-sided-section-border-radius
+      $one-sided-section-border-radius 0 !important;
+    background: linear-gradient(
+      100deg,
+      var(--white-500) 0%,
+      var(--teal-500) 20%
+    ) !important;
+  }
 }
 
 .emphasized-text {

@@ -1,9 +1,11 @@
 <section class="currencies-section">
-  <div class="currencies-section__heading heading">
-    <span class="heading__emoji">📈</span>
-    <h2 class="heading__main-text">Изучите Пульс Криптовалюты</h2>
-    <span class="heading__emoji">📉</span>
-  </div>
+  <app-text-block
+    class="currencies-section__heading"
+    [heading]="textblockHeading"
+    [colorVariant]="'bright'"
+    [shadowEffect]="'duplicate'"
+  >
+  </app-text-block>
   <p class="currencies-section__description">
     В этой секции вы найдете графики курсов криптовалют, которые позволят вам
     проникнуть в сердце финансового мира будущего. Отслеживайте динамику курсов,
@@ -21,3 +23,11 @@
     </div>
   </div>
 </section>
+
+<ng-template #textblockHeading>
+  <div class="heading">
+    <span class="heading__emoji">📈</span>
+    <h2 class="heading__main-text">Изучите Пульс Криптовалюты</h2>
+    <span class="heading__emoji">📉</span>
+  </div>
+</ng-template>

@@ -14,10 +14,12 @@
         [ngClass]="{ slide_reversed: slide.isReversed || false }"
       >
         <img class="slide__image" src="{{ slide.image }}" alt="" />
-        <div class="slide__text-block text-block">
-          <h2 class="text-block__heading heading">{{ slide.text }}</h2>
-          <p class="text-block__description">{{ slide.subtext }}</p>
-        </div>
+        <app-text-block
+          class="slide__text-block"
+          [heading]="slide.text"
+          [description]="slide.subtext"
+          [shadowEffect]="'duplicate'"
+        ></app-text-block>
       </div>
     </ng-template>
   </p-carousel>

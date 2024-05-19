@@ -14,23 +14,35 @@
 
   &__description {
     width: max(300px, 50%);
-    font-size: 1.5em;
+
     margin: 0 auto;
-    text-align: justify;
     padding: 2.5rem;
+
+    font-size: 1.5em;
+    text-align: justify;
+  }
+
+  &__heading {
+    display: block;
+    margin: 0 auto;
+    width: max(300px, 75%);
   }
 }
 
 .heading {
-  font-size: 2em;
-
-  padding-bottom: 10px;
-  overflow: hidden;
   @include flex();
 
   &__main-text {
-    max-width: 80vw;
+    color: var(--surface-200);
     text-align: center;
+
+    @media (max-width: 615px) {
+      width: min-content;
+    }
+  }
+
+  &__emoji {
+    font-size: 1.25em;
   }
 }
 

@@ -15,6 +15,7 @@ import { HomeCurrenciesSectionComponent } from './components/home-page/home-curr
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { HomeDiversificationSectionComponent } from './components/home-page/home-diversification-section/home-diversification-section.component';
 import { HomeHeroSectionComponent } from './components/home-page/home-hero-section/home-hero-section.component';
+import { TextBlockComponent } from '../../shared/components/text-block/text-block.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { HomeHeroSectionComponent } from './components/home-page/home-hero-secti
     CarouselModule,
     ChartModule,
     TabMenuModule,
+    TextBlockComponent,
   ],
 })
 export class HomeModule {}

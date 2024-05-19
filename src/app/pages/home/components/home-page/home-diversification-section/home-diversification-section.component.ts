@@ -6,4 +6,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrl: './home-diversification-section.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeDiversificationSectionComponent {}
+export class HomeDiversificationSectionComponent {
+  public heading: string = 'Мир банковских услуг изменился';
+}
