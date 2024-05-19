@@ -1,14 +1,27 @@
 @import 'mixins';
 @import 'variables';
 
-:host ::ng-deep {
-  .p-menubar-root-list {
-    font-weight: bold;
+:host {
+  ::ng-deep {
+    .p-menubar-root-list {
+      font-weight: bold;
 
+      @media screen and (max-width: 960px) {
+        top: 115%;
+        left: 15%;
+
+        background-color: var(--grey-600);
+
+        transition: top $hover-transition;
+      }
+    }
+  }
+
+  &:has(.header_shrunk) ::ng-deep {
     @media screen and (max-width: 960px) {
-      top: 107.5%;
-      left: 15%;
-      background-color: var(--grey-600);
+      .p-menubar-root-list {
+        top: 98.5%;
+      }
     }
   }
 }
@@ -16,7 +29,7 @@
 .header {
   height: 95px;
   padding: 0 10vw 0 20px;
-  transition: height ease-in-out 300ms;
+  transition: height $hover-transition;
 
   border-bottom-left-radius: $one-sided-section-border-radius;
   background-color: var(--grey-800);

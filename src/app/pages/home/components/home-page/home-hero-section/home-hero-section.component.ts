@@ -22,13 +22,13 @@ export class HomeHeroSectionComponent {
       image: '../../../../../assets/images/home-page/bank.jpeg',
     },
     {
-      text: 'Защита Ваших Интересов',
+      text: 'Защита ваших интересов',
       subtext:
         'Мы ценим вашу конфиденциальность и гарантируем высочайший уровень защиты данных и инвестиций.',
       image: '../../../../../assets/images/home-page/piggy-bank.svg',
     },
     {
-      text: 'Технологии Будущего',
+      text: 'Технологии будущего',
       subtext:
         'Присоединяйтесь к нам, чтобы быть на шаг впереди с нашими инновационными и передовыми финансовыми решениями.',
       image: '../../../../../assets/images/home-page/calculator.jpeg',
