@@ -1,6 +1,6 @@
 <section class="hero-section">
   <p-carousel
-    class="hero-section__carousel carousel"
+    class="hero-section__carousel"
     [autoplayInterval]="8000"
     [showNavigators]="false"
     [numVisible]="1"
@@ -10,7 +10,7 @@
   >
     <ng-template let-slide pTemplate="slide">
       <div
-        class="carousel__slide slide"
+        class="hero-section__slide slide"
         [ngClass]="{ slide_reversed: slide.isReversed || false }"
       >
         <img class="slide__image" src="{{ slide.image }}" alt="" />

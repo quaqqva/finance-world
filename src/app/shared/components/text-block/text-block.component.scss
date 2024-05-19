@@ -14,7 +14,7 @@
   @include flex($direction: column);
 
   $duplicate-box-shadow-offset: 0.35em 0.35em 0;
-  &_duplicate-shadow {
+  &_shadow_duplicate {
     box-shadow: $duplicate-box-shadow-offset var(--grey-800);
     transition: box-shadow $hover-transition;
 
@@ -35,7 +35,7 @@
       color: var(--pink-400);
     }
 
-    &.text-block_duplicate-shadow {
+    &.text-block_shadow_duplicate {
       box-shadow: $duplicate-box-shadow-offset var(--pink-400);
 
       &:hover {
@@ -46,6 +46,7 @@
 
   &__heading {
     width: 100%;
+    font-size: 1.75em;
   }
 
   &__description {
@@ -56,8 +57,4 @@
       translate: 30px;
     }
   }
-}
-
-.heading {
-  font-size: 1.75em;
 }

@@ -29,6 +29,11 @@
   &__description {
     width: max(70%, 250px);
   }
+
+  &__emphasized-text {
+    color: var(--grey-900);
+    font-weight: bold;
+  }
 }
 
 :host ::ng-deep {
@@ -44,9 +49,4 @@
       var(--teal-500) 20%
     ) !important;
   }
-}
-
-.emphasized-text {
-  color: var(--grey-900);
-  font-weight: bold;
 }

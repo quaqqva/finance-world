@@ -2,11 +2,11 @@
   class="text-block"
   [ngClass]="{
     'text-block_bright': colorVariant === 'bright',
-    'text-block_duplicate-shadow': shadowEffect === 'duplicate'
+    'text-block_shadow_duplicate': shadowEffect === 'duplicate'
   }"
 >
   <h2
-    class="text-block__heading heading"
+    class="text-block__heading"
     *ngIf="!headingAsTemplateRef; else complexHeading"
   >
     {{ heading }}

@@ -1,9 +1,11 @@
 @import 'mixins';
 @import 'variables';
 
-.carousel {
-  display: block;
-  padding-bottom: 30px;
+.hero-section {
+  &__carousel {
+    display: block;
+    padding-bottom: 30px;
+  }
 
   &__slide {
     width: 100%;

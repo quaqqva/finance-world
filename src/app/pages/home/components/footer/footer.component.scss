@@ -8,16 +8,19 @@
 
   @include flex($align-items: flex-end, $direction: column, $gap: 15px);
 
+  &__social-links {
+    @include flex($gap: 15px);
+  }
+
   &__year {
     margin-right: 0.2em;
+
+    @include gradient-font-color(var(--primary-secondary-gradient));
+    font-size: 1.2em;
   }
 }
 
-.social-links {
-  @include flex($gap: 15px);
-}
-
-.link {
+.social-link {
   cursor: pointer;
   padding: 0.75rem;
 
@@ -30,9 +33,4 @@
   &:hover {
     translate: 0 -10px;
   }
-}
-
-.year {
-  @include gradient-font-color(var(--primary-secondary-gradient));
-  font-size: 1.2em;
 }
