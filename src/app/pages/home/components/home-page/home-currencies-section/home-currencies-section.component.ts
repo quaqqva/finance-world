@@ -1,5 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { MenuItem, PrimeIcons } from 'primeng/api';
+import { MenuItem } from 'primeng/api';
+import { Observable, map } from 'rxjs';
+import { ChartData } from 'chart.js';
+import { CurrenciesService } from '../../../services/currencies.service';
+import RelativeCurrency from '../../../enums/relative-currencies';
 
 @Component({
   selector: 'app-home-currencies-section',
@@ -8,16 +12,34 @@ import { MenuItem, PrimeIcons } from 'primeng/api';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeCurrenciesSectionComponent {
-  public currenciesMenuItems: MenuItem[] = [
-    {
-      icon: PrimeIcons.BITCOIN,
-      label: 'BTC',
-    },
-    {
-      icon: 'pi pi-ethereum',
-      label: 'ETH',
-    },
-  ];
+  public currenciesMenuItems$: Observable<MenuItem[]> = this.currenciesService
+    .getCurrencies()
+    .pipe(
+      map((currencies: string[]): MenuItem[] => {
+        return currencies.map((currency) => {
+          return { label: currency };
+        });
+      }),
+    );
 
-  public activeCurrency?: MenuItem;
+  public constructor(private currenciesService: CurrenciesService) {}
+
+  public currentCurrencyTrades$?: Observable<ChartData>;
+
+  public onCurrencyChange(currencyItem: MenuItem): void {
+    this.currentCurrencyTrades$ = this.currenciesService
+      .getTradesForCurrency(currencyItem.label!, RelativeCurrency.USDT)
+      .pipe(
+        map((trades) => {
+          return {
+            labels: trades.map((trade) => trade.date.toUTCString()),
+            datasets: [
+              {
+                data: trades.map((trade) => trade.price),
+              },
+            ],
+          };
+        }),
+      );
+  }
 }

@@ -15,11 +15,15 @@
     <div class="charts__heading">
       <p-tabMenu
         class="charts__tab-menu"
-        [model]="currenciesMenuItems"
+        [model]="(currenciesMenuItems$ | async) || undefined"
+        (activeItemChange)="onCurrencyChange($event)"
       ></p-tabMenu>
     </div>
     <div class="charts__inner">
-      <p-chart></p-chart>
+      <p-chart
+        [type]="'line'"
+        [data]="currentCurrencyTrades$ | async"
+      ></p-chart>
     </div>
   </div>
 </section>
