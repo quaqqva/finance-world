@@ -7,6 +7,8 @@ import { RippleModule } from 'primeng/ripple';
 import { CarouselModule } from 'primeng/carousel';
 import { ChartModule } from 'primeng/chart';
 import { TabMenuModule } from 'primeng/tabmenu';
+import { ScrollTopModule } from 'primeng/scrolltop';
+
 import routes from './home.routes';
 import { HomeEntryComponent } from './components/home-entry/home-entry.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -36,6 +38,7 @@ import { TextBlockComponent } from '../../shared/components/text-block/text-bloc
     CarouselModule,
     ChartModule,
     TabMenuModule,
+    ScrollTopModule,
     TextBlockComponent,
   ],
 })

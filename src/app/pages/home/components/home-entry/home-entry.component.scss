@@ -23,5 +23,13 @@
     display: block;
     width: 95%;
     margin-left: auto;
+
+    position: relative;
+    z-index: $footer-layer;
+  }
+
+  &__scrolltop {
+    position: relative;
+    z-index: $scrolltop-layer;
   }
 }
