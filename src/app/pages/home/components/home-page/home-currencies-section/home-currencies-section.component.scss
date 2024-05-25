@@ -60,11 +60,3 @@
     max-height: 90%;
   }
 }
-
-.currency-tab {
-  @include flex($gap: 0.5em);
-
-  &__icon {
-    height: 1.5em;
-  }
-}

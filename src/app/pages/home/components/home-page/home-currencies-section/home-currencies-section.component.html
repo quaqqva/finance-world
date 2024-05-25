@@ -12,34 +12,12 @@
     анализируйте тренды и делайте обоснованные решения.
   </p>
   <div class="currencies-section__charts charts">
-    <div class="charts__heading">
-      <p-tabMenu
-        class="charts__tab-menu"
-        [model]="(currenciesMenuItems$ | async) || undefined"
-        [activeItem]="(currenciesMenuItems$ | async)?.[0]"
-        (activeItemChange)="onCurrencyChange($event)"
-      >
-        <ng-template pTemplate="item" let-item>
-          <a class="currency-tab p-menuitem-link">
-            <img
-              [alt]="item.label"
-              [src]="item.icon"
-              class="currency-tab__icon"
-            />
-            <span class="currency-tab__text">
-              {{ item.label }}
-            </span>
-          </a>
-        </ng-template>
-      </p-tabMenu>
-    </div>
+    <app-currencies-menu
+      class="charts__menu"
+      (selectedCurrency)="onCurrencyChange($event)"
+    ></app-currencies-menu>
     <div class="charts__inner">
-      <p-chart
-        class="charts__chart"
-        [type]="'line'"
-        [data]="currencyTradesChartData$ | async"
-        [options]="chartOptions"
-      ></p-chart>
+      <app-currencies-chart [currency]="activeCurrency"></app-currencies-chart>
     </div>
   </div>
 </section>

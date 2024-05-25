@@ -18,6 +18,8 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { HomeDiversificationSectionComponent } from './components/home-page/home-diversification-section/home-diversification-section.component';
 import { HomeHeroSectionComponent } from './components/home-page/home-hero-section/home-hero-section.component';
 import { TextBlockComponent } from '../../shared/components/text-block/text-block.component';
+import { CurrenciesMenuComponent } from './components/home-page/home-currencies-section/currencies-menu/currencies-menu.component';
+import { CurrenciesChartComponent } from './components/home-page/home-currencies-section/currencies-chart/currencies-chart.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { TextBlockComponent } from '../../shared/components/text-block/text-bloc
     HomeHeroSectionComponent,
     HomeDiversificationSectionComponent,
     HomeCurrenciesSectionComponent,
+    CurrenciesMenuComponent,
+    CurrenciesChartComponent,
   ],
   imports: [
     CommonModule,
