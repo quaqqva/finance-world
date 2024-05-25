@@ -1,0 +1,8 @@
+<p class="relative-currency-select__description">
+  Выберите валюту, относительно которой будет отслеживаться курс
+</p>
+<p-dropdown
+  class="relative-currency-select__select"
+  [options]="selectOptions"
+  (onChange)="onValueChange($event)"
+></p-dropdown>

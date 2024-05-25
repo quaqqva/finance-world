@@ -22,6 +22,8 @@ import RelativeCurrency from '../../../../enums/relative-currencies';
 export class CurrenciesChartComponent implements OnChanges {
   @Input({ required: true }) public currency!: string;
 
+  @Input({ required: true }) public relativeCurrency!: RelativeCurrency;
+
   public currencyTradesChartData$?: Observable<ChartData>;
 
   private currentCurrencyTrades?: CurrencyTrade[] = undefined;
@@ -79,7 +81,7 @@ export class CurrenciesChartComponent implements OnChanges {
 
   public ngOnChanges(): void {
     this.currencyTradesChartData$ = this.currenciesService
-      .getTradesForCurrency(this.currency, RelativeCurrency.USDT)
+      .getTradesForCurrency(this.currency, this.relativeCurrency)
       .pipe(
         tap((trades) => {
           this.currentCurrencyTrades = trades;

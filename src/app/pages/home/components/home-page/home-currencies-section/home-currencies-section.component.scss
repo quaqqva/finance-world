@@ -52,11 +52,14 @@
 
   border-radius: 0 0 50px 50px;
 
-  &__inner {
+  &__chart {
+    display: block;
     padding: 0 50px 25px;
+    max-height: 90%;
   }
 
-  &__chart {
-    max-height: 90%;
+  &__relative-currency-select {
+    margin-left: auto;
+    width: min(300px, 50%);
   }
 }

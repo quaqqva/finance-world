@@ -8,6 +8,7 @@ import { CarouselModule } from 'primeng/carousel';
 import { ChartModule } from 'primeng/chart';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { ScrollTopModule } from 'primeng/scrolltop';
+import { DropdownModule } from 'primeng/dropdown';
 
 import routes from './home.routes';
 import { HomeEntryComponent } from './components/home-entry/home-entry.component';
@@ -20,6 +21,7 @@ import { HomeHeroSectionComponent } from './components/home-page/home-hero-secti
 import { TextBlockComponent } from '../../shared/components/text-block/text-block.component';
 import { CurrenciesMenuComponent } from './components/home-page/home-currencies-section/currencies-menu/currencies-menu.component';
 import { CurrenciesChartComponent } from './components/home-page/home-currencies-section/currencies-chart/currencies-chart.component';
+import { RelativeCurrencySelectComponent } from './components/home-page/home-currencies-section/relative-currency-select/relative-currency-select.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { CurrenciesChartComponent } from './components/home-page/home-currencies
     HomeCurrenciesSectionComponent,
     CurrenciesMenuComponent,
     CurrenciesChartComponent,
+    RelativeCurrencySelectComponent,
   ],
   imports: [
     CommonModule,
@@ -43,6 +46,7 @@ import { CurrenciesChartComponent } from './components/home-page/home-currencies
     ChartModule,
     TabMenuModule,
     ScrollTopModule,
+    DropdownModule,
     TextBlockComponent,
   ],
 })

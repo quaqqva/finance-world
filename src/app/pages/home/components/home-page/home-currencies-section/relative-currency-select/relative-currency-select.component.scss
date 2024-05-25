@@ -1,0 +1,11 @@
+@import 'mixins';
+
+:host {
+  @include flex($direction: column, $align-items: center);
+}
+
+.relative-currency-select {
+  &__description {
+    text-align: center;
+  }
+}

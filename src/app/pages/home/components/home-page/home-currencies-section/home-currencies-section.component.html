@@ -16,9 +16,15 @@
       class="charts__menu"
       (selectedCurrency)="onCurrencyChange($event)"
     ></app-currencies-menu>
-    <div class="charts__inner">
-      <app-currencies-chart [currency]="activeCurrency"></app-currencies-chart>
-    </div>
+    <app-relative-currency-select
+      class="charts__relative-currency-select"
+      (selectedCurrency)="onRelativeCurrencyChange($event)"
+    ></app-relative-currency-select>
+    <app-currencies-chart
+      class="charts__chart"
+      [currency]="activeCurrency"
+      [relativeCurrency]="relativeCurrency"
+    ></app-currencies-chart>
   </div>
 </section>
 
