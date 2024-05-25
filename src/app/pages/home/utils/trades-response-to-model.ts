@@ -1,8 +1,5 @@
-import CurrencyTradesResponse from '../home/models/currency-trades-response.model';
-import {
-  CurrencyTrade,
-  CurrencyTrades,
-} from '../home/models/currency-trade.model';
+import CurrencyTradesResponse from '../models/currency-trades-response.model';
+import { CurrencyTrade, CurrencyTrades } from '../models/currency-trade.model';
 
 export default function tradesResponseToModel(
   tradesResponse: CurrencyTradesResponse,
@@ -13,7 +10,7 @@ export default function tradesResponseToModel(
       const trades: CurrencyTrade[] = incomingTrades.map((tradeResponse) => {
         return {
           id: tradeResponse.trade_id,
-          date: new Date(tradeResponse.date),
+          date: new Date(tradeResponse.date * 1000),
           type: tradeResponse.type,
           quantity: Number(tradeResponse.quantity),
           price: Number(tradeResponse.price),

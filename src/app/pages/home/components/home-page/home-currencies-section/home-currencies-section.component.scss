@@ -47,13 +47,16 @@
 
 .charts {
   width: max(300px, 90%);
-  max-height: calc(100vh - 100px);
 
   background-color: var(--white-500);
 
   border-radius: 0 0 50px 50px;
 
   &__inner {
-    padding: 0 50px 50px;
+    padding: 0 50px 25px;
+  }
+
+  &__chart {
+    max-height: 90%;
   }
 }

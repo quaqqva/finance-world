@@ -6,27 +6,31 @@ import RelativeCurrency from '../enums/relative-currencies';
 import isStringInEnum from '../../../shared/utils/is-string-in-enum';
 import CurrenciesOrdersResponse from '../models/currencies-orders-response.model';
 import { CurrencyOrders } from '../models/currency-orders.model';
-import tradesResponseToModel from '../../utils/trades-response-to-model';
-import ordersResponseToModel from '../../utils/orders-response-to-model';
+import tradesResponseToModel from '../utils/trades-response-to-model';
+import ordersResponseToModel from '../utils/orders-response-to-model';
 import CurrencyTradeResponse from '../models/currency-trades-response.model';
 import { CurrencyTrade } from '../models/currency-trade.model';
+import CurrencyInfo from '../models/currency-info.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CurrenciesService {
-  public static RELATIVE_CURRENCIES = ['USDT', 'USDX', 'RUB', 'KZT'];
-
   constructor(private httpClient: HttpClient) {}
 
-  public getCurrencies(): Observable<string[]> {
+  public getCurrencies(): Observable<CurrencyInfo[]> {
     return this.httpClient
       .post<string[]>(Endpoints.CurrenciesList, new URLSearchParams())
       .pipe(
         map((currencies) =>
-          currencies.filter(
-            (currency: string) => !isStringInEnum(RelativeCurrency, currency),
-          ),
+          currencies
+            .filter(
+              (currency: string) => !isStringInEnum(RelativeCurrency, currency),
+            )
+            .map((currency) => ({
+              name: currency,
+              imageUrl: `https://static.exmoney.com/mobile/currency/${currency}.png`,
+            })),
         ),
       );
   }
@@ -47,6 +51,9 @@ export class CurrenciesService {
         map((response) => {
           const trades = tradesResponseToModel(response);
           return trades[pair];
+        }),
+        map((trades) => {
+          return trades.sort((a, b) => a.date.getTime() - b.date.getTime());
         }),
       );
   }
