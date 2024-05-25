@@ -18,7 +18,20 @@
         [model]="(currenciesMenuItems$ | async) || undefined"
         [activeItem]="(currenciesMenuItems$ | async)?.[0]"
         (activeItemChange)="onCurrencyChange($event)"
-      ></p-tabMenu>
+      >
+        <ng-template pTemplate="item" let-item>
+          <a class="currency-tab p-menuitem-link">
+            <img
+              [alt]="item.label"
+              [src]="item.icon"
+              class="currency-tab__icon"
+            />
+            <span class="currency-tab__text">
+              {{ item.label }}
+            </span>
+          </a>
+        </ng-template>
+      </p-tabMenu>
     </div>
     <div class="charts__inner">
       <p-chart
