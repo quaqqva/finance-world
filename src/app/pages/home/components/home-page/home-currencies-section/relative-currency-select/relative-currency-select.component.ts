@@ -8,6 +8,7 @@ import {
 import { DropdownChangeEvent } from 'primeng/dropdown';
 import { MenuItem } from 'primeng/api';
 import RelativeCurrency from '../../../../enums/relative-currencies';
+import getCurrencyIconUrl from '../../../../utils/get-currency-icon-url';
 
 @Component({
   selector: 'app-relative-currency-select',
@@ -22,7 +23,7 @@ export class RelativeCurrencySelectComponent implements OnInit {
     (currency) => {
       return {
         label: currency,
-        icon: `https://static.exmoney.com/mobile/currency/${currency}.png`,
+        icon: getCurrencyIconUrl(currency),
       };
     },
   );

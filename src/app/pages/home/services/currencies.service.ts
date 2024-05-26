@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { EMPTY, Observable, catchError, map } from 'rxjs';
-import { MessageService } from 'primeng/api';
 import Endpoints from '../../../shared/enums/endpoints';
 import RelativeCurrency from '../enums/relative-currencies';
 import isStringInEnum from '../../../shared/utils/is-string-in-enum';
@@ -12,15 +11,13 @@ import ordersResponseToModel from '../utils/orders-response-to-model';
 import CurrencyTradeResponse from '../models/currency-trades-response.model';
 import { CurrencyTrade } from '../models/currency-trade.model';
 import CurrencyInfo from '../models/currency-info.model';
+import getCurrencyIconUrl from '../utils/get-currency-icon-url';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CurrenciesService {
-  constructor(
-    private httpClient: HttpClient,
-    private messageService: MessageService,
-  ) {}
+  constructor(private httpClient: HttpClient) {}
 
   public getCurrencies(): Observable<CurrencyInfo[]> {
     return this.httpClient
@@ -33,7 +30,7 @@ export class CurrenciesService {
             )
             .map((currency) => ({
               name: currency,
-              imageUrl: `https://static.exmoney.com/mobile/currency/${currency}.png`,
+              imageUrl: getCurrencyIconUrl(currency),
             })),
         ),
       );
