@@ -1,14 +1,17 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  HostListener,
   Inject,
   Input,
   LOCALE_ID,
   OnChanges,
+  ViewChild,
 } from '@angular/core';
 import { ChartData, ChartOptions } from 'chart.js';
 import { Observable, map, tap } from 'rxjs';
 import { formatDate } from '@angular/common';
+import { UIChart } from 'primeng/chart';
 import { CurrencyTrade } from '../../../../models/currency-trade.model';
 import { CurrenciesService } from '../../../../services/currencies.service';
 import RelativeCurrency from '../../../../enums/relative-currencies';
@@ -24,11 +27,15 @@ export class CurrenciesChartComponent implements OnChanges {
 
   @Input({ required: true }) public relativeCurrency!: RelativeCurrency;
 
+  @ViewChild('chart') public chart!: UIChart;
+
   public currencyTradesChartData$?: Observable<ChartData>;
 
   private currentCurrencyTrades?: CurrencyTrade[] = undefined;
 
   public chartOptions: ChartOptions = {
+    responsive: true,
+    maintainAspectRatio: true,
     plugins: {
       legend: { display: false },
       tooltip: {
@@ -98,5 +105,10 @@ export class CurrenciesChartComponent implements OnChanges {
           };
         }),
       );
+  }
+
+  @HostListener('window:resize')
+  public onResize(): void {
+    this.chart.reinit();
   }
 }
