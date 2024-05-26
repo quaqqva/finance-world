@@ -9,13 +9,18 @@ import routes from './app.routes';
 import urlInterceptor from './shared/interceptors/url.interceptor';
 import authResponseInterceptor from './pages/auth/interceptors/auth-response.interceptor';
 import UserState from './redux/states/user.state';
+import pairErrorInterceptor from './pages/home/interceptors/pair-error.interceptor';
 
 const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideAnimations(),
     provideHttpClient(
-      withInterceptors([urlInterceptor, authResponseInterceptor]),
+      withInterceptors([
+        urlInterceptor,
+        authResponseInterceptor,
+        pairErrorInterceptor,
+      ]),
     ),
     importProvidersFrom(
       NgxsModule.forRoot([UserState]),

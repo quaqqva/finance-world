@@ -59,14 +59,7 @@ export class CurrenciesService {
         map((trades) => {
           return trades.sort((a, b) => a.date.getTime() - b.date.getTime());
         }),
-        catchError(() => {
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Ошибка',
-            detail: 'Не удалось загрузить данные о паре валют.',
-          });
-          return EMPTY;
-        }),
+        catchError(() => EMPTY),
       );
   }
 
