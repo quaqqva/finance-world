@@ -34,8 +34,6 @@ export class CurrenciesChartComponent implements OnChanges {
   private currentCurrencyTrades?: CurrencyTrade[] = undefined;
 
   public chartOptions: ChartOptions = {
-    responsive: true,
-    maintainAspectRatio: true,
     plugins: {
       legend: { display: false },
       tooltip: {
@@ -61,7 +59,7 @@ export class CurrenciesChartComponent implements OnChanges {
       x: {
         type: 'time',
         title: {
-          display: true,
+          display: window.innerWidth > 600,
           text: 'Время',
         },
         time: {
@@ -74,7 +72,7 @@ export class CurrenciesChartComponent implements OnChanges {
       },
       y: {
         title: {
-          display: true,
+          display: window.innerWidth > 600,
           text: 'Относительная стоимость',
         },
       },
@@ -109,6 +107,11 @@ export class CurrenciesChartComponent implements OnChanges {
 
   @HostListener('window:resize')
   public onResize(): void {
+    Object.values(this.chartOptions.scales!).forEach((axis) => {
+      // У chart.js что-то не так со встроенной типизацией, он считает, что свойства title у осей нет
+      const axisTitle = (axis! as { title: { display: boolean } }).title;
+      axisTitle.display = window.innerWidth > 600;
+    });
     this.chart.reinit();
   }
 }
