@@ -16,7 +16,7 @@ import getCurrencyIconUrl from '../utils/get-currency-icon-url';
 @Injectable({
   providedIn: 'root',
 })
-export class CurrenciesService {
+export class CurrenciesHttpService {
   constructor(private httpClient: HttpClient) {}
 
   public getCurrencies(): Observable<CurrencyInfo[]> {

@@ -13,7 +13,7 @@ import { Observable, map, tap } from 'rxjs';
 import { formatDate } from '@angular/common';
 import { UIChart } from 'primeng/chart';
 import { CurrencyTrade } from '../../../../models/currency-trade.model';
-import { CurrenciesService } from '../../../../services/currencies.service';
+import { CurrenciesHttpService } from '../../../../services/currencies-http.service';
 import RelativeCurrency from '../../../../enums/relative-currencies';
 
 @Component({
@@ -80,12 +80,12 @@ export class CurrenciesChartComponent implements OnChanges {
   };
 
   public constructor(
-    private currenciesService: CurrenciesService,
+    private currenciesHttpService: CurrenciesHttpService,
     @Inject(LOCALE_ID) private locale: string,
   ) {}
 
   public ngOnChanges(): void {
-    this.currencyTradesChartData$ = this.currenciesService
+    this.currencyTradesChartData$ = this.currenciesHttpService
       .getTradesForCurrency(this.currency, this.relativeCurrency)
       .pipe(
         tap((trades) => {

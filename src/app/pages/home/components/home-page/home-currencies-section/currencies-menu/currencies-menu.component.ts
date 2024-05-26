@@ -8,7 +8,7 @@ import {
 import { Observable, map, tap } from 'rxjs';
 import { MenuItem } from 'primeng/api';
 import { TabMenu } from 'primeng/tabmenu';
-import { CurrenciesService } from '../../../../services/currencies.service';
+import { CurrenciesHttpService } from '../../../../services/currencies-http.service';
 
 @Component({
   selector: 'app-currencies-menu',
@@ -21,11 +21,10 @@ export class CurrenciesMenuComponent {
 
   @ViewChild('tabMenu') private tabMenu!: TabMenu;
 
-  public constructor(private currenciesService: CurrenciesService) {}
+  public constructor(private currenciesHttpService: CurrenciesHttpService) {}
 
-  public currenciesMenuItems$: Observable<MenuItem[]> = this.currenciesService
-    .getCurrencies()
-    .pipe(
+  public currenciesMenuItems$: Observable<MenuItem[]> =
+    this.currenciesHttpService.getCurrencies().pipe(
       map((currencies) => {
         return currencies.map((currency): MenuItem => {
           return {
