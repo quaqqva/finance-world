@@ -5,4 +5,26 @@
   class="relative-currency-select__select"
   [options]="selectOptions"
   (onChange)="onValueChange($event)"
-></p-dropdown>
+>
+  <ng-template let-currency pTemplate="selectedItem">
+    <ng-container
+      *ngTemplateOutlet="option; context: { $implicit: currency }"
+    ></ng-container>
+  </ng-template>
+  <ng-template let-currency pTemplate="item">
+    <ng-container
+      *ngTemplateOutlet="option; context: { $implicit: currency }"
+    ></ng-container>
+  </ng-template>
+</p-dropdown>
+
+<ng-template #option let-currency>
+  <div class="relative-currency-select__option">
+    <img
+      class="relative-currency-select__icon"
+      src="{{ currency.icon }}"
+      alt="Иконка {{ currency.label }}"
+    />
+    <span class="relative-currency-select__text">{{ currency.label }}</span>
+  </div>
+</ng-template>

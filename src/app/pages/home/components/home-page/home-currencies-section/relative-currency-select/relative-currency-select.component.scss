@@ -8,4 +8,16 @@
   &__description {
     text-align: center;
   }
+
+  &__option {
+    @include flex($gap: 5px);
+  }
+
+  &__icon {
+    height: 20px;
+  }
+
+  &__text {
+    flex-grow: 1;
+  }
 }

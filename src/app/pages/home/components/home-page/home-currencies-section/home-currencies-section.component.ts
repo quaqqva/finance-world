@@ -11,7 +11,7 @@ import RelativeCurrency from '../../../enums/relative-currencies';
 export class HomeCurrenciesSectionComponent {
   public activeCurrency: string = '';
 
-  public relativeCurrency: RelativeCurrency = RelativeCurrency.USDT;
+  public relativeCurrency!: RelativeCurrency;
 
   public onCurrencyChange(currency: string): void {
     this.activeCurrency = currency;
