@@ -7,7 +7,7 @@
       font-weight: bold;
 
       @media screen and (max-width: 960px) {
-        top: 115%;
+        top: calc(100% + 10px);
         left: 15%;
 
         background-color: var(--grey-600);
@@ -20,7 +20,7 @@
   &:has(.header_shrunk) ::ng-deep {
     @media screen and (max-width: 960px) {
       .p-menubar-root-list {
-        top: 98.5%;
+        top: calc(100% - 2.5px);
       }
     }
   }
