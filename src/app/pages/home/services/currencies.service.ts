@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { EMPTY, Observable, catchError, map } from 'rxjs';
+import { MessageService } from 'primeng/api';
 import Endpoints from '../../../shared/enums/endpoints';
 import RelativeCurrency from '../enums/relative-currencies';
 import isStringInEnum from '../../../shared/utils/is-string-in-enum';
@@ -16,7 +17,10 @@ import CurrencyInfo from '../models/currency-info.model';
   providedIn: 'root',
 })
 export class CurrenciesService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(
+    private httpClient: HttpClient,
+    private messageService: MessageService,
+  ) {}
 
   public getCurrencies(): Observable<CurrencyInfo[]> {
     return this.httpClient
@@ -54,6 +58,14 @@ export class CurrenciesService {
         }),
         map((trades) => {
           return trades.sort((a, b) => a.date.getTime() - b.date.getTime());
+        }),
+        catchError(() => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Ошибка',
+            detail: 'Не удалось загрузить данные о паре валют.',
+          });
+          return EMPTY;
         }),
       );
   }
