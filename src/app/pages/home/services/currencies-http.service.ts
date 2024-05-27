@@ -2,16 +2,16 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { EMPTY, Observable, catchError, map } from 'rxjs';
 import Endpoints from '../../../shared/enums/endpoints';
-import RelativeCurrency from '../enums/relative-currencies';
+import RelativeCurrency from '../models/relative-currencies.enum';
 import isStringInEnum from '../../../shared/utils/is-string-in-enum';
-import CurrenciesOrdersResponse from '../models/currencies-orders-response.model';
 import { CurrencyOrders } from '../models/currency-orders.model';
-import tradesResponseToModel from '../utils/trades-response-to-model';
 import ordersResponseToModel from '../utils/orders-response-to-model';
-import CurrencyTradeResponse from '../models/currency-trades-response.model';
 import { CurrencyTrade } from '../models/currency-trade.model';
 import CurrencyInfo from '../models/currency-info.model';
 import getCurrencyIconUrl from '../utils/get-currency-icon-url';
+import { CurrenciesOrdersResponse } from '../models/currencies-orders-response.model';
+import { CurrencyTradesResponse } from '../models/currency-trades-response.model';
+import { tradesResponseToModel } from '../utils/trades-response-to-model';
 
 @Injectable({
   providedIn: 'root',
@@ -42,7 +42,7 @@ export class CurrenciesHttpService {
   ): Observable<CurrencyTrade[]> {
     const pair = `${currency}_${relativeTo}`;
     return this.httpClient
-      .post<CurrencyTradeResponse>(
+      .post<CurrencyTradesResponse>(
         Endpoints.Trades,
         new URLSearchParams({
           pair,

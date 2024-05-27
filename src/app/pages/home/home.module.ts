@@ -22,6 +22,7 @@ import { TextBlockComponent } from '../../shared/components/text-block/text-bloc
 import { CurrenciesMenuComponent } from './components/home-page/home-currencies-section/currencies-menu/currencies-menu.component';
 import { CurrenciesChartComponent } from './components/home-page/home-currencies-section/currencies-chart/currencies-chart.component';
 import { RelativeCurrencySelectComponent } from './components/home-page/home-currencies-section/relative-currency-select/relative-currency-select.component';
+import { TradesToChartDataPipe } from './pipes/trades-to-chart-data.pipe';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { RelativeCurrencySelectComponent } from './components/home-page/home-cur
     CurrenciesMenuComponent,
     CurrenciesChartComponent,
     RelativeCurrencySelectComponent,
+    TradesToChartDataPipe,
   ],
   imports: [
     CommonModule,

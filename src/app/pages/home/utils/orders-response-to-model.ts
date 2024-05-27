@@ -1,4 +1,4 @@
-import CurrenciesOrdersResponse from '../models/currencies-orders-response.model';
+import { CurrenciesOrdersResponse } from '../models/currencies-orders-response.model';
 import { CurrenciesOrders } from '../models/currency-orders.model';
 
 export default function ordersResponseToModel(

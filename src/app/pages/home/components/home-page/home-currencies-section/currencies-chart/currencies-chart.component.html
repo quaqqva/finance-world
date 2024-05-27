@@ -1,6 +1,6 @@
 <p-chart
   #chart
   [type]="'line'"
-  [data]="currencyTradesChartData$ | async"
+  [data]="currencyTrades | tradesToChartData"
   [options]="chartOptions"
 ></p-chart>

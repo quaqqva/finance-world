@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { DropdownChangeEvent } from 'primeng/dropdown';
 import { MenuItem } from 'primeng/api';
-import RelativeCurrency from '../../../../enums/relative-currencies';
+import RelativeCurrency from '../../../../models/relative-currencies.enum';
 import getCurrencyIconUrl from '../../../../utils/get-currency-icon-url';
 
 @Component({

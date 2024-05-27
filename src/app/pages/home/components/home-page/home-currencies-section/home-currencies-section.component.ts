@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import 'chartjs-adapter-date-fns';
-import RelativeCurrency from '../../../enums/relative-currencies';
+import RelativeCurrency from '../../../models/relative-currencies.enum';
 
 @Component({
   selector: 'app-home-currencies-section',
@@ -9,9 +9,9 @@ import RelativeCurrency from '../../../enums/relative-currencies';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeCurrenciesSectionComponent {
-  public activeCurrency: string = '';
+  public activeCurrency?: string;
 
-  public relativeCurrency!: RelativeCurrency;
+  public relativeCurrency?: RelativeCurrency;
 
   public onCurrencyChange(currency: string): void {
     this.activeCurrency = currency;

@@ -1,24 +1,91 @@
 import { Injectable } from '@angular/core';
+import { WebSocketSubject, webSocket } from 'rxjs/webSocket';
+import { Observable, filter, finalize, map } from 'rxjs';
+import WebsocketUtilityInfo from '../models/ws/ws-utility-info.model';
+import WebsocketResponse from '../models/ws/ws-response.model';
+import RelativeCurrency from '../models/relative-currencies.enum';
+import { CurrencyTrade } from '../models/currency-trade.model';
+import { CurrencyOrders } from '../models/currency-orders.model';
+import { CurrencyTradeResponse } from '../models/currency-trades-response.model';
+import { tradeReponseToModel } from '../utils/trades-response-to-model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CurrenciesWsService {
-  // 1. Подключение к wss://ws-api.exmo.me:443/v1/public
-  // 2. Отправка { "method":"subscribe","topics":["spot/trades:*ПАРА*"] }
-  // 3. Прилетает жсон вида
-  // "ts": 1716725362369,
-  // "event": "update",
-  // "topic": "spot/trades:BTC_USDT",
-  //  data: [
-  //       {
-  //         "trade_id": 629285394,
-  //         "type": "sell",
-  //         "price": "69113.85",
-  //         "quantity": "0.0017",
-  //         "amount": "117.493545",
-  //         "date": 1716725362
-  //     }
-  // ]
-  // 4. Отписка на method: unsubscribe
+  private static URL: string = 'wss://ws-api.exmo.me:443/v1/public';
+
+  private subject?: WebSocketSubject<unknown>;
+
+  private subscriptions: {
+    [topic: string]: Observable<unknown>;
+  } = {};
+
+  public observeTrades(
+    currency: string,
+    relativeCurrency: RelativeCurrency,
+  ): Observable<CurrencyTrade> {
+    return this.observeTopic<CurrencyTradeResponse>(
+      'trades',
+      currency,
+      relativeCurrency,
+    ).pipe(map(tradeReponseToModel));
+  }
+
+  public observeOrders(
+    currency: string,
+    relativeCurrency: RelativeCurrency,
+  ): Observable<CurrencyOrders> {
+    return this.observeTopic<CurrencyOrders>(
+      'orders',
+      currency,
+      relativeCurrency,
+    );
+  }
+
+  private observeTopic<T>(
+    topic: string,
+    currency: string,
+    relativeCurrency: RelativeCurrency,
+  ): Observable<T> {
+    const topicFullName = `spot/${topic}:${currency}_${relativeCurrency}`;
+    if (!this.subscriptions[topic]) {
+      this.subscriptions[topic] = this.connectToTopic(
+        topicFullName,
+      ) as Observable<T>;
+    }
+    return this.subscriptions[topic].pipe(
+      finalize<unknown>(() => {
+        delete this.subscriptions[topic];
+        this.disconnectFromTopic(topicFullName);
+      }),
+    ) as Observable<T>;
+  }
+
+  private connectToTopic<T>(topic: string): Observable<T> {
+    if (!this.subject) this.subject = webSocket(CurrenciesWsService.URL);
+    const utilityData: WebsocketUtilityInfo = {
+      method: 'subscribe',
+      topics: [topic],
+    };
+    this.subject.next(utilityData);
+    return this.subject.pipe(
+      filter((response) => {
+        const wsResponse = response as WebsocketResponse<unknown>;
+        return wsResponse.event === 'update' && wsResponse.topic === topic;
+      }),
+      map((response) => (response as WebsocketResponse<T>).data[0]),
+    );
+  }
+
+  private disconnectFromTopic(topic: string) {
+    if (Object.keys(this.subscriptions).length === 1) this.subject?.complete();
+    else {
+      const utilityData: WebsocketUtilityInfo = {
+        method: 'unsubscribe',
+        topics: [topic],
+      };
+      this.subject?.next(utilityData);
+    }
+  }
 }
