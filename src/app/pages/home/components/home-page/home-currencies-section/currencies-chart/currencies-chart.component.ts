@@ -146,7 +146,7 @@ export class CurrenciesChartComponent implements OnChanges {
 
   private initializeWsSubscription(): void {
     this.wsSubscription = this.currenciesWsService
-      .observeTrades(this.currency!, this.relativeCurrency!)
+      .observeTrades(this.currency, this.relativeCurrency)
       .pipe(untilDestroyed(this))
       .subscribe((trade) => {
         this.currencyTrades = [...this.currencyTrades!.slice(1), trade];
