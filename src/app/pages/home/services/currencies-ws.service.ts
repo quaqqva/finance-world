@@ -5,7 +5,6 @@ import WebsocketUtilityInfo from '../models/ws/ws-utility-info.model';
 import WebsocketResponse from '../models/ws/ws-response.model';
 import RelativeCurrency from '../models/relative-currencies.enum';
 import { CurrencyTrade } from '../models/currency-trade.model';
-import { CurrencyOrders } from '../models/currency-orders.model';
 import { CurrencyTradeResponse } from '../models/currency-trades-response.model';
 import { tradeReponseToModel } from '../utils/trades-response-to-model';
 
@@ -30,17 +29,6 @@ export class CurrenciesWsService {
       currency,
       relativeCurrency,
     ).pipe(map(tradeReponseToModel));
-  }
-
-  public observeOrders(
-    currency: string,
-    relativeCurrency: RelativeCurrency,
-  ): Observable<CurrencyOrders> {
-    return this.observeTopic<CurrencyOrders>(
-      'orders',
-      currency,
-      relativeCurrency,
-    );
   }
 
   private observeTopic<T>(

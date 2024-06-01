@@ -4,12 +4,9 @@ import { EMPTY, Observable, catchError, map } from 'rxjs';
 import Endpoints from '../../../shared/enums/endpoints';
 import RelativeCurrency from '../models/relative-currencies.enum';
 import isStringInEnum from '../../../shared/utils/is-string-in-enum';
-import { CurrencyOrders } from '../models/currency-orders.model';
-import ordersResponseToModel from '../utils/orders-response-to-model';
 import { CurrencyTrade } from '../models/currency-trade.model';
 import CurrencyInfo from '../models/currency-info.model';
 import getCurrencyIconUrl from '../utils/get-currency-icon-url';
-import { CurrenciesOrdersResponse } from '../models/currencies-orders-response.model';
 import { CurrencyTradesResponse } from '../models/currency-trades-response.model';
 import { tradesResponseToModel } from '../utils/trades-response-to-model';
 
@@ -57,24 +54,6 @@ export class CurrenciesHttpService {
           return trades.sort((a, b) => a.date.getTime() - b.date.getTime());
         }),
         catchError(() => EMPTY),
-      );
-  }
-
-  public getOrdersForCurrency(
-    currency: string,
-    relativeTo: RelativeCurrency,
-  ): Observable<CurrencyOrders> {
-    const pair = `${currency}_${relativeTo}`;
-    return this.httpClient
-      .post<CurrenciesOrdersResponse>(Endpoints.Orders, {
-        pair,
-        limit: 10,
-      })
-      .pipe(
-        map((response) => {
-          const orders = ordersResponseToModel(response);
-          return orders[pair];
-        }),
       );
   }
 }
