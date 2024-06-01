@@ -17,7 +17,7 @@ import { CurrenciesHttpService } from '../../../../services/currencies-http.serv
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CurrenciesMenuComponent {
-  @Output() private selectedCurrency: EventEmitter<string> = new EventEmitter();
+  @Output() public selectedCurrencyChange = new EventEmitter<string>();
 
   @ViewChild('tabMenu') private tabMenu!: TabMenu;
 
@@ -39,6 +39,6 @@ export class CurrenciesMenuComponent {
     );
 
   public onCurrencyChange(item: MenuItem): void {
-    this.selectedCurrency.emit(item.label);
+    this.selectedCurrencyChange.emit(item.label);
   }
 }

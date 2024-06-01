@@ -9,7 +9,9 @@ import { ChartModule } from 'primeng/chart';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { ScrollTopModule } from 'primeng/scrolltop';
 import { DropdownModule } from 'primeng/dropdown';
+import { ToggleButtonModule } from 'primeng/togglebutton';
 
+import { FormsModule } from '@angular/forms';
 import routes from './home.routes';
 import { HomeEntryComponent } from './components/home-entry/home-entry.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -21,7 +23,7 @@ import { HomeHeroSectionComponent } from './components/home-page/home-hero-secti
 import { TextBlockComponent } from '../../shared/components/text-block/text-block.component';
 import { CurrenciesMenuComponent } from './components/home-page/home-currencies-section/currencies-menu/currencies-menu.component';
 import { CurrenciesChartComponent } from './components/home-page/home-currencies-section/currencies-chart/currencies-chart.component';
-import { RelativeCurrencySelectComponent } from './components/home-page/home-currencies-section/relative-currency-select/relative-currency-select.component';
+import { ChartSettingsComponent } from './components/home-page/home-currencies-section/chart-settings/chart-settings.component';
 import { TradesToChartDataPipe } from './pipes/trades-to-chart-data.pipe';
 
 @NgModule({
@@ -35,7 +37,7 @@ import { TradesToChartDataPipe } from './pipes/trades-to-chart-data.pipe';
     HomeCurrenciesSectionComponent,
     CurrenciesMenuComponent,
     CurrenciesChartComponent,
-    RelativeCurrencySelectComponent,
+    ChartSettingsComponent,
     TradesToChartDataPipe,
   ],
   imports: [
@@ -50,6 +52,8 @@ import { TradesToChartDataPipe } from './pipes/trades-to-chart-data.pipe';
     ScrollTopModule,
     DropdownModule,
     TextBlockComponent,
+    ToggleButtonModule,
+    FormsModule,
   ],
 })
 export class HomeModule {}

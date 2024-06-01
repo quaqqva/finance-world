@@ -9,15 +9,9 @@ import RelativeCurrency from '../../../models/relative-currencies.enum';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeCurrenciesSectionComponent {
-  public activeCurrency?: string;
+  public activeCurrency!: string;
 
-  public relativeCurrency?: RelativeCurrency;
+  public relativeCurrency!: RelativeCurrency;
 
-  public onCurrencyChange(currency: string): void {
-    this.activeCurrency = currency;
-  }
-
-  public onRelativeCurrencyChange(currency: RelativeCurrency): void {
-    this.relativeCurrency = currency;
-  }
+  public isWsEnabled: boolean = true;
 }

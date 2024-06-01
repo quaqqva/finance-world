@@ -7,13 +7,14 @@ import {
   Input,
   LOCALE_ID,
   OnChanges,
+  SimpleChanges,
 } from '@angular/core';
 import {
   CartesianScaleTypeRegistry,
   ChartOptions,
   ScaleOptionsByType,
 } from 'chart.js';
-import { Subscription, take, tap } from 'rxjs';
+import { Subscription, take } from 'rxjs';
 import { formatDate } from '@angular/common';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { _DeepPartialObject } from 'chart.js/dist/types/utils';
@@ -30,13 +31,15 @@ import { CurrenciesWsService } from '../../../../services/currencies-ws.service'
 })
 @UntilDestroy()
 export class CurrenciesChartComponent implements OnChanges {
-  @Input({ required: true }) public currency?: string;
+  @Input({ required: true }) public currency!: string;
 
-  @Input({ required: true }) public relativeCurrency?: RelativeCurrency;
+  @Input({ required: true }) public relativeCurrency!: RelativeCurrency;
+
+  @Input({ required: true }) public isWsEnabled!: boolean;
 
   public currencyTrades: CurrencyTrade[] | null = null;
 
-  private wsSubscription?: Subscription;
+  private wsSubscription: Subscription | null = null;
 
   private static GetScalesOptions(): _DeepPartialObject<{
     [key: string]: ScaleOptionsByType<
@@ -102,35 +105,35 @@ export class CurrenciesChartComponent implements OnChanges {
     @Inject(LOCALE_ID) private locale: string,
   ) {}
 
-  public ngOnChanges(): void {
+  public ngOnChanges(changes: SimpleChanges): void {
     if (!this.currency || !this.relativeCurrency) return;
-    if (this.wsSubscription) this.wsSubscription.unsubscribe();
+    if (this.wsSubscription) {
+      this.wsSubscription.unsubscribe();
+      this.wsSubscription = null;
+    }
+    if (Object.keys(changes).length === 1 && changes['isWsEnabled']) {
+      if (this.isWsEnabled) this.initializeWsSubscription();
+      return;
+    }
+
     this.currencyTrades = null;
 
     this.chartOptions.animation = undefined;
 
     this.currenciesHttpService
       .getTradesForCurrency(this.currency, this.relativeCurrency)
-      .pipe(
-        take(1),
-        tap((trades) => {
-          this.currencyTrades = trades;
-          this.changeDetectorRef.detectChanges();
+      .pipe(take(1))
+      .subscribe((trades) => {
+        this.currencyTrades = trades;
+        this.changeDetectorRef.detectChanges();
 
-          this.chartOptions.animation = {
-            duration: 0,
-          };
+        if (!this.isWsEnabled) return;
 
-          this.wsSubscription = this.currenciesWsService
-            .observeTrades(this.currency!, this.relativeCurrency!)
-            .pipe(untilDestroyed(this))
-            .subscribe((trade) => {
-              this.currencyTrades = [...this.currencyTrades!.slice(1), trade];
-              this.changeDetectorRef.detectChanges();
-            });
-        }),
-      )
-      .subscribe();
+        this.chartOptions.animation = {
+          duration: 0,
+        };
+        this.initializeWsSubscription();
+      });
   }
 
   @HostListener('window:resize')
@@ -139,5 +142,15 @@ export class CurrenciesChartComponent implements OnChanges {
       ...this.chartOptions,
       scales: CurrenciesChartComponent.GetScalesOptions(),
     };
+  }
+
+  private initializeWsSubscription(): void {
+    this.wsSubscription = this.currenciesWsService
+      .observeTrades(this.currency!, this.relativeCurrency!)
+      .pipe(untilDestroyed(this))
+      .subscribe((trade) => {
+        this.currencyTrades = [...this.currencyTrades!.slice(1), trade];
+        this.changeDetectorRef.detectChanges();
+      });
   }
 }

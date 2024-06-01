@@ -13,17 +13,18 @@
   </p>
   <div class="currencies-section__charts charts">
     <app-currencies-menu
-      class="charts__menu"
-      (selectedCurrency)="onCurrencyChange($event)"
+      class="charts__currencies-menu"
+      (selectedCurrencyChange)="activeCurrency = $event"
     ></app-currencies-menu>
-    <app-relative-currency-select
-      class="charts__relative-currency-select"
-      (selectedCurrency)="onRelativeCurrencyChange($event)"
-    ></app-relative-currency-select>
+    <app-chart-settings
+      (isWsEnabledChange)="isWsEnabled = $event"
+      (selectedRelativeCurrencyChange)="relativeCurrency = $event"
+    ></app-chart-settings>
     <app-currencies-chart
       class="charts__chart"
       [currency]="activeCurrency"
       [relativeCurrency]="relativeCurrency"
+      [isWsEnabled]="isWsEnabled"
     ></app-currencies-chart>
   </div>
 </section>

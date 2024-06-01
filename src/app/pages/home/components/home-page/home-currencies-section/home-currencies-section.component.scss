@@ -58,8 +58,17 @@
     max-height: 90%;
   }
 
-  &__relative-currency-select {
-    margin-left: auto;
-    width: min(300px, 50%);
+  &__options {
+    @include flex($justify-content: space-around);
+  }
+}
+
+.enable-ws-block {
+  @include flex($direction: column);
+
+  flex-grow: 1 1;
+
+  &__description {
+    text-align: center;
   }
 }

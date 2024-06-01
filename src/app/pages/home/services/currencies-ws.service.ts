@@ -79,8 +79,10 @@ export class CurrenciesWsService {
   }
 
   private disconnectFromTopic(topic: string) {
-    if (Object.keys(this.subscriptions).length === 1) this.subject?.complete();
-    else {
+    if (Object.keys(this.subscriptions).length === 1) {
+      this.subject?.complete();
+      this.subject = undefined;
+    } else {
       const utilityData: WebsocketUtilityInfo = {
         method: 'unsubscribe',
         topics: [topic],
