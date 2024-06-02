@@ -3,14 +3,13 @@
     <i class="pi pi-user"></i>
   </p-inputGroupAddon>
   <input
-    class="login-input__field"
     type="text"
     placeholder="Логин"
     pInputText
     [formControl]="control"
     (input)="onInput($event, op)"
   />
-  <p-overlayPanel class="login-input__error-panel" #op>
+  <p-overlayPanel #op>
     <ng-template pTemplate="content">
       <h5 class="login-input__error-text">Введённая почта некорректна</h5>
     </ng-template>
