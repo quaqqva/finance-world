@@ -5,8 +5,6 @@ import Endpoints from '../../../shared/enums/endpoints';
 import RelativeCurrency from '../models/relative-currencies.enum';
 import isStringInEnum from '../../../shared/utils/is-string-in-enum';
 import { CurrencyTrade } from '../models/currency-trade.model';
-import CurrencyInfo from '../models/currency-info.model';
-import getCurrencyIconUrl from '../utils/get-currency-icon-url';
 import { CurrencyTradesResponse } from '../models/currency-trades-response.model';
 import { tradesResponseToModel } from '../utils/trades-response-to-model';
 
@@ -16,19 +14,14 @@ import { tradesResponseToModel } from '../utils/trades-response-to-model';
 export class CurrenciesHttpService {
   constructor(private httpClient: HttpClient) {}
 
-  public getCurrencies(): Observable<CurrencyInfo[]> {
+  public getCurrencies(): Observable<string[]> {
     return this.httpClient
       .post<string[]>(Endpoints.CurrenciesList, new URLSearchParams())
       .pipe(
         map((currencies) =>
-          currencies
-            .filter(
-              (currency: string) => !isStringInEnum(RelativeCurrency, currency),
-            )
-            .map((currency) => ({
-              name: currency,
-              imageUrl: getCurrencyIconUrl(currency),
-            })),
+          currencies.filter(
+            (currency: string) => !isStringInEnum(RelativeCurrency, currency),
+          ),
         ),
       );
   }

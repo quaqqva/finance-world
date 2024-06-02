@@ -9,6 +9,7 @@ import { Observable, map, tap } from 'rxjs';
 import { MenuItem } from 'primeng/api';
 import { TabMenu } from 'primeng/tabmenu';
 import { CurrenciesHttpService } from '../../../../services/currencies-http.service';
+import getCurrencyIconUrl from '../../../../utils/get-currency-icon-url';
 
 @Component({
   selector: 'app-currencies-menu',
@@ -25,14 +26,12 @@ export class CurrenciesMenuComponent {
 
   public currenciesMenuItems$: Observable<MenuItem[]> =
     this.currenciesHttpService.getCurrencies().pipe(
-      map((currencies) => {
-        return currencies.map((currency): MenuItem => {
-          return {
-            label: currency.name,
-            icon: currency.imageUrl,
-          };
-        });
-      }),
+      map((currencies) =>
+        currencies.map((currency) => ({
+          label: currency,
+          icon: getCurrencyIconUrl(currency),
+        })),
+      ),
       tap((currencies) => {
         [this.tabMenu.activeItem] = currencies;
       }),
