@@ -2,7 +2,7 @@ import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { Injectable } from '@angular/core';
 import { EMPTY, Observable, catchError, take, tap } from 'rxjs';
 import { UserStateModel } from './user-state.model';
-import { AuthService } from '../../pages/auth/services/auth/auth.service';
+import { AuthService } from '../../pages/auth/services/auth.service';
 import Login from '../actions/login.action';
 import Logout from '../actions/logout.action';
 import JwtHelper from '../../pages/auth/utils/jwt/jwt-helper';
