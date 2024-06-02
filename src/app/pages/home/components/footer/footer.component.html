@@ -1,13 +1,13 @@
 <footer class="footer">
   <div class="social-links">
     <a
+      *ngFor="let item of socialLinks"
       class="social-links__link"
       pButton
       pRipple
       [rounded]="true"
       [outlined]="true"
-      *ngFor="let item of socialLinks"
-      [href]="item.url!"
+      [href]="item.url"
     >
       <i class="{{ item.icon }} social-links__icon"></i
     ></a>
