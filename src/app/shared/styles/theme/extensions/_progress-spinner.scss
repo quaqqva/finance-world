@@ -1,0 +1,17 @@
+@keyframes custom-p-progress-spinner-color {
+  100%,
+  50%,
+  0% {
+    stroke: var(--teal-500);
+  }
+  25%,
+  75% {
+    stroke: var(--pink-500);
+  }
+}
+
+.p-progress-spinner-circle {
+  animation:
+    p-progress-spinner-dash 1.5s ease-in-out infinite,
+    custom-p-progress-spinner-color 6s ease-in-out infinite;
+}

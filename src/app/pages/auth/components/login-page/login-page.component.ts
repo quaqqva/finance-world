@@ -38,6 +38,8 @@ export class LoginPageComponent {
     }),
   });
 
+  public isLoading: boolean = false;
+
   public constructor(
     private store: Store,
     private router: Router,
@@ -46,10 +48,12 @@ export class LoginPageComponent {
   public onSubmit(event: Event): void {
     if (this.formGroup.valid) {
       const values = this.formGroup.getRawValue();
+      this.isLoading = true;
       this.store
         .dispatch(new Login(values.login, values.password))
         .pipe(untilDestroyed(this))
         .subscribe(() => {
+          this.isLoading = false;
           this.router.navigate([RouteUrls.Home]);
         });
     } else {
