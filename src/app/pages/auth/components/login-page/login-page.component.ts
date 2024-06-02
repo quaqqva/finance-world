@@ -53,9 +53,7 @@ export class LoginPageComponent {
           this.router.navigate([RouteUrls.Home]);
         });
     } else {
-      Object.values(this.formGroup.controls).forEach((control) => {
-        control.markAsDirty();
-      });
+      this.formGroup.markAsDirty();
       this.submitErrorPanel.show(event);
     }
   }

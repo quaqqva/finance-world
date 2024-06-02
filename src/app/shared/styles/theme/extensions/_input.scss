@@ -10,3 +10,7 @@
 .p-password-mask > .p-password {
   width: 100%;
 }
+
+form.ng-dirty.ng-invalid .p-inputtext {
+  @include invalid-input();
+}
