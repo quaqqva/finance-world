@@ -12,13 +12,7 @@ export class FooterComponent {
 
   public socialLinks: MenuItem[] = [
     { icon: PrimeIcons.TELEGRAM, url: '' },
-    {
-      icon: PrimeIcons.TWITTER,
-      url: '',
-    },
-    {
-      icon: PrimeIcons.LINKEDIN,
-      url: '',
-    },
+    { icon: PrimeIcons.TWITTER, url: '' },
+    { icon: PrimeIcons.LINKEDIN, url: '' },
   ];
 }

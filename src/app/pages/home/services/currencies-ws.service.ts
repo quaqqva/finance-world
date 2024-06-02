@@ -12,7 +12,7 @@ import { tradeReponseToModel } from '../utils/trades-response-to-model';
   providedIn: 'root',
 })
 export class CurrenciesWsService {
-  private static URL: string = 'wss://ws-api.exmo.me:443/v1/public';
+  private url: string = 'wss://ws-api.exmo.me:443/v1/public';
 
   private subject?: WebSocketSubject<unknown>;
 
@@ -51,7 +51,7 @@ export class CurrenciesWsService {
   }
 
   private connectToTopic<T>(topic: string): Observable<T> {
-    if (!this.subject) this.subject = webSocket(CurrenciesWsService.URL);
+    if (!this.subject) this.subject = webSocket(this.url);
     const utilityData: WebsocketUtilityInfo = {
       method: 'subscribe',
       topics: [topic],
