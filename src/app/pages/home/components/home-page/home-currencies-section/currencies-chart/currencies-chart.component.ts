@@ -37,6 +37,8 @@ export class CurrenciesChartComponent implements OnChanges {
 
   @Input({ required: true }) public isWsEnabled!: boolean;
 
+  public isLoading: boolean = false;
+
   public currencyTrades: CurrencyTrade[] | null = null;
 
   private wsSubscription: Subscription | null = null;
@@ -120,11 +122,13 @@ export class CurrenciesChartComponent implements OnChanges {
 
     this.chartOptions.animation = undefined;
 
+    this.isLoading = true;
     this.currenciesHttpService
       .getTradesForCurrency(this.currency, this.relativeCurrency)
       .pipe(take(1))
       .subscribe((trades) => {
         this.currencyTrades = trades;
+        this.isLoading = false;
         this.changeDetectorRef.detectChanges();
 
         if (!this.isWsEnabled) return;

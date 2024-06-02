@@ -12,6 +12,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 
 import { FormsModule } from '@angular/forms';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import routes from './home.routes';
 import { HomeEntryComponent } from './components/home-entry/home-entry.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -53,6 +54,7 @@ import { TradesToChartDataPipe } from './pipes/trades-to-chart-data.pipe';
     DropdownModule,
     TextBlockComponent,
     ToggleButtonModule,
+    ProgressSpinnerModule,
     FormsModule,
   ],
 })

@@ -10,8 +10,14 @@
   }
 }
 
-.p-progress-spinner-circle {
-  animation:
-    p-progress-spinner-dash 1.5s ease-in-out infinite,
-    custom-p-progress-spinner-color 6s ease-in-out infinite;
+.p-progress-spinner {
+  aspect-ratio: 1 / 1;
+  width: max(250px, 25vw);
+  height: auto;
+
+  &-circle {
+    animation:
+      p-progress-spinner-dash 1.5s ease-in-out infinite,
+      custom-p-progress-spinner-color 6s ease-in-out infinite;
+  }
 }
