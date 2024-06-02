@@ -1,16 +1,15 @@
 @import 'mixins';
 @import 'functions';
-@import 'variables';
 
 .diversification-section {
   padding-top: 50px;
   background: linear-gradient(
     100deg,
-    var(--white-500) 0%,
+    var(--surface-0) 0%,
     var(--pink-500) 30%,
     var(--pink-500) 50%,
     var(--green-600) 80%,
-    var(--white-500) 100%
+    var(--surface-0) 100%
   );
 
   &__portfolio-image {
@@ -41,11 +40,10 @@
     padding: 50px 20px 50px 8vw !important;
 
     border: none !important;
-    border-radius: 0 $one-sided-section-border-radius
-      $one-sided-section-border-radius 0 !important;
+    border-radius: 0 var(--section-border-radius) var(--section-border-radius) 0 !important;
     background: linear-gradient(
       100deg,
-      var(--white-500) 0%,
+      var(--surface-0) 0%,
       var(--teal-500) 20%
     ) !important;
   }

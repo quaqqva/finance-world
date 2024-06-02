@@ -1,5 +1,4 @@
 @import 'mixins';
-@import 'variables';
 
 .footer {
   border-top-left-radius: 50px;
@@ -24,7 +23,7 @@
     cursor: pointer;
     padding: 0.75rem;
 
-    transition: translate $hover-transition;
+    transition: translate var(--hover-transition);
 
     &:hover {
       translate: 0 -10px;

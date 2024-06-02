@@ -2,10 +2,10 @@ $primaryColor: #c7f3fa;
 $secondaryColor: #facef9;
 $accentColor: #6c0fe6;
 $primaryTextColor: #555555;
-$primaryColorAlt: $secondaryColor !default;
-$primaryLightColor: white !default;
-$primaryDarkColor: scale-color($primaryColor, $lightness: -10%) !default;
-$primaryDarkerColor: scale-color($primaryColor, $lightness: -20%) !default;
+$primaryColorAlt: $secondaryColor;
+$primaryLightColor: white;
+$primaryDarkColor: scale-color($primaryColor, $lightness: -10%);
+$primaryDarkerColor: scale-color($primaryColor, $lightness: -20%);
 
 $gradient-primary-secondary: linear-gradient(
   to right,
@@ -21,7 +21,7 @@ $gradient-primary-secondary-darkened: linear-gradient(
 
 $colors: (
   'red': #bd2f25,
-  'white': #ffffff,
+  'surface': #9e9e9e,
   'green': #00ffc8,
   'teal': $primaryColor,
   'pink': $secondaryColor,

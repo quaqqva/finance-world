@@ -1,5 +1,3 @@
-@import 'variables';
-
 :host {
   display: block;
   min-height: 100vh;
@@ -10,7 +8,7 @@
     position: fixed;
     top: 0;
     right: 0;
-    z-index: $header-layer;
+    z-index: var(--header-layer);
 
     width: 95%;
   }
@@ -25,11 +23,11 @@
     margin-left: auto;
 
     position: relative;
-    z-index: $footer-layer;
+    z-index: var(--footer-layer);
   }
 
   &__scrolltop {
     position: relative;
-    z-index: $scrolltop-layer;
+    z-index: var(--scrolltop-layer);
   }
 }

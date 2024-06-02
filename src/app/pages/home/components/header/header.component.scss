@@ -1,5 +1,4 @@
 @import 'mixins';
-@import 'variables';
 
 :host {
   ::ng-deep {
@@ -12,7 +11,7 @@
 
         background-color: var(--grey-600);
 
-        transition: top $hover-transition;
+        transition: top var(--hover-transition);
       }
     }
   }
@@ -29,9 +28,9 @@
 .header {
   height: 95px;
   padding: 0 10vw 0 20px;
-  transition: height $hover-transition;
+  transition: height var(--hover-transition);
 
-  border-bottom-left-radius: $one-sided-section-border-radius;
+  border-bottom-left-radius: var(--section-border-radius);
   background-color: var(--grey-800);
 
   @include flex();
@@ -54,7 +53,7 @@
 
     padding: 0 10px;
 
-    color: var(--white-500);
+    color: var(--surface-0);
 
     @media (max-width: 400px) {
       display: none;

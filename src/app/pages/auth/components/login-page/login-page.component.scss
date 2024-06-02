@@ -10,7 +10,7 @@
     padding: 30px 20px;
     @include flex($direction: column, $gap: 30px);
 
-    background-color: var(--white-500);
+    background-color: var(--surface-0);
 
     width: clamp(300px, 60%, 600px);
     @include drop-shadow();

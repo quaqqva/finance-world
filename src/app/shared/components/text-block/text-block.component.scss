@@ -1,4 +1,3 @@
-@import 'variables';
 @import 'mixins';
 
 .text-block {
@@ -16,7 +15,7 @@
   $duplicate-box-shadow-offset: 0.35em 0.35em 0;
   &_shadow_duplicate {
     box-shadow: $duplicate-box-shadow-offset var(--grey-800);
-    transition: box-shadow $hover-transition;
+    transition: box-shadow var(--hover-transition);
 
     &:hover {
       box-shadow: 0 0 0 var(--grey-800);
