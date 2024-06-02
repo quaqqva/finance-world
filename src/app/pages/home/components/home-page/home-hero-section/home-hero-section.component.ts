@@ -19,19 +19,19 @@ export class HomeHeroSectionComponent {
       text: 'Добро пожаловать в Мир Финансов!',
       subtext:
         'Мы - ваш надежный партнер в достижении финансового благополучия. Наше приложение предлагает удобные и интуитивно понятные инструменты для управления вашими финансами. Откройте для себя мир возможностей с нами.',
-      image: '../../../../../assets/images/home-page/bank.jpeg',
+      image: 'assets/images/home-page/bank.jpeg',
     },
     {
       text: 'Защита ваших интересов',
       subtext:
         'Мы ценим вашу конфиденциальность и гарантируем высочайший уровень защиты данных и инвестиций.',
-      image: '../../../../../assets/images/home-page/piggy-bank.svg',
+      image: 'assets/images/home-page/piggy-bank.svg',
     },
     {
       text: 'Технологии будущего',
       subtext:
         'Присоединяйтесь к нам, чтобы быть на шаг впереди с нашими инновационными и передовыми финансовыми решениями.',
-      image: '../../../../../assets/images/home-page/calculator.jpeg',
+      image: 'assets/images/home-page/calculator.jpeg',
     },
   ];
 
