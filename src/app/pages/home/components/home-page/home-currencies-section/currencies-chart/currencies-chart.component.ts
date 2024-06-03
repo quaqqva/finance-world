@@ -22,6 +22,7 @@ import { CurrencyTrade } from '../../../../models/currency-trade.model';
 import { CurrenciesHttpService } from '../../../../services/currencies-http.service';
 import { RelativeCurrency } from '../../../../models/relative-currencies.enum';
 import { CurrenciesWsService } from '../../../../services/currencies-ws.service';
+import 'chartjs-adapter-date-fns';
 
 @Component({
   selector: 'app-currencies-chart',

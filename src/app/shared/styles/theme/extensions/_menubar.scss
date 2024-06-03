@@ -1,4 +1,10 @@
 .p-menubar {
+  @media (min-width: 960px) {
+    &-root-list {
+      gap: 20px;
+    }
+  }
+
   &.menubar-align-right {
     & > .p-element {
       flex-grow: 1;
