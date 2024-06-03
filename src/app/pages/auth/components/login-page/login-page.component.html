@@ -17,9 +17,10 @@
       [control]="formGroup.controls.password"
     ></app-password-input>
     <p-button
+      [type]="'submit'"
       class="login-page__submit-button"
       (mouseleave)="onSubmitButtonMouseOut()"
-      (onClick)="onSubmit($event)"
+      (click)="onSubmit($event)"
       [raised]="formGroup.valid"
       severity="submit"
       >Войти</p-button

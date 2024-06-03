@@ -46,20 +46,21 @@ export class LoginPageComponent {
   ) {}
 
   public onSubmit(event: Event): void {
-    if (this.formGroup.valid) {
-      const values = this.formGroup.getRawValue();
-      this.isLoading = true;
-      this.store
-        .dispatch(new Login(values.login, values.password))
-        .pipe(untilDestroyed(this))
-        .subscribe(() => {
-          this.isLoading = false;
-          this.router.navigate([RouteUrls.Home]);
-        });
-    } else {
-      this.formGroup.markAsDirty();
+    if (this.formGroup.invalid) {
+      this.formGroup.markAllAsTouched();
       this.submitErrorPanel.show(event);
+      return;
     }
+
+    const values = this.formGroup.getRawValue();
+    this.isLoading = true;
+    this.store
+      .dispatch(new Login(values.login, values.password))
+      .pipe(untilDestroyed(this))
+      .subscribe(() => {
+        this.isLoading = false;
+        this.router.navigate([RouteUrls.Home]);
+      });
   }
 
   public onSubmitButtonMouseOut(): void {
