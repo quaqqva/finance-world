@@ -10,5 +10,3 @@ export type CurrencyTradeResponse = {
   price: string;
   amount: string;
 };
-
-export default CurrencyTradesResponse;

@@ -1,4 +1,4 @@
-export default class LocalStorageHelper {
+export class LocalStorageHelper {
   public static GetItem<T>(key: string): T | null {
     const storedJson = localStorage.getItem(key);
     if (!storedJson) return null;

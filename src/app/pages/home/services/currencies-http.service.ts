@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { EMPTY, Observable, catchError, map } from 'rxjs';
-import Endpoints from '../../../shared/enums/endpoints';
-import RelativeCurrency from '../models/relative-currencies.enum';
-import isStringInEnum from '../../../shared/utils/is-string-in-enum';
+import { Endpoints } from '../../../shared/enums/endpoints';
+import { RelativeCurrency } from '../models/relative-currencies.enum';
+import { isStringInEnum } from '../../../shared/utils/is-string-in-enum';
 import { CurrencyTrade } from '../models/currency-trade.model';
 import { CurrencyTradesResponse } from '../models/currency-trades-response.model';
 import { tradesResponseToModel } from '../utils/trades-response-to-model';

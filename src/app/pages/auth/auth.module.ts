@@ -12,7 +12,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 import { RouterModule } from '@angular/router';
 import { LoginPageComponent } from './components/login-page/login-page.component';
-import routes from './auth.routes';
+import { routes } from './auth.routes';
 import { PasswordInputComponent } from './components/password-input/password-input.component';
 import { LoginInputComponent } from './components/login-input/login-input.component';
 import { FormatPasswordRequirementPipe } from './pipes/format-password-requirement.pipe';

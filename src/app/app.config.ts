@@ -5,13 +5,13 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { MessageService } from 'primeng/api';
-import routes from './app.routes';
-import urlInterceptor from './shared/interceptors/url.interceptor';
-import authResponseInterceptor from './pages/auth/interceptors/auth-response.interceptor';
-import UserState from './redux/states/user.state';
-import pairErrorInterceptor from './pages/home/interceptors/pair-error.interceptor';
+import { routes } from './app.routes';
+import { urlInterceptor } from './shared/interceptors/url.interceptor';
+import { authResponseInterceptor } from './pages/auth/interceptors/auth-response.interceptor';
+import { UserState } from './redux/states/user.state';
+import { pairErrorInterceptor } from './pages/home/interceptors/pair-error.interceptor';
 
-const appConfig: ApplicationConfig = {
+export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideAnimations(),
@@ -29,5 +29,3 @@ const appConfig: ApplicationConfig = {
     MessageService,
   ],
 };
-
-export default appConfig;

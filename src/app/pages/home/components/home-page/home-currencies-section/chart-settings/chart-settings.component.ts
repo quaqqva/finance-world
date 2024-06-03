@@ -6,8 +6,8 @@ import {
   Output,
 } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import RelativeCurrency from '../../../../models/relative-currencies.enum';
-import getCurrencyIconUrl from '../../../../utils/get-currency-icon-url';
+import { RelativeCurrency } from '../../../../models/relative-currencies.enum';
+import { getCurrencyIconUrl } from '../../../../utils/get-currency-icon-url';
 
 @Component({
   selector: 'app-chart-settings',

@@ -1,6 +1,6 @@
 import { ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 
-export default function passwordValidator(): ValidatorFn {
+export function passwordValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const text = control.value;
     const errors: ValidationErrors = {};

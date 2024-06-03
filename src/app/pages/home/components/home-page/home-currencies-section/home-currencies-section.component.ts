@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import 'chartjs-adapter-date-fns';
-import RelativeCurrency from '../../../models/relative-currencies.enum';
+import { RelativeCurrency } from '../../../models/relative-currencies.enum';
 
 @Component({
   selector: 'app-home-currencies-section',

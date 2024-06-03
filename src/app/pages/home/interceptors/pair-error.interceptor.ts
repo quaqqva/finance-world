@@ -2,9 +2,9 @@ import { HttpInterceptorFn, HttpResponse } from '@angular/common/http';
 import { map } from 'rxjs';
 import { MessageService } from 'primeng/api';
 import { inject } from '@angular/core';
-import Endpoints from '../../../shared/enums/endpoints';
+import { Endpoints } from '../../../shared/enums/endpoints';
 
-const pairErrorInterceptor: HttpInterceptorFn = (req, next) => {
+export const pairErrorInterceptor: HttpInterceptorFn = (req, next) => {
   const messageService: MessageService = inject(MessageService);
   return next(req).pipe(
     map((event) => {
@@ -24,5 +24,3 @@ const pairErrorInterceptor: HttpInterceptorFn = (req, next) => {
     }),
   );
 };
-
-export default pairErrorInterceptor;

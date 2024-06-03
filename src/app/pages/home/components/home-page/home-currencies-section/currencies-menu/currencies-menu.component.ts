@@ -9,7 +9,7 @@ import { Observable, map, tap } from 'rxjs';
 import { MenuItem } from 'primeng/api';
 import { TabMenu } from 'primeng/tabmenu';
 import { CurrenciesHttpService } from '../../../../services/currencies-http.service';
-import getCurrencyIconUrl from '../../../../utils/get-currency-icon-url';
+import { getCurrencyIconUrl } from '../../../../utils/get-currency-icon-url';
 
 @Component({
   selector: 'app-currencies-menu',

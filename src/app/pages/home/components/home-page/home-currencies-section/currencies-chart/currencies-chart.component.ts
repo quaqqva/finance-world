@@ -20,7 +20,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { _DeepPartialObject } from 'chart.js/dist/types/utils';
 import { CurrencyTrade } from '../../../../models/currency-trade.model';
 import { CurrenciesHttpService } from '../../../../services/currencies-http.service';
-import RelativeCurrency from '../../../../models/relative-currencies.enum';
+import { RelativeCurrency } from '../../../../models/relative-currencies.enum';
 import { CurrenciesWsService } from '../../../../services/currencies-ws.service';
 
 @Component({

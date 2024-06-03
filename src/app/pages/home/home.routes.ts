@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { HomeEntryComponent } from './components/home-entry/home-entry.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: '',
     component: HomeEntryComponent,
@@ -14,4 +14,3 @@ const routes: Routes = [
     ],
   },
 ];
-export default routes;

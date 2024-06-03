@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { WebSocketSubject, webSocket } from 'rxjs/webSocket';
 import { Observable, filter, finalize, map } from 'rxjs';
-import WebsocketUtilityInfo from '../models/ws/ws-utility-info.model';
-import WebsocketResponse from '../models/ws/ws-response.model';
-import RelativeCurrency from '../models/relative-currencies.enum';
+import { WebsocketUtilityInfo } from '../models/ws/ws-utility-info.model';
+import { WebsocketResponse } from '../models/ws/ws-response.model';
+import { RelativeCurrency } from '../models/relative-currencies.enum';
 import { CurrencyTrade } from '../models/currency-trade.model';
 import { CurrencyTradeResponse } from '../models/currency-trades-response.model';
 import { tradeReponseToModel } from '../utils/trades-response-to-model';

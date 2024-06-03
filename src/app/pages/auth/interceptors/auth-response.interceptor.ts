@@ -1,9 +1,9 @@
 import { HttpInterceptorFn, HttpResponse } from '@angular/common/http';
 import { map } from 'rxjs';
-import JwtHelper from '../utils/jwt/jwt-helper';
-import Endpoints from '../../../shared/enums/endpoints';
+import { JwtHelper } from '../utils/jwt/jwt-helper';
+import { Endpoints } from '../../../shared/enums/endpoints';
 
-const authResponseInterceptor: HttpInterceptorFn = (req, next) => {
+export const authResponseInterceptor: HttpInterceptorFn = (req, next) => {
   return next(req).pipe(
     map((event) => {
       if (
@@ -21,5 +21,3 @@ const authResponseInterceptor: HttpInterceptorFn = (req, next) => {
     }),
   );
 };
-
-export default authResponseInterceptor;

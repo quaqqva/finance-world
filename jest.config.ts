@@ -1,6 +1,6 @@
 import type { Config } from 'jest';
 
-const config: Config = {
+export const config: Config = {
   verbose: true,
   preset: 'jest-preset-angular',
   setupFilesAfterEnv: ['<rootDir>/src/setup-jest.ts'],
@@ -9,8 +9,6 @@ const config: Config = {
   moduleDirectories: ['src', 'node_modules'],
   modulePaths: ['<rootDir>'],
   transform: {
-    '\\.html$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.spec.json' }]
-  }
+    '\\.html$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.spec.json' }],
+  },
 };
-
-export default config;

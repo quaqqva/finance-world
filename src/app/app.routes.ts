@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
-import authorizedGuard from './shared/guards/authorized.guard';
-import notAuthrorizedGuard from './shared/guards/not-authorized.guard';
-import RouteUrls from './shared/enums/routes';
+import { authorizedGuard } from './shared/guards/authorized.guard';
+import { notAuthorizedGuard } from './shared/guards/not-authorized.guard';
+import { RouteUrls } from './shared/enums/routes';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: '',
     redirectTo: RouteUrls.Home,
@@ -19,7 +19,6 @@ const routes: Routes = [
     path: RouteUrls.Login,
     loadChildren: () =>
       import('./pages/auth/auth.module').then((m) => m.AuthModule),
-    canActivate: [notAuthrorizedGuard],
+    canActivate: [notAuthorizedGuard],
   },
 ];
-export default routes;

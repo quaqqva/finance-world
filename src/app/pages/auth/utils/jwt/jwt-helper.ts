@@ -1,7 +1,7 @@
 import crypto from 'crypto-js';
 import { jwtDecode } from 'jwt-decode';
 
-export default class JwtHelper {
+export class JwtHelper {
   private static JWT_SECRET = 'simbirsoft';
 
   public static CheckIfTokenIsValid(token: string): boolean {

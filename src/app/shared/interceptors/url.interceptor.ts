@@ -1,6 +1,6 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 
-const urlInterceptor: HttpInterceptorFn = (req, next) => {
+export const urlInterceptor: HttpInterceptorFn = (req, next) => {
   const newRequest = req.clone({
     url: `https://api.exmo.me/v1.1/${req.url}`,
     setHeaders: {
@@ -9,5 +9,3 @@ const urlInterceptor: HttpInterceptorFn = (req, next) => {
   });
   return next(newRequest);
 };
-
-export default urlInterceptor;

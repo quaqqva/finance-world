@@ -3,12 +3,12 @@ import { Injectable } from '@angular/core';
 import { EMPTY, Observable, catchError, take, tap } from 'rxjs';
 import { UserStateModel } from './user-state.model';
 import { AuthService } from '../../pages/auth/services/auth.service';
-import Login from '../actions/login.action';
-import Logout from '../actions/logout.action';
-import JwtHelper from '../../pages/auth/utils/jwt/jwt-helper';
+import { Login } from '../actions/login.action';
+import { Logout } from '../actions/logout.action';
+import { JwtHelper } from '../../pages/auth/utils/jwt/jwt-helper';
 import { AuthToken } from '../../pages/auth/models/auth-token.model';
-import LocalStorageHelper from '../utils/local-storage-helper';
-import LocalStorageStates from '../enums/local-storage-key';
+import { LocalStorageHelper } from '../utils/local-storage-helper';
+import { LocalStorageStates } from '../enums/local-storage-key';
 
 @State<UserStateModel>({
   name: 'user',
@@ -21,7 +21,7 @@ import LocalStorageStates from '../enums/local-storage-key';
   },
 })
 @Injectable()
-export default class UserState {
+export class UserState {
   public constructor(private authService: AuthService) {}
 
   @Action(Login)
