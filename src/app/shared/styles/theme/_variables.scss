@@ -1,0 +1,35 @@
+@import 'colors';
+
+// Mandatory Designer Variables
+@import './variables/general';
+@import './variables/form';
+@import './variables/button';
+@import './variables/panel';
+@import './variables/_data';
+@import './variables/_overlay';
+@import './variables/_message';
+@import './variables/_menu';
+@import './variables/_media';
+@import './variables/_misc';
+
+:root {
+  font-family: $fontFamily;
+  --font-family: #{$fontFamily};
+  --font-family-heading: #{$fontFamilyHeading};
+
+  --text-color: #{$primaryTextColor};
+  --primary-secondary-gradient: #{$gradient-primary-secondary};
+  --primary-secondary-darkened-gradient: #{$gradient-primary-secondary-darkened};
+  --surface-0: #ffffff;
+
+  --hover-transition: ease-in-out 300ms;
+
+  // Z-index layers
+  --header-layer: 2;
+  --scrolltop-layer: 3;
+  --footer-layer: 4;
+
+  --section-border-radius: 50px;
+
+  color-scheme: light;
+}

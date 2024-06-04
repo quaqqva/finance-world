@@ -1,0 +1,30 @@
+$primaryColor: #c7f3fa;
+$secondaryColor: #facef9;
+$accentColor: #6c0fe6;
+$primaryTextColor: #555555;
+$primaryColorAlt: $secondaryColor;
+$primaryLightColor: white;
+$primaryDarkColor: scale-color($primaryColor, $lightness: -10%);
+$primaryDarkerColor: scale-color($primaryColor, $lightness: -20%);
+
+$gradient-primary-secondary: linear-gradient(
+  to right,
+  $primaryColor 0%,
+  $secondaryColor 100%
+);
+
+$gradient-primary-secondary-darkened: linear-gradient(
+  to right,
+  darken($primaryColor, 25) 0%,
+  darken($secondaryColor, 25) 100%
+);
+
+$colors: (
+  'red': #bd2f25,
+  'surface': #9e9e9e,
+  'green': #00ffc8,
+  'teal': $primaryColor,
+  'pink': $secondaryColor,
+  'purple': $accentColor,
+  'grey': $primaryTextColor,
+);

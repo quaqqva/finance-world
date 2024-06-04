@@ -1,0 +1,36 @@
+@import 'mixins';
+
+.footer {
+  border-top-left-radius: 50px;
+  background-color: var(--grey-800);
+
+  padding: 30px;
+
+  @include flex($align-items: flex-end, $direction: column, $gap: 15px);
+
+  &__year {
+    margin-right: 0.2em;
+
+    @include gradient-font-color(var(--primary-secondary-gradient));
+    font-size: 1.2em;
+  }
+}
+
+.social-links {
+  @include flex($gap: 15px);
+
+  &__link {
+    cursor: pointer;
+    padding: 0.75rem;
+
+    transition: translate var(--hover-transition);
+
+    &:hover {
+      translate: 0 -10px;
+    }
+  }
+
+  &__icon {
+    font-size: 1.5rem;
+  }
+}

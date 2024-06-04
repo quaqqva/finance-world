@@ -1,0 +1,45 @@
+<p class="chart-settings__description">
+  Получение информации в режиме реального времени
+</p>
+
+<p-toggleButton
+  class="chart-settings__option-input"
+  onLabel="Включено"
+  offLabel="Выключено"
+  [(ngModel)]="isWsEnabled"
+  (onChange)="sendIsWsEnabled()"
+/>
+
+<p class="chart-settings__description">
+  Выберите валюту, относительно которой будет отслеживаться курс
+</p>
+
+<p-dropdown
+  class="chart-settings__option-input relative-currency-select"
+  [options]="selectOptions"
+  (onChange)="
+    selectedRelativeCurrency = $event.value.label; sendRelativeCurrency()
+  "
+>
+  <ng-template let-currency pTemplate="selectedItem">
+    <ng-container
+      *ngTemplateOutlet="option; context: { $implicit: currency }"
+    ></ng-container>
+  </ng-template>
+  <ng-template let-currency pTemplate="item">
+    <ng-container
+      *ngTemplateOutlet="option; context: { $implicit: currency }"
+    ></ng-container>
+  </ng-template>
+</p-dropdown>
+
+<ng-template #option let-currency>
+  <div class="relative-currency-select__option">
+    <img
+      class="relative-currency-select__icon"
+      src="{{ currency.icon }}"
+      alt="Иконка {{ currency.label }}"
+    />
+    <span class="relative-currency-select__text">{{ currency.label }}</span>
+  </div>
+</ng-template>

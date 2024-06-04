@@ -1,0 +1,66 @@
+@import 'mixins';
+
+:host {
+  ::ng-deep {
+    .p-menubar-root-list {
+      font-weight: bold;
+
+      @media screen and (max-width: 960px) {
+        top: calc(100% + 10px);
+        left: 15%;
+
+        background-color: var(--grey-600);
+
+        transition: top var(--hover-transition);
+      }
+    }
+  }
+
+  &:has(.header_shrunk) ::ng-deep {
+    @media screen and (max-width: 960px) {
+      .p-menubar-root-list {
+        top: calc(100% - 2.5px);
+      }
+    }
+  }
+}
+
+.header {
+  height: 95px;
+  padding: 0 10vw 0 20px;
+  transition: height var(--hover-transition);
+
+  border-bottom-left-radius: var(--section-border-radius);
+  background-color: var(--grey-800);
+
+  @include flex();
+
+  &__navigation {
+    display: block;
+    width: 100%;
+  }
+
+  &__logo {
+    translate: 0 -2.5px;
+
+    width: 60px;
+    height: 60px;
+  }
+
+  &__heading {
+    display: inline-block;
+    translate: 0 -15px;
+
+    padding: 0 10px;
+
+    color: var(--surface-0);
+
+    @media (max-width: 400px) {
+      display: none;
+    }
+  }
+
+  &_shrunk {
+    height: 70px;
+  }
+}

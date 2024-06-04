@@ -1,0 +1,59 @@
+@import 'mixins';
+
+.text-block {
+  font-size: 1.5em;
+
+  padding: 1.5em;
+
+  border: 4px solid var(--grey-800);
+  border-radius: 1.5em;
+
+  @include drop-shadow();
+
+  @include flex($direction: column);
+
+  $duplicate-box-shadow-offset: 0.35em 0.35em 0;
+  &_shadow_duplicate {
+    box-shadow: $duplicate-box-shadow-offset var(--grey-800);
+    transition: box-shadow var(--hover-transition);
+
+    &:hover {
+      box-shadow: 0 0 0 var(--grey-800);
+    }
+  }
+
+  &_bright {
+    border-color: transparent;
+    background:
+      linear-gradient(var(--purple-600), var(--purple-600)) padding-box,
+      linear-gradient(100deg, var(--purple-400), var(--pink-500)) border-box;
+
+    color: var(--pink-400);
+
+    .text-block__heading {
+      color: var(--pink-400);
+    }
+
+    &.text-block_shadow_duplicate {
+      box-shadow: $duplicate-box-shadow-offset var(--pink-400);
+
+      &:hover {
+        box-shadow: 0 0 0 var(--pink-400);
+      }
+    }
+  }
+
+  &__heading {
+    width: 100%;
+    font-size: 1.75em;
+  }
+
+  &__description {
+    align-self: flex-start;
+    width: max(85%, 250px);
+
+    &_offset {
+      translate: 30px;
+    }
+  }
+}

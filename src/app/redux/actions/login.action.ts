@@ -1,4 +1,4 @@
-export default class Login {
+export class Login {
   public static readonly type = '[Auth] Login';
 
   public constructor(

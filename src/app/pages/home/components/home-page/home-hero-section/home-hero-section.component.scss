@@ -1,0 +1,40 @@
+@import 'mixins';
+
+.hero-section {
+  &__carousel {
+    display: block;
+    padding-bottom: 30px;
+  }
+
+  &__slide {
+    width: 100%;
+    height: calc(100vh - 150px);
+
+    @include flex($justify-content: space-around);
+
+    &_reversed {
+      flex-direction: row-reverse;
+    }
+  }
+
+  &__image {
+    max-width: 40%;
+    max-height: 90%;
+  }
+
+  &__text-block {
+    width: max(40%, 250px);
+  }
+
+  @media (max-width: 500px) {
+    &__slide,
+    &__slide_reversed {
+      flex-direction: column-reverse;
+    }
+
+    &__text-block {
+      width: max(90%, 300px);
+      max-height: 70%;
+    }
+  }
+}

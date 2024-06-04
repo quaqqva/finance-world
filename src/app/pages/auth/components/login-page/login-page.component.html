@@ -1,5 +1,9 @@
 <div class="login-page">
-  <form class="login-page__form" [formGroup]="formGroup">
+  <form
+    *ngIf="!isLoading; else loader"
+    class="login-page__form"
+    [formGroup]="formGroup"
+  >
     <div class="login-page__heading-wrapper">
       <h2 class="login-page__heading">Вход</h2>
       <p-divider></p-divider>
@@ -13,13 +17,14 @@
       [control]="formGroup.controls.password"
     ></app-password-input>
     <p-button
-      class="login-page__submit-button-wrapper"
-      [styleClass]="'login-page__submit-button'"
+      class="login-page__submit-button"
       (mouseleave)="onSubmitButtonMouseOut()"
-      (onClick)="onSubmit($event)"
+      (click)="onSubmit($event)"
+      [raised]="formGroup.valid"
+      severity="submit"
       >Войти</p-button
     >
-    <p-overlayPanel class="login-page__error-panel" #submitErrorPanel>
+    <p-overlayPanel #submitErrorPanel>
       <ng-template pTemplate="content">
         <h5 class="login-page__error-text">
           Пожалуйста, заполните все поля правильно
@@ -28,3 +33,6 @@
     </p-overlayPanel>
   </form>
 </div>
+<ng-template #loader>
+  <p-progressSpinner ariaLabel="loading" />
+</ng-template>
