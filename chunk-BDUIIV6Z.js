@@ -1,1 +1,0 @@
-import{eb as i,fb as o,ka as a,ub as r,yb as p}from"./chunk-F2EK2GVB.js";var d=(()=>{let e=class e{};e.\u0275fac=function(n){return new(n||e)},e.\u0275cmp=a({type:e,selectors:[["app-main-page"]],standalone:!0,features:[p],decls:2,vars:0,template:function(n,s){n&1&&(i(0,"p"),r(1,"main-page works!"),o())},changeDetection:0});let t=e;return t})();export{d as MainPageComponent};
