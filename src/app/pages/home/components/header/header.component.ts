@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { ConfirmationService, MenuItem } from 'primeng/api';
+import { ConfirmationService, MenuItem, PrimeIcons } from 'primeng/api';
 import { Router } from '@angular/router';
 import { Observable, fromEvent, map, take, throttleTime } from 'rxjs';
 import { Logout } from '../../../../redux/actions/logout.action';
@@ -32,8 +32,13 @@ export class HeaderComponent {
     confirmService: ConfirmationService,
   ) {
     this.menuItems = [
-      { label: 'Главная', routerLink: '' },
+      { icon: PrimeIcons.HOME, label: 'Главная', routerLink: '' },
       {
+        icon: PrimeIcons.USER,
+        label: 'Профиль',
+      },
+      {
+        icon: PrimeIcons.SIGN_OUT,
         label: 'Выход',
         command: () => {
           confirmService.confirm({

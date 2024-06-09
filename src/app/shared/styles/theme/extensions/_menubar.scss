@@ -15,6 +15,15 @@
     }
   }
 
+  .p-menuitem-link:has(.p-menuitem-text) .p-menuitem-icon {
+    margin-right: 0.5rem;
+  }
+
+  .p-menuitem-icon {
+    font-size: 1.5rem;
+    margin-right: 0;
+  }
+
   @media screen and (max-width: 960px) {
     &.menubar-large-icon .p-icon {
       width: 2rem;
