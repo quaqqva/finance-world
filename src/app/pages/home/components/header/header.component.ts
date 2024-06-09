@@ -1,12 +1,8 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  HostListener,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { ConfirmationService, MenuItem } from 'primeng/api';
 import { Router } from '@angular/router';
-import { take } from 'rxjs';
+import { Observable, fromEvent, map, take, throttleTime } from 'rxjs';
 import { Logout } from '../../../../redux/actions/logout.action';
 import { RouteUrls } from '../../../../shared/enums/routes';
 
@@ -19,9 +15,16 @@ import { RouteUrls } from '../../../../shared/enums/routes';
 export class HeaderComponent {
   public menuItems: MenuItem[];
 
-  public isShrunk: boolean = false;
-
   private lastScrollY: number = 0;
+
+  public isShrunk$: Observable<boolean> = fromEvent(window, 'scroll').pipe(
+    throttleTime(100),
+    map(() => {
+      const { lastScrollY } = this;
+      this.lastScrollY = window.scrollY;
+      return lastScrollY < window.scrollY;
+    }),
+  );
 
   public constructor(
     store: Store,
@@ -48,12 +51,5 @@ export class HeaderComponent {
         },
       },
     ];
-  }
-
-  @HostListener('window:scroll')
-  public onScroll(): void {
-    const { lastScrollY } = this;
-    this.lastScrollY = window.scrollY;
-    this.isShrunk = lastScrollY < window.scrollY;
   }
 }
