@@ -67,15 +67,14 @@ export class CurrenciesWsService {
   }
 
   private disconnectFromTopic(topic: string) {
-    if (Object.keys(this.subscriptions).length === 1) {
+    const utilityData: WebsocketUtilityInfo = {
+      method: 'unsubscribe',
+      topics: [topic],
+    };
+    this.subject?.next(utilityData);
+    if (!Object.keys(this.subscriptions).length) {
       this.subject?.complete();
       this.subject = undefined;
-    } else {
-      const utilityData: WebsocketUtilityInfo = {
-        method: 'unsubscribe',
-        topics: [topic],
-      };
-      this.subject?.next(utilityData);
     }
   }
 }

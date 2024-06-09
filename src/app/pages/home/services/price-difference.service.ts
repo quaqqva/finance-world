@@ -1,34 +1,50 @@
 import { Injectable } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { RelativeCurrency } from '../models/relative-currencies.enum';
+import { Store } from '@ngxs/store';
+import { Subscription, filter } from 'rxjs';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { CurrencyChartStateModel } from '../../../redux/states/currency-chart/currency-chart-state.model';
+import { CurrenciesWsService } from './currencies-ws.service';
 
 @Injectable({
   providedIn: 'root',
 })
+@UntilDestroy()
 export class PriceDifferenceService {
-  private lastPrice: number = 0;
+  public lastCurrencyPrice: number = 0;
 
-  private relativeCurrency: RelativeCurrency = RelativeCurrency.USDT;
+  private wsSubscription: Subscription | null = null;
 
-  public set lastCurrencyPrice(value: number) {
-    if (this.lastPrice !== value) {
-      this.messageService.add({
-        severity: 'info',
-        summary: `Стоимость валюты изменилась с ${this.lastPrice} до ${value} ${this.relativeCurrency}!`,
+  public constructor(
+    private messageService: MessageService,
+    currenciesWsService: CurrenciesWsService,
+    store: Store,
+  ) {
+    store
+      .select((state) => state.currencyChart)
+      .pipe(
+        untilDestroyed(this),
+        filter((state) => !!state.currency),
+      )
+      .subscribe((state: CurrencyChartStateModel) => {
+        if (this.wsSubscription) {
+          this.wsSubscription.unsubscribe();
+          this.wsSubscription = null;
+        }
+        if (!state.isWsEnabled) return;
+
+        this.wsSubscription = currenciesWsService
+          .observeTrades(state.currency, state.relativeCurrency)
+          .pipe(untilDestroyed(this))
+          .subscribe((trade) => {
+            if (this.lastCurrencyPrice !== trade.price) {
+              this.messageService.add({
+                severity: 'info',
+                summary: `Стоимость валюты изменилась с ${this.lastCurrencyPrice} до ${trade.price} ${state.relativeCurrency}!`,
+              });
+              this.lastCurrencyPrice = trade.price;
+            }
+          });
       });
-    }
-    this.lastPrice = value;
   }
-
-  public set relativeCurrencyValue(value: RelativeCurrency) {
-    if (this.relativeCurrency !== value) {
-      this.messageService.add({
-        severity: 'info',
-        summary: `Валюта изменилась с ${this.relativeCurrency} до ${value}!`,
-      });
-    }
-    this.relativeCurrency = value;
-  }
-
-  constructor(private messageService: MessageService) {}
 }
