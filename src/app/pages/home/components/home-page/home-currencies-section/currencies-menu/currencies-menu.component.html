@@ -1,7 +1,6 @@
 <p-tabMenu
   class="currencies-menu"
   [model]="(currenciesMenuItems$ | async) || undefined"
-  (activeItemChange)="onCurrencyChange($event)"
   #tabMenu
 >
   <ng-template pTemplate="item" let-item>

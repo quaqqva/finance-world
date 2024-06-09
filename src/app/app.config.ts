@@ -8,8 +8,9 @@ import { MessageService, ConfirmationService } from 'primeng/api';
 import { routes } from './app.routes';
 import { urlInterceptor } from './shared/interceptors/url.interceptor';
 import { authResponseInterceptor } from './pages/auth/interceptors/auth-response.interceptor';
-import { UserState } from './redux/states/user.state';
+import { UserState } from './redux/states/user/user.state';
 import { pairErrorInterceptor } from './pages/home/interceptors/pair-error.interceptor';
+import { CurrencyChartState } from './redux/states/currency-chart/currency-chart.state';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -23,7 +24,7 @@ export const appConfig: ApplicationConfig = {
       ]),
     ),
     importProvidersFrom(
-      NgxsModule.forRoot([UserState]),
+      NgxsModule.forRoot([UserState, CurrencyChartState]),
       NgxsReduxDevtoolsPluginModule.forRoot(),
     ),
     MessageService,
