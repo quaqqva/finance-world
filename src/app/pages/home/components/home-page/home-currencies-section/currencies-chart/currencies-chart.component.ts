@@ -4,25 +4,24 @@ import {
   Component,
   HostListener,
   Inject,
-  Input,
   LOCALE_ID,
-  OnChanges,
-  SimpleChanges,
 } from '@angular/core';
 import {
   CartesianScaleTypeRegistry,
   ChartOptions,
   ScaleOptionsByType,
 } from 'chart.js';
-import { Subscription, take } from 'rxjs';
+import { Subscription, filter, take } from 'rxjs';
 import { formatDate } from '@angular/common';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { _DeepPartialObject } from 'chart.js/dist/types/utils';
+import { Store } from '@ngxs/store';
 import { CurrencyTrade } from '../../../../models/currency-trade.model';
 import { CurrenciesHttpService } from '../../../../services/currencies-http.service';
 import { RelativeCurrency } from '../../../../models/relative-currencies.enum';
 import { CurrenciesWsService } from '../../../../services/currencies-ws.service';
 import 'chartjs-adapter-date-fns';
+import { CurrencyChartStateModel } from '../../../../../../redux/states/currency-chart/currency-chart-state.model';
 
 @Component({
   selector: 'app-currencies-chart',
@@ -31,16 +30,16 @@ import 'chartjs-adapter-date-fns';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 @UntilDestroy()
-export class CurrenciesChartComponent implements OnChanges {
-  @Input({ required: true }) public currency!: string;
-
-  @Input({ required: true }) public relativeCurrency!: RelativeCurrency;
-
-  @Input({ required: true }) public isWsEnabled!: boolean;
-
+export class CurrenciesChartComponent {
   public isLoading: boolean = false;
 
   public currencyTrades: CurrencyTrade[] | null = null;
+
+  private currency!: string;
+
+  private relativeCurrency!: RelativeCurrency;
+
+  private isWsEnabled!: boolean;
 
   private wsSubscription: Subscription | null = null;
 
@@ -106,15 +105,34 @@ export class CurrenciesChartComponent implements OnChanges {
     private currenciesWsService: CurrenciesWsService,
     private changeDetectorRef: ChangeDetectorRef,
     @Inject(LOCALE_ID) private locale: string,
-  ) {}
+    private store: Store,
+  ) {
+    this.store
+      .select((state) => state.currencyChart)
+      .pipe(
+        untilDestroyed(this),
+        filter((state) => !!state.currency),
+      )
+      .subscribe((state: CurrencyChartStateModel) => {
+        const hasOnlyWsChanged =
+          state.isWsEnabled !== this.isWsEnabled &&
+          state.currency === this.currency &&
+          state.relativeCurrency === this.relativeCurrency;
 
-  public ngOnChanges(changes: SimpleChanges): void {
-    if (!this.currency || !this.relativeCurrency) return;
+        this.currency = state.currency;
+        this.relativeCurrency = state.relativeCurrency;
+        this.isWsEnabled = state.isWsEnabled;
+
+        this.onSettingsChange(hasOnlyWsChanged);
+      });
+  }
+
+  private onSettingsChange(hasOnlyWsChanged: boolean): void {
     if (this.wsSubscription) {
       this.wsSubscription.unsubscribe();
       this.wsSubscription = null;
     }
-    if (Object.keys(changes).length === 1 && changes['isWsEnabled']) {
+    if (hasOnlyWsChanged) {
       if (this.isWsEnabled) this.initializeWsSubscription();
       return;
     }
@@ -124,6 +142,7 @@ export class CurrenciesChartComponent implements OnChanges {
     this.chartOptions.animation = undefined;
 
     this.isLoading = true;
+    this.changeDetectorRef.detectChanges();
     this.currenciesHttpService
       .getTradesForCurrency(this.currency, this.relativeCurrency)
       .pipe(take(1))

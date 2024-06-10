@@ -12,20 +12,9 @@
     анализируйте тренды и делайте обоснованные решения.
   </p>
   <div class="currencies-section__charts charts">
-    <app-currencies-menu
-      class="charts__currencies-menu"
-      (selectedCurrencyChange)="activeCurrency = $event"
-    ></app-currencies-menu>
-    <app-chart-settings
-      (isWsEnabledChange)="isWsEnabled = $event"
-      (selectedRelativeCurrencyChange)="relativeCurrency = $event"
-    ></app-chart-settings>
-    <app-currencies-chart
-      class="charts__chart"
-      [currency]="activeCurrency"
-      [relativeCurrency]="relativeCurrency"
-      [isWsEnabled]="isWsEnabled"
-    ></app-currencies-chart>
+    <app-currencies-menu class="charts__currencies-menu"></app-currencies-menu>
+    <app-chart-settings></app-chart-settings>
+    <app-currencies-chart class="charts__chart"></app-currencies-chart>
   </div>
 </section>
 

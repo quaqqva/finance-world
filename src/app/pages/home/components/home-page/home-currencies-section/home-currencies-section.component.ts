@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RelativeCurrency } from '../../../models/relative-currencies.enum';
 
 @Component({
   selector: 'app-home-currencies-section',
@@ -7,10 +6,4 @@ import { RelativeCurrency } from '../../../models/relative-currencies.enum';
   styleUrl: './home-currencies-section.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeCurrenciesSectionComponent {
-  public activeCurrency!: string;
-
-  public relativeCurrency!: RelativeCurrency;
-
-  public isWsEnabled: boolean = true;
-}
+export class HomeCurrenciesSectionComponent {}

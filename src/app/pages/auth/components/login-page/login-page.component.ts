@@ -5,7 +5,7 @@ import { Store } from '@ngxs/store';
 import { Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { passwordValidator } from '../../validators/password.validator';
-import { Login } from '../../../../redux/actions/login.action';
+import { Login } from '../../../../redux/actions/user/login.action';
 import { RouteUrls } from '../../../../shared/enums/routes';
 
 @Component({
