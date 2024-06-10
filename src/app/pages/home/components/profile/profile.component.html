@@ -20,6 +20,7 @@
     />
     <p-button
       label="{{ passwordInputVisible ? 'Сохранить' : 'Изменить пароль' }}"
+      [disabled]="formGroup.invalid && passwordInputVisible"
       (click)="onPasswordButtonClick()"
     />
   </ng-template>

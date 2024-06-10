@@ -54,12 +54,14 @@ export class ProfileComponent {
       this.passwordInputVisible = true;
       return;
     }
+
     this.confirmationService.confirm({
       message: 'Вы действительно хотите изменить пароль?',
       header: 'Подтверждение',
       accept: () => {
-        this.profileVisible = false;
         this.passwordInputVisible = false;
+        this.profileVisible = false;
+        this.changeDetectorRef.detectChanges();
       },
     });
   }
