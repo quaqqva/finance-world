@@ -37,17 +37,16 @@ export class CurrenciesWsService {
     relativeCurrency: RelativeCurrency,
   ): Observable<T> {
     const topicFullName = `spot/${topic}:${currency}_${relativeCurrency}`;
-    if (!this.subscriptions[topic]) {
-      this.subscriptions[topic] = this.connectToTopic(
+    if (!this.subscriptions[topicFullName]) {
+      this.subscriptions[topicFullName] = this.connectToTopic(
         topicFullName,
+      ).pipe(
+        finalize<unknown>(() => {
+          this.disconnectFromTopic(topicFullName);
+        }),
       ) as Observable<T>;
     }
-    return this.subscriptions[topic].pipe(
-      finalize<unknown>(() => {
-        delete this.subscriptions[topic];
-        this.disconnectFromTopic(topicFullName);
-      }),
-    ) as Observable<T>;
+    return this.subscriptions[topicFullName] as Observable<T>;
   }
 
   private connectToTopic<T>(topic: string): Observable<T> {
@@ -72,6 +71,7 @@ export class CurrenciesWsService {
       topics: [topic],
     };
     this.subject?.next(utilityData);
+    delete this.subscriptions[topic];
     if (!Object.keys(this.subscriptions).length) {
       this.subject?.complete();
       this.subject = undefined;

@@ -37,7 +37,7 @@ export class PriceDifferenceService {
           .observeTrades(state.currency, state.relativeCurrency)
           .pipe(untilDestroyed(this))
           .subscribe((trade) => {
-            if (this.lastCurrencyPrice !== trade.price) {
+            if (Math.abs(this.lastCurrencyPrice - trade.price) > 0.01) {
               this.messageService.add({
                 severity: 'info',
                 summary: `Стоимость валюты изменилась с ${this.lastCurrencyPrice} до ${trade.price} ${state.relativeCurrency}!`,
