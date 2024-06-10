@@ -2,15 +2,12 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  OnInit,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngxs/store';
 import { ConfirmationService } from 'primeng/api';
-import { FileUploadEvent } from 'primeng/fileupload';
+import { Observable } from 'rxjs';
 import { passwordValidator } from '../../../../shared/components/password-input/password.validator';
-import { SavePhoto } from '../../../../redux/actions/save-photo.action';
-import { UserStateModel } from '../../../../redux/states/user/user-state.model';
 
 @Component({
   selector: 'app-profile',
@@ -18,18 +15,14 @@ import { UserStateModel } from '../../../../redux/states/user/user-state.model';
   styleUrl: './profile.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent {
   public profileVisible: boolean = false;
 
   public passwordInputVisible: boolean = false;
 
-  public confirmPopupVisible: boolean = false;
+  public email$: Observable<string>;
 
-  public email!: string;
-
-  public userPhoto!: string;
-
-  public formGroup = new FormGroup({
+  public passwordForm = new FormGroup({
     password: new FormControl('', {
       nonNullable: true,
       validators: [
@@ -44,17 +37,9 @@ export class ProfileComponent implements OnInit {
   public constructor(
     private changeDetectorRef: ChangeDetectorRef,
     private confirmationService: ConfirmationService,
-    private store: Store,
-  ) {}
-
-  public ngOnInit(): void {
-    this.store
-      .select((state) => state.user)
-      .subscribe((user: UserStateModel) => {
-        this.email = user.login;
-        this.userPhoto = user.photo;
-        this.changeDetectorRef.detectChanges();
-      });
+    store: Store,
+  ) {
+    this.email$ = store.selectOnce((state) => state.user.login);
   }
 
   public show(): void {
@@ -77,17 +62,5 @@ export class ProfileComponent implements OnInit {
         this.changeDetectorRef.detectChanges();
       },
     });
-  }
-
-  public onPhotoUpload(event: FileUploadEvent): void {
-    const { files } = event;
-    if (files.length !== 1) {
-      return;
-    }
-    const fileReader = new FileReader();
-    fileReader.readAsDataURL(event.files[0]);
-    fileReader.onload = () => {
-      this.store.dispatch(new SavePhoto(fileReader.result!.toString()));
-    };
   }
 }

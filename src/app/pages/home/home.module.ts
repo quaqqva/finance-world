@@ -31,6 +31,7 @@ import { ChartSettingsComponent } from './components/home-page/home-currencies-s
 import { TradesToChartDataPipe } from './pipes/trades-to-chart-data.pipe';
 import { ProfileComponent } from './components/profile/profile.component';
 import { PasswordInputComponent } from '../../shared/components/password-input/password-input.component';
+import { ProfilePhotoComponent } from './components/profile/profile-photo/profile-photo.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { PasswordInputComponent } from '../../shared/components/password-input/p
     ChartSettingsComponent,
     TradesToChartDataPipe,
     ProfileComponent,
+    ProfilePhotoComponent,
   ],
   imports: [
     CommonModule,
