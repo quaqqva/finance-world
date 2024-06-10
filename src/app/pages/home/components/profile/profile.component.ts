@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  OnInit,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngxs/store';
@@ -17,7 +18,7 @@ import { UserStateModel } from '../../../../redux/states/user/user-state.model';
   styleUrl: './profile.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
   public profileVisible: boolean = false;
 
   public passwordInputVisible: boolean = false;
@@ -44,7 +45,9 @@ export class ProfileComponent {
     private changeDetectorRef: ChangeDetectorRef,
     private confirmationService: ConfirmationService,
     private store: Store,
-  ) {
+  ) {}
+
+  public ngOnInit(): void {
     this.store
       .select((state) => state.user)
       .subscribe((user: UserStateModel) => {
