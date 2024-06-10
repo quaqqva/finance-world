@@ -10,6 +10,8 @@ import { TabMenuModule } from 'primeng/tabmenu';
 import { ScrollTopModule } from 'primeng/scrolltop';
 import { DropdownModule } from 'primeng/dropdown';
 import { ToggleButtonModule } from 'primeng/togglebutton';
+import { DialogModule } from 'primeng/dialog';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
 
 import { FormsModule } from '@angular/forms';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
@@ -26,6 +28,8 @@ import { CurrenciesMenuComponent } from './components/home-page/home-currencies-
 import { CurrenciesChartComponent } from './components/home-page/home-currencies-section/currencies-chart/currencies-chart.component';
 import { ChartSettingsComponent } from './components/home-page/home-currencies-section/chart-settings/chart-settings.component';
 import { TradesToChartDataPipe } from './pipes/trades-to-chart-data.pipe';
+import { ProfileComponent } from './components/profile/profile.component';
+import { PasswordInputComponent } from '../../shared/components/password-input/password-input.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +44,7 @@ import { TradesToChartDataPipe } from './pipes/trades-to-chart-data.pipe';
     CurrenciesChartComponent,
     ChartSettingsComponent,
     TradesToChartDataPipe,
+    ProfileComponent,
   ],
   imports: [
     CommonModule,
@@ -55,7 +60,10 @@ import { TradesToChartDataPipe } from './pipes/trades-to-chart-data.pipe';
     TextBlockComponent,
     ToggleButtonModule,
     ProgressSpinnerModule,
+    DialogModule,
+    ConfirmPopupModule,
     FormsModule,
+    PasswordInputComponent,
   ],
 })
 export class HomeModule {}

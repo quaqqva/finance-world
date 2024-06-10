@@ -1,10 +1,11 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { ConfirmationService, MenuItem, PrimeIcons } from 'primeng/api';
 import { Router } from '@angular/router';
 import { Observable, fromEvent, map, take, throttleTime } from 'rxjs';
 import { Logout } from '../../../../redux/actions/logout.action';
 import { RouteUrls } from '../../../../shared/enums/routes';
+import { ProfileComponent } from '../profile/profile.component';
 
 @Component({
   selector: 'app-header',
@@ -13,6 +14,8 @@ import { RouteUrls } from '../../../../shared/enums/routes';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
+  @ViewChild('profile') profile!: ProfileComponent;
+
   public menuItems: MenuItem[];
 
   private lastScrollY: number = 0;
@@ -36,6 +39,9 @@ export class HeaderComponent {
       {
         icon: PrimeIcons.USER,
         label: 'Профиль',
+        command: () => {
+          this.profile.show();
+        },
       },
       {
         icon: PrimeIcons.SIGN_OUT,

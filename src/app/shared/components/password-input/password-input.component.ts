@@ -1,17 +1,34 @@
+import { KeyValuePipe, NgFor } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   Input,
   OnInit,
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { DividerModule } from 'primeng/divider';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { PasswordModule } from 'primeng/password';
+import { FormatPasswordRequirementPipe } from './format-password-requirement.pipe';
 
 @Component({
   selector: 'app-password-input',
   templateUrl: './password-input.component.html',
   styleUrl: './password-input.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    PasswordModule,
+    InputGroupModule,
+    InputGroupAddonModule,
+    DividerModule,
+    NgFor,
+    KeyValuePipe,
+    ReactiveFormsModule,
+    FormatPasswordRequirementPipe,
+  ],
 })
 @UntilDestroy()
 export class PasswordInputComponent implements OnInit {

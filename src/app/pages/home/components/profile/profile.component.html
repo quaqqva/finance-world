@@ -1,0 +1,26 @@
+<p-dialog
+  header="Ваши данные"
+  [modal]="true"
+  [(visible)]="profileVisible"
+  [dismissableMask]="true"
+  [draggable]="false"
+>
+  <span class="profile__email-name">Почта</span>
+  <span class="profile__email-value">{{ email$ | async }}</span>
+  <form *ngIf="passwordInputVisible" class="change-password-form">
+    <app-password-input
+      [control]="formGroup.controls.password"
+    ></app-password-input>
+  </form>
+  <ng-template pTemplate="footer">
+    <p-button
+      label="Закрыть"
+      severity="secondary"
+      (click)="profileVisible = false"
+    />
+    <p-button
+      label="{{ passwordInputVisible ? 'Сохранить' : 'Изменить пароль' }}"
+      (click)="onPasswordButtonClick()"
+    />
+  </ng-template>
+</p-dialog>
