@@ -1,1 +1,0 @@
-var s=(()=>{let e=class e{};e.type="[Auth] Logout";let r=e;return r})();var t=function(r){return r.Auth="pair_settings",r.CurrenciesList="currency",r.Trades="trades",r.Orders="order_book",r}(t||{});export{s as a,t as b};
