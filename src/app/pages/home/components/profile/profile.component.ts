@@ -9,7 +9,7 @@ import { ConfirmationService } from 'primeng/api';
 import { FileUploadEvent } from 'primeng/fileupload';
 import { passwordValidator } from '../../../../shared/components/password-input/password.validator';
 import { SavePhoto } from '../../../../redux/actions/save-photo.action';
-import { UserStateModel } from '../../../../redux/states/user-state.model';
+import { UserStateModel } from '../../../../redux/states/user/user-state.model';
 
 @Component({
   selector: 'app-profile',

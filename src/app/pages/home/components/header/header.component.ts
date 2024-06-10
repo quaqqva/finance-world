@@ -3,7 +3,7 @@ import { Store } from '@ngxs/store';
 import { ConfirmationService, MenuItem, PrimeIcons } from 'primeng/api';
 import { Router } from '@angular/router';
 import { Observable, fromEvent, map, take, throttleTime } from 'rxjs';
-import { Logout } from '../../../../redux/actions/logout.action';
+import { Logout } from '../../../../redux/actions/user/logout.action';
 import { RouteUrls } from '../../../../shared/enums/routes';
 import { ProfileComponent } from '../profile/profile.component';
 

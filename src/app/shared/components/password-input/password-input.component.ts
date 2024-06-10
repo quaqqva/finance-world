@@ -17,7 +17,6 @@ import { FormatPasswordRequirementPipe } from './format-password-requirement.pip
   selector: 'app-password-input',
   templateUrl: './password-input.component.html',
   styleUrl: './password-input.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
     PasswordModule,
@@ -29,6 +28,8 @@ import { FormatPasswordRequirementPipe } from './format-password-requirement.pip
     ReactiveFormsModule,
     FormatPasswordRequirementPipe,
   ],
+  // TODO: вернуть OnPush
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 @UntilDestroy()
 export class PasswordInputComponent implements OnInit {

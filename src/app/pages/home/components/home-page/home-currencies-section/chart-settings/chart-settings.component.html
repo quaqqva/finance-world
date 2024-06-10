@@ -6,8 +6,8 @@
   class="chart-settings__option-input"
   onLabel="Включено"
   offLabel="Выключено"
-  [(ngModel)]="isWsEnabled"
-  (onChange)="sendIsWsEnabled()"
+  [ngModel]="isWsEnabled$ | async"
+  (ngModelChange)="onWsToggle()"
 />
 
 <p class="chart-settings__description">
@@ -17,9 +17,7 @@
 <p-dropdown
   class="chart-settings__option-input relative-currency-select"
   [options]="selectOptions"
-  (onChange)="
-    selectedRelativeCurrency = $event.value.label; sendRelativeCurrency()
-  "
+  (onChange)="onRelativeCurrencyChange($event.value.label)"
 >
   <ng-template let-currency pTemplate="selectedItem">
     <ng-container
