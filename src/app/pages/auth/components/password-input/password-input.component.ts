@@ -11,7 +11,8 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
   selector: 'app-password-input',
   templateUrl: './password-input.component.html',
   styleUrl: './password-input.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // TODO: вернуть OnPush
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 @UntilDestroy()
 export class PasswordInputComponent implements OnInit {

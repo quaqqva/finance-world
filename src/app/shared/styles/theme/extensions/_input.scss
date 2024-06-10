@@ -11,9 +11,7 @@
   width: 100%;
 }
 
-form.ng-touched.ng-invalid {
-  .p-inputtext.ng-invalid,
-  .p-inputwrapper.ng-invalid .p-inputtext {
-    @include invalid-input();
-  }
+.p-inputtext.ng-touched.ng-invalid,
+.p-inputwrapper.ng-touched.ng-invalid .p-inputtext {
+  @include invalid-input();
 }

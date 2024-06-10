@@ -6,7 +6,8 @@ import { OverlayPanel } from 'primeng/overlaypanel';
   selector: 'app-login-input',
   templateUrl: './login-input.component.html',
   styleUrl: './login-input.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // TODO: вернуть OnPush
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class LoginInputComponent {
   @Input({ required: true }) public control!: FormControl;
