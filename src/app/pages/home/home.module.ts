@@ -11,7 +11,8 @@ import { ScrollTopModule } from 'primeng/scrolltop';
 import { DropdownModule } from 'primeng/dropdown';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { DialogModule } from 'primeng/dialog';
-import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { SkeletonModule } from 'primeng/skeleton';
+import { FileUploadModule } from 'primeng/fileupload';
 
 import { FormsModule } from '@angular/forms';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
@@ -61,7 +62,8 @@ import { PasswordInputComponent } from '../../shared/components/password-input/p
     ToggleButtonModule,
     ProgressSpinnerModule,
     DialogModule,
-    ConfirmPopupModule,
+    SkeletonModule,
+    FileUploadModule,
     FormsModule,
     PasswordInputComponent,
   ],

@@ -5,9 +5,11 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
 import { ConfirmationService } from 'primeng/api';
+import { FileUploadEvent } from 'primeng/fileupload';
 import { passwordValidator } from '../../../../shared/components/password-input/password.validator';
+import { SavePhoto } from '../../../../redux/actions/save-photo.action';
+import { UserStateModel } from '../../../../redux/states/user-state.model';
 
 @Component({
   selector: 'app-profile',
@@ -22,7 +24,9 @@ export class ProfileComponent {
 
   public confirmPopupVisible: boolean = false;
 
-  public email$: Observable<string>;
+  public email!: string;
+
+  public userPhoto!: string;
 
   public formGroup = new FormGroup({
     password: new FormControl('', {
@@ -39,9 +43,15 @@ export class ProfileComponent {
   public constructor(
     private changeDetectorRef: ChangeDetectorRef,
     private confirmationService: ConfirmationService,
-    store: Store,
+    private store: Store,
   ) {
-    this.email$ = store.select((state) => state.user.login);
+    this.store
+      .select((state) => state.user)
+      .subscribe((user: UserStateModel) => {
+        this.email = user.login;
+        this.userPhoto = user.photo;
+        this.changeDetectorRef.detectChanges();
+      });
   }
 
   public show(): void {
@@ -64,5 +74,17 @@ export class ProfileComponent {
         this.changeDetectorRef.detectChanges();
       },
     });
+  }
+
+  public onPhotoUpload(event: FileUploadEvent): void {
+    const { files } = event;
+    if (files.length !== 1) {
+      return;
+    }
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(event.files[0]);
+    fileReader.onload = () => {
+      this.store.dispatch(new SavePhoto(fileReader.result!.toString()));
+    };
   }
 }

@@ -5,8 +5,26 @@
   [dismissableMask]="true"
   [draggable]="false"
 >
+  <img
+    *ngIf="userPhoto; else photoSkeleton"
+    class="profile__photo"
+    src="{{ userPhoto }}"
+    alt="Фото профиля"
+  />
+  <ng-template #photoSkeleton>
+    <p-skeleton class="profile__photo-skeleton"></p-skeleton>
+  </ng-template>
+
+  <p-fileUpload
+    mode="basic"
+    chooseLabel="Изменить фото профиля"
+    chooseIcon="pi pi-upload"
+    accept="image/*"
+    maxFileSize="1000000"
+    (onUpload)="onPhotoUpload($event)"
+  />
   <span class="profile__email-name">Почта</span>
-  <span class="profile__email-value">{{ email$ | async }}</span>
+  <span class="profile__email-value">{{ email }}</span>
   <form *ngIf="passwordInputVisible" class="change-password-form">
     <app-password-input
       [control]="formGroup.controls.password"

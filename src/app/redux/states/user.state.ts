@@ -9,6 +9,7 @@ import { JwtHelper } from '../../pages/auth/utils/jwt/jwt-helper';
 import { AuthToken } from '../../pages/auth/models/auth-token.model';
 import { LocalStorageHelper } from '../utils/local-storage-helper';
 import { LocalStorageStates } from '../enums/local-storage-key';
+import { SavePhoto } from '../actions/save-photo.action';
 
 @State<UserStateModel>({
   name: 'user',
@@ -16,6 +17,7 @@ import { LocalStorageStates } from '../enums/local-storage-key';
     LocalStorageStates.User,
   ) || {
     login: '',
+    photo: '',
     accessToken: '',
     refreshToken: '',
   },
@@ -50,10 +52,19 @@ export class UserState {
   public logout(ctx: StateContext<UserStateModel>): void {
     ctx.setState({
       login: '',
+      photo: '',
       accessToken: '',
       refreshToken: '',
     });
     LocalStorageHelper.RemoveItem(LocalStorageStates.User);
+  }
+
+  @Action(SavePhoto)
+  public savePhoto(ctx: StateContext<UserStateModel>, action: SavePhoto): void {
+    const state = ctx.patchState({ photo: action.photo }) as unknown as {
+      user: UserStateModel;
+    };
+    LocalStorageHelper.SetItem(LocalStorageStates.User, state.user);
   }
 
   @Selector()
