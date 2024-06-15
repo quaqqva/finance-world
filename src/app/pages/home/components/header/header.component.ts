@@ -50,6 +50,7 @@ export class HeaderComponent {
           confirmService.confirm({
             message: 'Вы действительно хотите выйти?',
             header: 'Подтверждение',
+            key: 'dialog',
             accept: () => {
               store
                 .dispatch(new Logout())

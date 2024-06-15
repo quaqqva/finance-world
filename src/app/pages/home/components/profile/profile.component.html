@@ -42,7 +42,7 @@
     <p-button
       label="{{ passwordInputVisible ? 'Сохранить' : 'Изменить пароль' }}"
       [disabled]="!passwordFormIsValid && passwordInputVisible"
-      (click)="onPasswordButtonClick()"
+      (click)="onPasswordButtonClick($event)"
     />
   </ng-template>
 </p-dialog>
