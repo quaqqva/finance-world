@@ -18,6 +18,10 @@
   font-weight: bold;
 }
 
+.p-button-text {
+  color: var(--teal-600);
+}
+
 form.ng-valid .p-button-submit {
   background-size: 180% 180%;
   background-color: var(--primary-secondary-darkened-gradient);
