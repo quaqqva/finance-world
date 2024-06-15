@@ -1,13 +1,14 @@
 <img
   *ngIf="userPhoto$ | async; else photoSkeleton"
-  class="profile__photo"
+  class="profile-photo__image"
   src="{{ userPhoto$ | async }}"
   alt="Фото профиля"
 />
 <ng-template #photoSkeleton>
-  <p-skeleton class="profile__photo-skeleton"></p-skeleton>
+  <p-skeleton class="profile-photo__skeleton"></p-skeleton>
 </ng-template>
 <p-fileUpload
+  class="profile-photo__upload"
   mode="basic"
   chooseLabel="Изменить фото профиля"
   chooseIcon="pi pi-upload"

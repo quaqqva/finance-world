@@ -1,0 +1,35 @@
+@import 'mixins';
+
+:host {
+  @include flex($direction: column, $justify-content: space-between);
+  height: 100%;
+
+  padding: 20px;
+
+  ::ng-deep {
+    .profile-photo__skeleton .p-skeleton {
+      width: auto !important;
+      height: auto !important;
+      aspect-ratio: 1 / 1;
+      max-height: 100%;
+    }
+  }
+}
+
+.profile-photo {
+  $upload-height: 65px;
+
+  &__image {
+    object-fit: cover;
+    object-position: center;
+
+    padding: 10px;
+
+    max-height: calc(100% - $upload-height);
+    aspect-ratio: 1 / 1;
+  }
+
+  &__upload {
+    height: $upload-height;
+  }
+}

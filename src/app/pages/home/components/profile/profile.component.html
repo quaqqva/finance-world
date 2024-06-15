@@ -5,14 +5,24 @@
   [dismissableMask]="true"
   [draggable]="false"
 >
-  <app-profile-photo></app-profile-photo>
-  <span class="profile__email-name">Почта</span>
-  <span class="profile__email-value">{{ email$ | async }}</span>
-  <form *ngIf="passwordInputVisible" class="change-password-form">
-    <app-password-input
-      [control]="passwordForm.controls.password"
-    ></app-password-input>
-  </form>
+  <div class="profile">
+    <app-profile-photo class="profile__photo"></app-profile-photo>
+    <div class="profile__text-data">
+      <span class="profile__email-name">Почта</span>
+      <span class="profile__email-value">{{ email$ | async }}</span>
+      <form *ngIf="passwordInputVisible" class="change-password-form">
+        <app-password-input
+          [placeholder]="'Новый пароль'"
+          [control]="passwordForm.controls.password"
+        ></app-password-input>
+        <app-password-input
+          [placeholder]="'Подтвердите пароль'"
+          [control]="passwordForm.controls.passwordConfirm"
+        ></app-password-input>
+      </form>
+    </div>
+  </div>
+
   <ng-template pTemplate="footer">
     <p-button
       label="Закрыть"

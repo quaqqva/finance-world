@@ -35,6 +35,8 @@ import { FormatPasswordRequirementPipe } from './format-password-requirement.pip
 export class PasswordInputComponent implements OnInit {
   @Input({ required: true }) public control!: FormControl;
 
+  @Input() public placeholder: string = 'Пароль';
+
   public requrements: { [key: string]: boolean } = {};
 
   public ngOnInit(): void {

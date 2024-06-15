@@ -32,6 +32,15 @@ export class ProfileComponent {
         passwordValidator(),
       ],
     }),
+    passwordConfirm: new FormControl('', {
+      nonNullable: true,
+      validators: [
+        Validators.minLength(8),
+        Validators.maxLength(150),
+        Validators.required,
+        passwordValidator(),
+      ],
+    }),
   });
 
   public constructor(

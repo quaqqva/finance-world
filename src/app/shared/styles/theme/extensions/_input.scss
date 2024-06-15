@@ -1,7 +1,8 @@
 .p-inputgroup > .p-inputgroup-addon + .p-inputtext,
 .p-inputgroup
   > .p-inputgroup-addon
-  + .p-password-mask
+  + *
+  .p-password-mask
   > .p-password
   > .p-inputtext {
   border-radius: 0 6px 6px 0;
