@@ -1,4 +1,4 @@
-@import 'app/shared/styles/scrollbar';
+@import 'mixins';
 
 * {
   box-sizing: border-box;
@@ -16,4 +16,8 @@ body {
 
 a {
   text-decoration: none;
+}
+
+body {
+  @include scrollbar();
 }
