@@ -1,11 +1,18 @@
-import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { Store } from '@ngxs/store';
 import { ConfirmationService, MenuItem, PrimeIcons } from 'primeng/api';
 import { Router } from '@angular/router';
 import { Observable, fromEvent, map, take, throttleTime } from 'rxjs';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Logout } from '../../../../redux/actions/user/logout.action';
 import { RouteUrls } from '../../../../shared/enums/routes';
 import { ProfileComponent } from '../profile/profile.component';
+import { UserState } from '../../../../redux/states/user/user.state';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +20,8 @@ import { ProfileComponent } from '../profile/profile.component';
   styleUrl: './header.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeaderComponent {
+@UntilDestroy()
+export class HeaderComponent implements OnInit {
   @ViewChild('profile') profile!: ProfileComponent;
 
   public menuItems: MenuItem[];
@@ -30,7 +38,7 @@ export class HeaderComponent {
   );
 
   public constructor(
-    store: Store,
+    private store: Store,
     router: Router,
     confirmService: ConfirmationService,
   ) {
@@ -63,5 +71,24 @@ export class HeaderComponent {
         },
       },
     ];
+  }
+
+  public ngOnInit(): void {
+    this.store
+      .select(UserState.UniquePhoto)
+      .pipe(untilDestroyed(this))
+      .subscribe((photo) => {
+        if (!photo) {
+          this.menuItems[1].iconStyle = undefined;
+          this.menuItems[1].styleClass = undefined;
+          this.menuItems = [...this.menuItems];
+          return;
+        }
+        this.menuItems[1].iconStyle = {
+          'background-image': `url(${photo})`,
+        };
+        this.menuItems[1].styleClass = 'header__profile-link';
+        this.menuItems = [...this.menuItems];
+      });
   }
 }

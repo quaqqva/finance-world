@@ -17,13 +17,16 @@ import { SavePhoto } from '../../actions/save-photo.action';
     LocalStorageStates.User,
   ) || {
     login: '',
-    photo: 'assets/images/profile-placeholder.jpg',
+    photo: UserState.PLACEHOLDER_PHOTO_URL,
     accessToken: '',
     refreshToken: '',
   },
 })
 @Injectable()
 export class UserState {
+  public static PLACEHOLDER_PHOTO_URL: string =
+    'assets/images/profile-placeholder.jpg';
+
   public constructor(private authService: AuthService) {}
 
   @Action(Login)
@@ -53,7 +56,7 @@ export class UserState {
   public logout(ctx: StateContext<UserStateModel>): void {
     ctx.setState({
       login: '',
-      photo: 'assets/images/profile-placeholder.jpg',
+      photo: UserState.PLACEHOLDER_PHOTO_URL,
       accessToken: '',
       refreshToken: '',
     });
@@ -74,5 +77,10 @@ export class UserState {
     return (
       state.login !== '' && JwtHelper.CheckIfTokenIsValid(state.refreshToken)
     );
+  }
+
+  @Selector()
+  public static UniquePhoto(state: UserStateModel): string | null {
+    return state.photo === UserState.PLACEHOLDER_PHOTO_URL ? null : state.photo;
   }
 }
