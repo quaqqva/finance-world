@@ -17,7 +17,7 @@ import { SavePhoto } from '../../actions/save-photo.action';
     LocalStorageStates.User,
   ) || {
     login: '',
-    photo: '',
+    photo: 'assets/images/profile-placeholder.jpg',
     accessToken: '',
     refreshToken: '',
   },
@@ -38,6 +38,7 @@ export class UserState {
           login: action.login,
           accessToken: tokens.accessToken,
           refreshToken: tokens.refreshToken,
+          photo: ctx.getState().photo,
         };
         LocalStorageHelper.SetItem(LocalStorageStates.User, newState);
         ctx.patchState(newState);
@@ -52,7 +53,7 @@ export class UserState {
   public logout(ctx: StateContext<UserStateModel>): void {
     ctx.setState({
       login: '',
-      photo: '',
+      photo: 'assets/images/profile-placeholder.jpg',
       accessToken: '',
       refreshToken: '',
     });

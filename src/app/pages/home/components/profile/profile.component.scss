@@ -1,13 +1,63 @@
 @import 'mixins';
 
-.profile {
-  width: 100%;
-  height: 50vh;
+:host ::ng-deep {
+  .password-input__errors {
+    font-size: 0.75rem;
+  }
+}
 
-  @include flex($justify-content: space-between);
+.profile {
+  width: clamp(300px, 55vw, 600px);
+  min-height: 50vh;
+
+  padding: 15px 0;
+  @include flex($justify-content: space-around, $align-items: stretch);
+
+  &__divider {
+    display: none;
+  }
 
   &__photo {
-    max-width: 50%;
-    height: 100%;
+    width: 50%;
+  }
+
+  @media (max-width: 1000px) {
+    flex-direction: column;
+
+    &__photo {
+      width: 100%;
+      min-height: 50%;
+    }
+
+    &__divider {
+      display: block;
+    }
+  }
+}
+
+.info-fields {
+  @include flex($direction: column, $align-items: flex-start);
+
+  &__name {
+    display: block;
+    font-weight: bold;
+
+    font-size: 1.5em;
+  }
+
+  &__value {
+    padding-left: 0.5em;
+  }
+}
+
+.change-password-form {
+  @include flex($direction: column, $gap: 20px);
+  opacity: 0;
+  transition: opacity var(--hover-transition);
+  pointer-events: none;
+
+  &_visible {
+    opacity: 1;
+    pointer-events: all;
   }
 }

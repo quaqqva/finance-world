@@ -1,18 +1,24 @@
 <img
-  *ngIf="userPhoto$ | async; else photoSkeleton"
   class="profile-photo__image"
   src="{{ userPhoto$ | async }}"
   alt="Фото профиля"
 />
-<ng-template #photoSkeleton>
-  <p-skeleton class="profile-photo__skeleton"></p-skeleton>
-</ng-template>
 <p-fileUpload
+  #fileUpload
   class="profile-photo__upload"
   mode="basic"
   chooseLabel="Изменить фото профиля"
   chooseIcon="pi pi-upload"
   accept="image/*"
-  maxFileSize="1000000"
-  (onUpload)="onPhotoUpload($event)"
+  [auto]="true"
+  [fileLimit]="1"
+  maxFileSize="1024000"
+  [customUpload]="true"
+  (uploadHandler)="onPhotoUpload($event)"
+  [invalidFileSizeMessageSummary]="''"
+  [invalidFileSizeMessageDetail]="'Максимальный размер фотографии - 1 МБ'"
+  [invalidFileLimitMessageSummary]="''"
+  [invalidFileLimitMessageDetail]="'Максимальное количество фотографий - 1'"
+  [invalidFileTypeMessageSummary]="''"
+  [invalidFileTypeMessageDetail]="'Допустимы только типы изображений'"
 />

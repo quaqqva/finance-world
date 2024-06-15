@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { FileUploadEvent } from 'primeng/fileupload';
+import { FileUpload, FileUploadHandlerEvent } from 'primeng/fileupload';
 import { Observable } from 'rxjs';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { SavePhoto } from '../../../../../redux/actions/save-photo.action';
 
 @Component({
@@ -10,22 +11,26 @@ import { SavePhoto } from '../../../../../redux/actions/save-photo.action';
   styleUrl: './profile-photo.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
+@UntilDestroy()
 export class ProfilePhotoComponent {
+  @ViewChild('fileUpload') public fileUpload!: FileUpload;
+
   public userPhoto$: Observable<string>;
 
   public constructor(private store: Store) {
     this.userPhoto$ = store.select((state) => state.user.photo);
   }
 
-  public onPhotoUpload(event: FileUploadEvent): void {
-    const { files } = event;
-    if (files.length !== 1) {
-      return;
-    }
+  public onPhotoUpload(event: FileUploadHandlerEvent): void {
     const fileReader = new FileReader();
-    fileReader.readAsDataURL(event.files[0]);
     fileReader.onload = () => {
-      this.store.dispatch(new SavePhoto(fileReader.result!.toString()));
+      this.store
+        .dispatch(new SavePhoto(fileReader.result!.toString()))
+        .pipe(untilDestroyed(this))
+        .subscribe(() => {
+          this.fileUpload.clear();
+        });
     };
+    fileReader.readAsDataURL(event.files[0]);
   }
 }

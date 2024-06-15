@@ -43,6 +43,11 @@ export class ProfileComponent {
     }),
   });
 
+  public get passwordFormIsValid(): boolean {
+    const { password, passwordConfirm } = this.passwordForm.getRawValue();
+    return this.passwordForm.valid && password === passwordConfirm;
+  }
+
   public constructor(
     private changeDetectorRef: ChangeDetectorRef,
     private confirmationService: ConfirmationService,

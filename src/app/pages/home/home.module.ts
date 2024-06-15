@@ -11,8 +11,8 @@ import { ScrollTopModule } from 'primeng/scrolltop';
 import { DropdownModule } from 'primeng/dropdown';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { DialogModule } from 'primeng/dialog';
-import { SkeletonModule } from 'primeng/skeleton';
 import { FileUploadModule } from 'primeng/fileupload';
+import { DividerModule } from 'primeng/divider';
 
 import { FormsModule } from '@angular/forms';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
@@ -64,8 +64,8 @@ import { ProfilePhotoComponent } from './components/profile/profile-photo/profil
     ToggleButtonModule,
     ProgressSpinnerModule,
     DialogModule,
-    SkeletonModule,
     FileUploadModule,
+    DividerModule,
     FormsModule,
     PasswordInputComponent,
   ],
