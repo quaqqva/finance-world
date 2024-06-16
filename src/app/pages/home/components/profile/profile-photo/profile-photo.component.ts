@@ -37,6 +37,7 @@ export class ProfilePhotoComponent {
             severity: 'success',
             summary: 'Успех',
             detail: 'Фото успешно обновлено',
+            key: 'dialog-toast',
           });
         });
     };

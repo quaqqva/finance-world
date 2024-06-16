@@ -1,14 +1,15 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   OnInit,
-  ViewChild,
 } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { ConfirmationService, MenuItem, PrimeIcons } from 'primeng/api';
 import { Router } from '@angular/router';
 import { Observable, fromEvent, map, take, throttleTime } from 'rxjs';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { DialogService } from 'primeng/dynamicdialog';
 import { Logout } from '../../../../redux/actions/user/logout.action';
 import { RouteUrls } from '../../../../shared/enums/routes';
 import { ProfileComponent } from '../profile/profile.component';
@@ -22,8 +23,6 @@ import { UserState } from '../../../../redux/states/user/user.state';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent implements OnInit {
-  @ViewChild('profile') profile!: ProfileComponent;
-
   public menuItems: MenuItem[];
 
   private lastScrollY: number = 0;
@@ -39,8 +38,10 @@ export class HeaderComponent implements OnInit {
 
   public constructor(
     private store: Store,
+    private changeDetectorRef: ChangeDetectorRef,
     router: Router,
     confirmService: ConfirmationService,
+    dialogService: DialogService,
   ) {
     this.menuItems = [
       { icon: PrimeIcons.HOME, label: 'Главная', routerLink: '' },
@@ -48,7 +49,7 @@ export class HeaderComponent implements OnInit {
         icon: PrimeIcons.USER,
         label: 'Профиль',
         command: () => {
-          this.profile.show();
+          dialogService.open(ProfileComponent, ProfileComponent.DIALOG_CONFIG);
         },
       },
       {
@@ -81,6 +82,7 @@ export class HeaderComponent implements OnInit {
           this.menuItems[1].iconStyle = undefined;
           this.menuItems[1].styleClass = undefined;
           this.menuItems = [...this.menuItems];
+          this.changeDetectorRef.detectChanges();
           return;
         }
         this.menuItems[1].iconStyle = {
@@ -88,6 +90,7 @@ export class HeaderComponent implements OnInit {
         };
         this.menuItems[1].styleClass = 'header__profile-link';
         this.menuItems = [...this.menuItems];
+        this.changeDetectorRef.detectChanges();
       });
   }
 }

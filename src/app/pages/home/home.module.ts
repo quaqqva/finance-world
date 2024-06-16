@@ -14,7 +14,7 @@ import { DialogModule } from 'primeng/dialog';
 import { FileUploadModule } from 'primeng/fileupload';
 import { DividerModule } from 'primeng/divider';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { routes } from './home.routes';
 import { HomeEntryComponent } from './components/home-entry/home-entry.component';
@@ -67,6 +67,7 @@ import { ProfilePhotoComponent } from './components/profile/profile-photo/profil
     FileUploadModule,
     DividerModule,
     FormsModule,
+    ReactiveFormsModule,
     PasswordInputComponent,
   ],
 })

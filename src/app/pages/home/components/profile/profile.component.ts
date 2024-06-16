@@ -1,12 +1,9 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngxs/store';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { passwordValidator } from '../../../../shared/components/password-input/password.validator';
 
 @Component({
@@ -16,9 +13,17 @@ import { passwordValidator } from '../../../../shared/components/password-input/
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProfileComponent {
-  public profileVisible: boolean = false;
+  public static DIALOG_CONFIG: DynamicDialogConfig = {
+    header: 'Ваши данные',
+    draggable: false,
+    modal: true,
+    dismissableMask: true,
+    closeOnEscape: false,
+  };
 
-  public passwordInputVisible: boolean = false;
+  public mode: 'view' | 'edit' = 'view';
+
+  public modeTransitionGoing: boolean = false;
 
   public email$: Observable<string>;
 
@@ -43,28 +48,17 @@ export class ProfileComponent {
     }),
   });
 
-  public get passwordFormIsValid(): boolean {
-    const { password, passwordConfirm } = this.passwordForm.getRawValue();
-    return this.passwordForm.valid && password === passwordConfirm;
-  }
-
   public constructor(
-    private changeDetectorRef: ChangeDetectorRef,
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
+    private dialogRef: DynamicDialogRef,
     store: Store,
   ) {
     this.email$ = store.selectOnce((state) => state.user.login);
   }
 
-  public show(): void {
-    this.profileVisible = true;
-    this.changeDetectorRef.detectChanges();
-  }
-
-  public onPasswordButtonClick(): void {
-    if (!this.passwordInputVisible) {
-      this.passwordInputVisible = true;
+  public onPasswordFormSubmit(): void {
+    if (this.passwordForm.invalid) {
       return;
     }
 
@@ -74,9 +68,7 @@ export class ProfileComponent {
       acceptLabel: 'Да',
       rejectLabel: 'Нет',
       accept: () => {
-        this.passwordInputVisible = false;
-        this.profileVisible = false;
-        this.changeDetectorRef.detectChanges();
+        this.dialogRef.close();
         this.messageService.add({
           severity: 'success',
           summary: 'Успех',

@@ -5,6 +5,7 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { MessageService, ConfirmationService } from 'primeng/api';
+import { DialogService } from 'primeng/dynamicdialog';
 import { routes } from './app.routes';
 import { urlInterceptor } from './shared/interceptors/url.interceptor';
 import { authResponseInterceptor } from './pages/auth/interceptors/auth-response.interceptor';
@@ -29,5 +30,6 @@ export const appConfig: ApplicationConfig = {
     ),
     MessageService,
     ConfirmationService,
+    DialogService,
   ],
 };

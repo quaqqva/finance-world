@@ -1,7 +1,9 @@
 <router-outlet></router-outlet>
-<p-toast></p-toast>
+<p-toast class="toast"></p-toast>
+<p-toast class="dialog-toast" [key]="'dialog-toast'"></p-toast>
 <p-confirmDialog
   [acceptLabel]="'Да'"
   [rejectLabel]="'Нет'"
   [dismissableMask]="true"
+  [maskStyleClass]="'confirm-dialog-mask'"
 ></p-confirmDialog>
