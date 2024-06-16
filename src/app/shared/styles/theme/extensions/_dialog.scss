@@ -7,3 +7,7 @@
 .p-dialog-content {
   @include scrollbar();
 }
+
+.p-component-overlay {
+  backdrop-filter: blur(5px);
+}
