@@ -1,31 +1,28 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { ConfirmationService, MenuItem, PrimeIcons } from 'primeng/api';
 import { Router } from '@angular/router';
 import { Observable, fromEvent, map, take, throttleTime } from 'rxjs';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Logout } from '../../../../redux/actions/user/logout.action';
 import { RouteUrls } from '../../../../shared/enums/routes';
 import { ProfileComponent } from '../profile/profile.component';
 import { UserState } from '../../../../redux/states/user/user.state';
 
-@UntilDestroy()
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   public menuItems: MenuItem[];
 
   private lastScrollY: number = 0;
+
+  public profileIcon$: Observable<string | null> = this.store.select(
+    UserState.UniquePhoto,
+  );
 
   public isShrunk$: Observable<boolean> = fromEvent(window, 'scroll').pipe(
     throttleTime(100),
@@ -38,16 +35,16 @@ export class HeaderComponent implements OnInit {
 
   public constructor(
     private store: Store,
-    private changeDetectorRef: ChangeDetectorRef,
     router: Router,
     confirmService: ConfirmationService,
     dialogService: DialogService,
   ) {
     this.menuItems = [
-      { icon: PrimeIcons.HOME, label: 'Главная', routerLink: '' },
+      { icon: PrimeIcons.HOME, label: 'Главная', role: 'link', routerLink: '' },
       {
         icon: PrimeIcons.USER,
         label: 'Профиль',
+        role: 'profile',
         command: () => {
           dialogService.open(ProfileComponent, ProfileComponent.DIALOG_CONFIG);
         },
@@ -71,26 +68,5 @@ export class HeaderComponent implements OnInit {
         },
       },
     ];
-  }
-
-  public ngOnInit(): void {
-    this.store
-      .select(UserState.UniquePhoto)
-      .pipe(untilDestroyed(this))
-      .subscribe((photo) => {
-        if (!photo) {
-          this.menuItems[1].iconStyle = undefined;
-          this.menuItems[1].styleClass = undefined;
-          this.menuItems = [...this.menuItems];
-          this.changeDetectorRef.detectChanges();
-          return;
-        }
-        this.menuItems[1].iconStyle = {
-          'background-image': `url(${photo})`,
-        };
-        this.menuItems[1].styleClass = 'header__profile-link';
-        this.menuItems = [...this.menuItems];
-        this.changeDetectorRef.detectChanges();
-      });
   }
 }

@@ -3,8 +3,6 @@
 :host {
   ::ng-deep {
     .p-menubar-root-list {
-      font-weight: bold;
-
       @media screen and (max-width: 960px) {
         top: calc(100% + 10px);
         left: 15%;
@@ -13,17 +11,6 @@
 
         transition: top var(--hover-transition);
       }
-    }
-
-    .header__profile-link .p-menuitem-icon {
-      width: 1.5rem;
-      aspect-ratio: 1 / 1;
-
-      font-size: 0;
-
-      background-size: 100% 100%;
-      background-position: center;
-      border-radius: 50%;
     }
   }
 
@@ -69,6 +56,32 @@
     @media (max-width: 400px) {
       display: none;
     }
+  }
+
+  &__link {
+    @include flex($justify-content: flex-start, $gap: 0.5em);
+
+    font-size: 1.1em;
+    font-weight: bold;
+
+    &:hover {
+      color: var(--text);
+    }
+  }
+
+  &__icon {
+    font-size: 1.5em;
+  }
+
+  &__user-photo {
+    width: 1.5rem;
+    aspect-ratio: 1 / 1;
+
+    font-size: 0;
+
+    background-size: 100% 100%;
+    background-position: center;
+    border-radius: 50%;
   }
 
   &_shrunk {
