@@ -145,6 +145,12 @@ export class CurrenciesChartComponent implements OnInit {
     this.chartOptions.animation = undefined;
 
     this.isLoading = true;
+    // Методы ChangeDetectorRef
+    // markForCheck помечает компоненту и её родителей, чтобы в них обнаружить изменения
+    // то есть change detection не запускается, но в следующий проход changeDetection
+    // несмотря на OnPush компонента будет проверена на изменения
+    // detectChanges ищет изменения в компоненте и её потомках
+    // поэтому, если мы гарантированно хотим получить change detection, стоит вызвать detectChanges
     this.changeDetectorRef.detectChanges();
     this.currenciesHttpService
       .getTradesForCurrency(this.currency, this.relativeCurrency)
