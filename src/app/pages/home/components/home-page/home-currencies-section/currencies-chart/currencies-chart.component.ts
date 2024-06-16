@@ -5,6 +5,7 @@ import {
   HostListener,
   Inject,
   LOCALE_ID,
+  OnInit,
 } from '@angular/core';
 import {
   CartesianScaleTypeRegistry,
@@ -30,7 +31,7 @@ import { CurrencyChartStateModel } from '../../../../../../redux/states/currency
   styleUrl: './currencies-chart.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CurrenciesChartComponent {
+export class CurrenciesChartComponent implements OnInit {
   public isLoading: boolean = false;
 
   public currencyTrades: CurrencyTrade[] | null = null;
@@ -106,7 +107,9 @@ export class CurrenciesChartComponent {
     private changeDetectorRef: ChangeDetectorRef,
     @Inject(LOCALE_ID) private locale: string,
     private store: Store,
-  ) {
+  ) {}
+
+  public ngOnInit(): void {
     this.store
       .select((state) => state.currencyChart)
       .pipe(
