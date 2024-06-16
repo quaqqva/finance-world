@@ -3,6 +3,7 @@ import { Store } from '@ngxs/store';
 import { FileUpload, FileUploadHandlerEvent } from 'primeng/fileupload';
 import { Observable } from 'rxjs';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { MessageService } from 'primeng/api';
 import { SavePhoto } from '../../../../../redux/actions/save-photo.action';
 
 @UntilDestroy()
@@ -17,7 +18,10 @@ export class ProfilePhotoComponent {
 
   public userPhoto$: Observable<string>;
 
-  public constructor(private store: Store) {
+  public constructor(
+    private store: Store,
+    private messageService: MessageService,
+  ) {
     this.userPhoto$ = store.select((state) => state.user.photo);
   }
 
@@ -29,6 +33,11 @@ export class ProfilePhotoComponent {
         .pipe(untilDestroyed(this))
         .subscribe(() => {
           this.fileUpload.clear();
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Успех',
+            detail: 'Фото успешно обновлено',
+          });
         });
     };
     fileReader.readAsDataURL(event.files[0]);
