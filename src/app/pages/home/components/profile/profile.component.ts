@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngxs/store';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { passwordValidator } from '../../../../shared/components/password-input/password.validator';
 
@@ -51,6 +51,7 @@ export class ProfileComponent {
   public constructor(
     private changeDetectorRef: ChangeDetectorRef,
     private confirmationService: ConfirmationService,
+    private messageService: MessageService,
     store: Store,
   ) {
     this.email$ = store.selectOnce((state) => state.user.login);
@@ -76,6 +77,11 @@ export class ProfileComponent {
         this.passwordInputVisible = false;
         this.profileVisible = false;
         this.changeDetectorRef.detectChanges();
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Успех',
+          detail: 'Пароль успешно обновлён',
+        });
       },
     });
   }

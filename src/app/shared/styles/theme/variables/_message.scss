@@ -96,7 +96,7 @@ $infoMessageIconColor: $textColor;
 
 /// Background of a success message
 /// @group message
-$successMessageBg: #43a047;
+$successMessageBg: var(--green-600);
 
 /// Border of a success message
 /// @group message
