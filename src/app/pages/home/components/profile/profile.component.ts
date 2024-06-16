@@ -61,17 +61,15 @@ export class ProfileComponent {
     this.changeDetectorRef.detectChanges();
   }
 
-  public onPasswordButtonClick(event: Event): void {
+  public onPasswordButtonClick(): void {
     if (!this.passwordInputVisible) {
       this.passwordInputVisible = true;
       return;
     }
 
     this.confirmationService.confirm({
-      target: event.target || undefined,
       message: 'Вы действительно хотите изменить пароль?',
       header: 'Подтверждение',
-      key: 'popup',
       acceptLabel: 'Да',
       rejectLabel: 'Нет',
       accept: () => {
