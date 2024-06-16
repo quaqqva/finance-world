@@ -5,13 +5,13 @@ import { Observable } from 'rxjs';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { SavePhoto } from '../../../../../redux/actions/save-photo.action';
 
+@UntilDestroy()
 @Component({
   selector: 'app-profile-photo',
   templateUrl: './profile-photo.component.html',
   styleUrl: './profile-photo.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-@UntilDestroy()
 export class ProfilePhotoComponent {
   @ViewChild('fileUpload') public fileUpload!: FileUpload;
 

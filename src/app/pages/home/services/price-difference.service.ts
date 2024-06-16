@@ -6,10 +6,10 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { CurrencyChartStateModel } from '../../../redux/states/currency-chart/currency-chart-state.model';
 import { CurrenciesWsService } from './currencies-ws.service';
 
+@UntilDestroy()
 @Injectable({
   providedIn: 'root',
 })
-@UntilDestroy()
 export class PriceDifferenceService {
   public lastCurrencyPrice: number = 0;
 

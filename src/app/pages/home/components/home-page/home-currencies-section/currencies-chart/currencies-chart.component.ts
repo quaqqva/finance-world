@@ -23,13 +23,13 @@ import { CurrenciesWsService } from '../../../../services/currencies-ws.service'
 import 'chartjs-adapter-date-fns';
 import { CurrencyChartStateModel } from '../../../../../../redux/states/currency-chart/currency-chart-state.model';
 
+@UntilDestroy()
 @Component({
   selector: 'app-currencies-chart',
   templateUrl: './currencies-chart.component.html',
   styleUrl: './currencies-chart.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-@UntilDestroy()
 export class CurrenciesChartComponent {
   public isLoading: boolean = false;
 

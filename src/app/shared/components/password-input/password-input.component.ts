@@ -13,6 +13,7 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { PasswordModule } from 'primeng/password';
 import { FormatPasswordRequirementPipe } from './format-password-requirement.pipe';
 
+@UntilDestroy()
 @Component({
   selector: 'app-password-input',
   templateUrl: './password-input.component.html',
@@ -31,7 +32,6 @@ import { FormatPasswordRequirementPipe } from './format-password-requirement.pip
   // TODO: вернуть OnPush
   changeDetection: ChangeDetectionStrategy.Default,
 })
-@UntilDestroy()
 export class PasswordInputComponent implements OnInit {
   @Input({ required: true }) public control!: FormControl;
 

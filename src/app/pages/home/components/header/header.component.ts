@@ -14,13 +14,13 @@ import { RouteUrls } from '../../../../shared/enums/routes';
 import { ProfileComponent } from '../profile/profile.component';
 import { UserState } from '../../../../redux/states/user/user.state';
 
+@UntilDestroy()
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-@UntilDestroy()
 export class HeaderComponent implements OnInit {
   @ViewChild('profile') profile!: ProfileComponent;
 
