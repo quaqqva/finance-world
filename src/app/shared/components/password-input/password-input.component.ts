@@ -29,7 +29,7 @@ import { FormatPasswordRequirementPipe } from './format-password-requirement.pip
     ReactiveFormsModule,
     FormatPasswordRequirementPipe,
   ],
-  // TODO: вернуть OnPush
+  // TODO: стратегия обнаружения изменений OnPush мешает помечиванию полей ввода как touched, из-за чего border не меняет цвет
   changeDetection: ChangeDetectionStrategy.Default,
 })
 export class PasswordInputComponent implements OnInit {

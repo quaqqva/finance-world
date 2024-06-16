@@ -6,7 +6,7 @@ import { OverlayPanel } from 'primeng/overlaypanel';
   selector: 'app-login-input',
   templateUrl: './login-input.component.html',
   styleUrl: './login-input.component.scss',
-  // TODO: вернуть OnPush
+  // TODO: стратегия обнаружения изменений OnPush мешает помечиванию полей ввода как touched, из-за чего border не меняет цвет
   changeDetection: ChangeDetectionStrategy.Default,
 })
 export class LoginInputComponent {
