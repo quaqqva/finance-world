@@ -5,6 +5,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { passwordValidator } from '../../../../shared/components/password-input/password.validator';
+import { matchValidator } from '../../../../shared/validators/match.validator';
 
 @Component({
   selector: 'app-profile',
@@ -27,26 +28,29 @@ export class ProfileComponent {
 
   public email$: Observable<string>;
 
-  public passwordForm = new FormGroup({
-    password: new FormControl('', {
-      nonNullable: true,
-      validators: [
-        Validators.minLength(8),
-        Validators.maxLength(150),
-        Validators.required,
-        passwordValidator(),
-      ],
-    }),
-    passwordConfirm: new FormControl('', {
-      nonNullable: true,
-      validators: [
-        Validators.minLength(8),
-        Validators.maxLength(150),
-        Validators.required,
-        passwordValidator(),
-      ],
-    }),
-  });
+  public passwordForm = new FormGroup(
+    {
+      password: new FormControl('', {
+        nonNullable: true,
+        validators: [
+          Validators.minLength(8),
+          Validators.maxLength(150),
+          Validators.required,
+          passwordValidator(),
+        ],
+      }),
+      passwordConfirm: new FormControl('', {
+        nonNullable: true,
+        validators: [
+          Validators.minLength(8),
+          Validators.maxLength(150),
+          Validators.required,
+          passwordValidator(),
+        ],
+      }),
+    },
+    { validators: [matchValidator('password', 'passwordConfirm')] },
+  );
 
   public constructor(
     private confirmationService: ConfirmationService,
@@ -59,6 +63,17 @@ export class ProfileComponent {
 
   public onPasswordFormSubmit(): void {
     if (this.passwordForm.invalid) {
+      let errorText: string = 'Пожалуйста, заполните форму корректно';
+      if (this.passwordForm.errors && this.passwordForm.errors['matching']) {
+        errorText = 'Пароли должны совпадать';
+      }
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Ошибка',
+        detail: errorText,
+        key: 'dialog-toast',
+      });
+      this.passwordForm.markAllAsTouched();
       return;
     }
 
