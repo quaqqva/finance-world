@@ -1,0 +1,14 @@
+<image-cropper
+  class="image-crop__cropper"
+  [imageBase64]="originalImage"
+  [maintainAspectRatio]="true"
+  [aspectRatio]="1 / 1"
+  [format]="'png'"
+  [output]="'base64'"
+  (imageCropped)="imageCropped($event)"
+></image-cropper>
+<p-button
+  class="image-crop__save-button p-button-wrapper_center-text p-button-wrapper_full-width"
+  (click)="onSave()"
+  >Сохранить</p-button
+>

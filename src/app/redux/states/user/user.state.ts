@@ -25,7 +25,7 @@ import { SavePhoto } from '../../actions/save-photo.action';
 @Injectable()
 export class UserState {
   public static PLACEHOLDER_PHOTO_URL: string =
-    'assets/images/profile-placeholder.jpg';
+    'assets/images/profile-placeholder.png';
 
   public constructor(private authService: AuthService) {}
 

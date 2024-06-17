@@ -16,6 +16,7 @@ import { DividerModule } from 'primeng/divider';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { ImageCropperComponent } from 'ngx-image-cropper';
 import { routes } from './home.routes';
 import { HomeEntryComponent } from './components/home-entry/home-entry.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -32,6 +33,7 @@ import { TradesToChartDataPipe } from './pipes/trades-to-chart-data.pipe';
 import { ProfileComponent } from './components/profile/profile.component';
 import { PasswordInputComponent } from '../../shared/components/password-input/password-input.component';
 import { ProfilePhotoComponent } from './components/profile/profile-photo/profile-photo.component';
+import { ProfileImageCropperComponent } from './components/profile/profile-image-cropper/profile-image-cropper.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,7 @@ import { ProfilePhotoComponent } from './components/profile/profile-photo/profil
     TradesToChartDataPipe,
     ProfileComponent,
     ProfilePhotoComponent,
+    ProfileImageCropperComponent,
   ],
   imports: [
     CommonModule,
@@ -66,6 +69,7 @@ import { ProfilePhotoComponent } from './components/profile/profile-photo/profil
     DialogModule,
     FileUploadModule,
     DividerModule,
+    ImageCropperComponent,
     FormsModule,
     ReactiveFormsModule,
     PasswordInputComponent,
