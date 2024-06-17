@@ -15,10 +15,10 @@
   maxFileSize="1024000"
   [customUpload]="true"
   (uploadHandler)="onPhotoUpload($event)"
-  [invalidFileSizeMessageSummary]="''"
+  [invalidFileSizeMessageSummary]="'Слишком большой файл'"
   [invalidFileSizeMessageDetail]="'Максимальный размер фотографии - 1 МБ'"
-  [invalidFileLimitMessageSummary]="''"
+  [invalidFileLimitMessageSummary]="'Слишком много файлов'"
   [invalidFileLimitMessageDetail]="'Максимальное количество фотографий - 1'"
-  [invalidFileTypeMessageSummary]="''"
+  [invalidFileTypeMessageSummary]="'Недопустимый тип'"
   [invalidFileTypeMessageDetail]="'Допустимы только типы изображений'"
 />
