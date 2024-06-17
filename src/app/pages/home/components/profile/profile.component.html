@@ -7,9 +7,8 @@
         <span class="text-fields__name">Почта</span>
         <span class="text-fields__value">{{ email$ | async }}</span>
       </div>
+      <p-divider class="text-fields__divider"></p-divider>
     </div>
-
-    <p-divider class="text-fields__divider"></p-divider>
 
     <p-button
       *ngIf="mode === 'view'; else changePasswordForm"
