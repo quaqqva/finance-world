@@ -7,7 +7,7 @@
         top: calc(100% + 10px);
         left: 15%;
 
-        background-color: var(--grey-600);
+        background-color: var(--surface-800);
 
         transition: top var(--hover-transition);
       }
@@ -29,7 +29,7 @@
   transition: height var(--hover-transition);
 
   border-bottom-left-radius: var(--section-border-radius);
-  background-color: var(--grey-800);
+  background-color: var(--surface-1000);
 
   @include flex();
 
