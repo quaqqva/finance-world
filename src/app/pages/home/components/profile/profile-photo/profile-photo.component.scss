@@ -2,8 +2,13 @@
 @import 'functions';
 
 :host {
-  @include flex($direction: column, $gap: 10px);
+  @include flex($direction: column, $justify-content: space-between);
   min-width: 300px;
+
+  @media (max-width: 1100px) {
+    justify-content: center;
+    gap: 10px;
+  }
 }
 
 .profile-photo {

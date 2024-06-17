@@ -1,14 +1,16 @@
 <div class="profile">
   <app-profile-photo class="profile__photo"></app-profile-photo>
   <p-divider class="profile__divider"></p-divider>
-  <div class="profile__text-fields">
-    <div class="info-fields">
-      <div class="info-fields__field">
-        <span class="info-fields__name">Почта</span>
-        <span class="info-fields__value">{{ email$ | async }}</span>
+  <div class="text-fields">
+    <div class="text-fields__info">
+      <div class="text-fields__field">
+        <span class="text-fields__name">Почта</span>
+        <span class="text-fields__value">{{ email$ | async }}</span>
       </div>
     </div>
-    <p-divider></p-divider>
+
+    <p-divider class="text-fields__divider"></p-divider>
+
     <p-button
       *ngIf="mode === 'view'; else changePasswordForm"
       class="change-password-button"
@@ -23,21 +25,23 @@
     ></p-button>
   </div>
 </div>
+
 <ng-template #changePasswordForm>
-  <form
-    class="profile__change-password-form change-password-form"
-    [formGroup]="passwordForm"
-  >
-    <app-password-input
-      class="change-password-form__password-input"
-      [placeholder]="'Новый пароль'"
-      [control]="passwordForm.controls.password"
-    ></app-password-input>
-    <app-password-input
-      class="change-password-form__password-input"
-      [placeholder]="'Подтвердите пароль'"
-      [control]="passwordForm.controls.passwordConfirm"
-    ></app-password-input>
+  <form class="change-password-form" [formGroup]="passwordForm">
+    <div class="change-password-form__inputs">
+      <app-password-input
+        class="change-password-form__password-input"
+        [placeholder]="'Новый пароль'"
+        [control]="passwordForm.controls.password"
+      ></app-password-input>
+
+      <app-password-input
+        class="change-password-form__password-input"
+        [placeholder]="'Подтвердите пароль'"
+        [control]="passwordForm.controls.passwordConfirm"
+      ></app-password-input>
+    </div>
+
     <p-button
       class="change-password-form__submit-button"
       [label]="'Сохранить'"
