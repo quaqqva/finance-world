@@ -9,7 +9,7 @@
 
 .profile {
   width: min(55vw, 650px);
-  height: 350px;
+  min-height: 300px;
 
   padding: 15px 0;
   @include flex($justify-content: space-between, $align-items: stretch);
