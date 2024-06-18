@@ -5,7 +5,7 @@
 
   padding: 1.5em;
 
-  border: 4px solid var(--grey-800);
+  border: 4px solid var(--surface-1000);
   border-radius: 1.5em;
 
   @include drop-shadow();
@@ -14,11 +14,11 @@
 
   $duplicate-box-shadow-offset: 0.35em 0.35em 0;
   &_shadow_duplicate {
-    box-shadow: $duplicate-box-shadow-offset var(--grey-800);
+    box-shadow: $duplicate-box-shadow-offset var(--surface-1000);
     transition: box-shadow var(--hover-transition);
 
     &:hover {
-      box-shadow: 0 0 0 var(--grey-800);
+      box-shadow: 0 0 0 var(--surface-1000);
     }
   }
 

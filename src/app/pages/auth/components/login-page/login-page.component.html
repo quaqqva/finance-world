@@ -12,12 +12,17 @@
       class="login-page__login-input"
       [control]="formGroup.controls.login"
     ></app-login-input>
-    <app-password-input
-      class="login-page__password-input"
-      [control]="formGroup.controls.password"
-    ></app-password-input>
+    <p-inputGroup class="login-page__password-input">
+      <p-inputGroupAddon>
+        <i class="pi pi-lock"></i>
+      </p-inputGroupAddon>
+      <app-password-input
+        [control]="formGroup.controls.password"
+      ></app-password-input>
+    </p-inputGroup>
+
     <p-button
-      class="login-page__submit-button"
+      class="login-page__submit-button p-button-wrapper_center-text p-button-wrapper_full-width"
       (mouseleave)="onSubmitButtonMouseOut()"
       (click)="onSubmit($event)"
       [raised]="formGroup.valid"

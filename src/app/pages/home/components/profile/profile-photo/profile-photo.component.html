@@ -1,0 +1,24 @@
+<img
+  class="profile-photo__image"
+  src="{{ userPhoto$ | async }}"
+  alt="Фото профиля"
+/>
+<p-fileUpload
+  #fileUpload
+  class="profile-photo__upload full-width"
+  mode="basic"
+  chooseLabel="Изменить фото профиля"
+  chooseIcon="pi pi-upload"
+  accept="image/*"
+  [auto]="true"
+  [fileLimit]="1"
+  maxFileSize="1024000"
+  [customUpload]="true"
+  (uploadHandler)="onPhotoUpload($event)"
+  [invalidFileSizeMessageSummary]="'Слишком большой файл'"
+  [invalidFileSizeMessageDetail]="'Максимальный размер фотографии - 1 МБ'"
+  [invalidFileLimitMessageSummary]="'Слишком много файлов'"
+  [invalidFileLimitMessageDetail]="'Максимальное количество фотографий - 1'"
+  [invalidFileTypeMessageSummary]="'Недопустимый тип'"
+  [invalidFileTypeMessageDetail]="'Допустимы только типы изображений'"
+/>

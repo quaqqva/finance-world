@@ -21,6 +21,10 @@
   --primary-secondary-gradient: #{$gradient-primary-secondary};
   --primary-secondary-darkened-gradient: #{$gradient-primary-secondary-darkened};
   --surface-0: #ffffff;
+  --surface-1000: #2f2f2f;
+  --surface-1100: black;
+  --maskbg: rgba(0, 0, 0, 0.4);
+  --cropper-outline-color: rgba(0, 0, 0, 0.4);
 
   --hover-transition: ease-in-out 300ms;
 
@@ -28,6 +32,10 @@
   --header-layer: 2;
   --scrolltop-layer: 3;
   --footer-layer: 4;
+  --toast-layer: 5;
+  --dialog-layer: 6;
+  --confirm-dialog-layer: 7;
+  --dialog-toast-layer: 8;
 
   --section-border-radius: 50px;
 

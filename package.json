@@ -37,6 +37,7 @@
     "date-fns": "^3.6.0",
     "jest-preset-angular": "^14.0.3",
     "jwt-decode": "^4.0.0",
+    "ngx-image-cropper": "^8.0.0",
     "primeicons": "^7.0.0",
     "primeng": "^17.15.0",
     "rxjs": "~7.8.0",

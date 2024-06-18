@@ -9,6 +9,7 @@ import { JwtHelper } from '../../../pages/auth/utils/jwt/jwt-helper';
 import { AuthToken } from '../../../pages/auth/models/auth-token.model';
 import { LocalStorageHelper } from '../../utils/local-storage-helper';
 import { LocalStorageStates } from '../../enums/local-storage-key';
+import { SavePhoto } from '../../actions/save-photo.action';
 
 @State<UserStateModel>({
   name: 'user',
@@ -16,12 +17,16 @@ import { LocalStorageStates } from '../../enums/local-storage-key';
     LocalStorageStates.User,
   ) || {
     login: '',
+    photo: UserState.PLACEHOLDER_PHOTO_URL,
     accessToken: '',
     refreshToken: '',
   },
 })
 @Injectable()
 export class UserState {
+  public static PLACEHOLDER_PHOTO_URL: string =
+    'assets/images/profile-placeholder.png';
+
   public constructor(private authService: AuthService) {}
 
   @Action(Login)
@@ -36,6 +41,7 @@ export class UserState {
           login: action.login,
           accessToken: tokens.accessToken,
           refreshToken: tokens.refreshToken,
+          photo: ctx.getState().photo,
         };
         LocalStorageHelper.SetItem(LocalStorageStates.User, newState);
         ctx.patchState(newState);
@@ -50,10 +56,20 @@ export class UserState {
   public logout(ctx: StateContext<UserStateModel>): void {
     ctx.setState({
       login: '',
+      photo: UserState.PLACEHOLDER_PHOTO_URL,
       accessToken: '',
       refreshToken: '',
     });
     LocalStorageHelper.RemoveItem(LocalStorageStates.User);
+  }
+
+  @Action(SavePhoto)
+  public savePhoto(ctx: StateContext<UserStateModel>, action: SavePhoto): void {
+    // ngxs возращает неправильный тип
+    const state = ctx.patchState({ photo: action.photo }) as unknown as {
+      user: UserStateModel;
+    };
+    LocalStorageHelper.SetItem(LocalStorageStates.User, state.user);
   }
 
   @Selector()
@@ -61,5 +77,10 @@ export class UserState {
     return (
       state.login !== '' && JwtHelper.CheckIfTokenIsValid(state.refreshToken)
     );
+  }
+
+  @Selector()
+  public static UniquePhoto(state: UserStateModel): string | null {
+    return state.photo === UserState.PLACEHOLDER_PHOTO_URL ? null : state.photo;
   }
 }

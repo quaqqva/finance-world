@@ -64,7 +64,7 @@ $menuitemTextColor: $primaryLightColor;
 
 /// Icon color of a menuitem
 /// @group menu
-$menuitemIconColor: $textSecondaryColor;
+$menuitemIconColor: $primaryLightColor;
 
 /// Text color of a menuitrem in hover state
 /// @group menu
@@ -72,7 +72,7 @@ $menuitemTextHoverColor: $textColor;
 
 /// Icon color of a menuitrem in hover state
 /// @group menu
-$menuitemIconHoverColor: $textSecondaryColor;
+$menuitemIconHoverColor: $textColor;
 
 /// Background of a menuitrem in hover state
 /// @group menu
@@ -80,15 +80,15 @@ $menuitemHoverBg: #e9ecef;
 
 /// Text color of a menuitem in focus state
 /// @group menu
-$menuitemTextFocusColor: $textColor;
+$menuitemTextFocusColor: $primaryLightColor;
 
 /// Icon color of a menuitem in focus state
 /// @group menu
-$menuitemIconFocusColor: $textColor;
+$menuitemIconFocusColor: $primaryLightColor;
 
 /// Background of a menuitem in focus state
 /// @group menu
-$menuitemFocusBg: #f8f9fa;
+$menuitemFocusBg: transparent;
 
 /// Text color of a menuitrem in active state
 /// @group menu

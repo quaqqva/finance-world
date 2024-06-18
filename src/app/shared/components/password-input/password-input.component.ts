@@ -1,22 +1,41 @@
+import { KeyValuePipe, NgFor } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   Input,
   OnInit,
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { DividerModule } from 'primeng/divider';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { PasswordModule } from 'primeng/password';
+import { FormatPasswordRequirementPipe } from './format-password-requirement.pipe';
 
+@UntilDestroy()
 @Component({
   selector: 'app-password-input',
   templateUrl: './password-input.component.html',
   styleUrl: './password-input.component.scss',
-  // TODO: вернуть OnPush
+  standalone: true,
+  imports: [
+    PasswordModule,
+    InputGroupModule,
+    InputGroupAddonModule,
+    DividerModule,
+    NgFor,
+    KeyValuePipe,
+    ReactiveFormsModule,
+    FormatPasswordRequirementPipe,
+  ],
+  // TODO: стратегия обнаружения изменений OnPush мешает помечиванию полей ввода как touched, из-за чего border не меняет цвет
   changeDetection: ChangeDetectionStrategy.Default,
 })
-@UntilDestroy()
 export class PasswordInputComponent implements OnInit {
   @Input({ required: true }) public control!: FormControl;
+
+  @Input() public placeholder: string = 'Пароль';
 
   public requrements: { [key: string]: boolean } = {};
 

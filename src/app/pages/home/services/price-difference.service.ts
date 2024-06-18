@@ -6,10 +6,10 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { CurrencyChartStateModel } from '../../../redux/states/currency-chart/currency-chart-state.model';
 import { CurrenciesWsService } from './currencies-ws.service';
 
+@UntilDestroy()
 @Injectable({
   providedIn: 'root',
 })
-@UntilDestroy()
 export class PriceDifferenceService {
   public lastCurrencyPrice: number = 0;
 
@@ -37,7 +37,10 @@ export class PriceDifferenceService {
           .observeTrades(state.currency, state.relativeCurrency)
           .pipe(untilDestroyed(this))
           .subscribe((trade) => {
-            if (Math.abs(this.lastCurrencyPrice - trade.price) > 0.01) {
+            if (
+              Math.abs(this.lastCurrencyPrice - trade.price) >
+              0.000001 * this.lastCurrencyPrice
+            ) {
               this.messageService.add({
                 severity: 'info',
                 summary: `Стоимость валюты изменилась с ${this.lastCurrencyPrice} до ${trade.price} ${state.relativeCurrency}!`,

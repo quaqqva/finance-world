@@ -1,4 +1,4 @@
-<header class="header" [ngClass]="{ header_shrunk: isShrunk }">
+<header class="header" [ngClass]="{ header_shrunk: isShrunk$ | async }">
   <p-menubar
     class="header__navigation"
     [model]="menuItems"
@@ -7,6 +7,38 @@
     <ng-template pTemplate="start">
       <img src="assets/images/logo.svg" alt="Логотип" class="header__logo" />
       <h1 class="header__heading">Финансы</h1>
+    </ng-template>
+    <ng-template pTemplate="item" let-item>
+      <ng-container [ngSwitch]="item.role">
+        <a
+          *ngSwitchCase="'link'"
+          [routerLink]="item.routerLink"
+          class="p-menuitem-link header__link"
+        >
+          <i class="{{ item.icon }} header__icon"></i>
+          <span>{{ item.label }}</span>
+        </a>
+
+        <div *ngSwitchCase="'profile'" class="p-menuitem-link header__link">
+          <i
+            *ngIf="(profileIcon$ | async) === null; else profileImage"
+            class="{{ item.icon }} header__icon"
+          ></i>
+          <ng-template #profileImage>
+            <img
+              src="{{ profileIcon$ | async }}"
+              alt="Фото профиля"
+              class="header__user-photo"
+            />
+          </ng-template>
+          <span>{{ item.label }}</span>
+        </div>
+
+        <div *ngSwitchDefault class="p-menuitem-link header__link">
+          <i class="{{ item.icon }} header__icon"></i>
+          <span>{{ item.label }}</span>
+        </div>
+      </ng-container>
     </ng-template>
   </p-menubar>
 </header>

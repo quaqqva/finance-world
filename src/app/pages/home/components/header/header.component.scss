@@ -3,13 +3,11 @@
 :host {
   ::ng-deep {
     .p-menubar-root-list {
-      font-weight: bold;
-
       @media screen and (max-width: 960px) {
         top: calc(100% + 10px);
         left: 15%;
 
-        background-color: var(--grey-600);
+        background-color: var(--surface-800);
 
         transition: top var(--hover-transition);
       }
@@ -31,7 +29,7 @@
   transition: height var(--hover-transition);
 
   border-bottom-left-radius: var(--section-border-radius);
-  background-color: var(--grey-800);
+  background-color: var(--surface-1000);
 
   @include flex();
 
@@ -58,6 +56,30 @@
     @media (max-width: 400px) {
       display: none;
     }
+  }
+
+  &__link {
+    @include flex($justify-content: flex-start, $gap: 0.5em);
+
+    font-size: 1.1em;
+    font-weight: bold;
+
+    &:hover {
+      color: var(--text);
+    }
+  }
+
+  &__icon {
+    font-size: 1.5rem;
+  }
+
+  &__user-photo {
+    width: 1.5rem;
+    font-size: 0;
+
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
   }
 
   &_shrunk {

@@ -1,0 +1,12 @@
+.toast,
+.dialog-toast {
+  position: relative;
+}
+
+.toast {
+  z-index: var(--toast-layer);
+}
+
+.dialog-toast {
+  z-index: var(--dialog-toast-layer);
+}
