@@ -2,7 +2,6 @@ import {
   Directive,
   DoCheck,
   ElementRef,
-  HostListener,
   Input,
   ViewChild,
 } from '@angular/core';
@@ -63,6 +62,7 @@ export abstract class TextInputComponentBase
   public registerOnChange(fn: (value: string) => void): void {
     this.onValueChange = (value: string) => {
       fn(value);
+      if (this.onTouched) this.onTouched();
       if (this.control.invalid)
         this.errorPanel.show({ target: this.input.nativeElement });
       else this.errorPanel.hide();
@@ -79,10 +79,5 @@ export abstract class TextInputComponentBase
 
   public setDisabledState?(isDisabled: boolean): void {
     this.disabled = isDisabled;
-  }
-
-  @HostListener('focusout')
-  public onBlur(): void {
-    if (this.onTouched) this.onTouched();
   }
 }
