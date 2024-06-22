@@ -1,0 +1,15 @@
+div.p-inputgroup {
+  transition: padding-bottom var(--error-message-transition);
+
+  &:has(.custom-input.ng-invalid.ng-touched) {
+    padding-bottom: 1.5rem;
+  }
+}
+
+:not(:has(.p-inputgroup-addon)) .custom-input {
+  transition: margin-bottom var(--error-message-transition);
+
+  &.ng-invalid.ng-touched {
+    margin-bottom: 1.75rem;
+  }
+}

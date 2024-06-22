@@ -2,6 +2,7 @@ import { KeyValuePipe, NgFor, NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   Input,
   OnInit,
 } from '@angular/core';
@@ -10,7 +11,7 @@ import { DividerModule } from 'primeng/divider';
 import { PasswordModule } from 'primeng/password';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { FormatPasswordRequirementPipe } from './format-password-requirement.pipe';
-import { TextInputComponentBase } from '../text-input-base';
+import { TextInputBaseComponent } from '../text-input-base.component';
 
 @Component({
   selector: 'app-password-input',
@@ -30,7 +31,7 @@ import { TextInputComponentBase } from '../text-input-base';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PasswordInputComponent
-  extends TextInputComponentBase
+  extends TextInputBaseComponent
   implements OnInit
 {
   @Input() public override placeholder: string = 'Пароль';
@@ -46,7 +47,10 @@ export class PasswordInputComponent
     return super.errorMessage;
   }
 
-  public constructor(control: NgControl) {
+  public constructor(
+    control: NgControl,
+    public elementRef: ElementRef,
+  ) {
     super(control);
   }
 

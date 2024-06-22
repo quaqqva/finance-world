@@ -1,0 +1,27 @@
+$clear-button-width: 2.5em;
+
+@mixin custom-input() {
+  width: 100%;
+
+  &__clear-button {
+    z-index: 0;
+
+    width: $clear-button-width;
+    margin-left: -$clear-button-width;
+
+    padding: 0.25em 0;
+    @include flex();
+
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+
+    color: var(--text);
+    font-size: 1em;
+  }
+
+  &__error-message {
+    margin: 0;
+    color: var(--red-500);
+  }
+}

@@ -2,6 +2,7 @@ import {
   Directive,
   DoCheck,
   ElementRef,
+  HostBinding,
   Input,
   ViewChild,
 } from '@angular/core';
@@ -9,9 +10,11 @@ import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { OverlayPanel } from 'primeng/overlaypanel';
 
 @Directive()
-export abstract class TextInputComponentBase
+export abstract class TextInputBaseComponent
   implements DoCheck, ControlValueAccessor
 {
+  @HostBinding('class.custom-input') public hostBinding = true;
+
   @Input() public withClearButton: boolean = true;
 
   @Input() public placeholder: string = '';
