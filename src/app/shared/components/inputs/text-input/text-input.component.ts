@@ -1,11 +1,6 @@
 import { NgIf } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  DoCheck,
-  HostListener,
-} from '@angular/core';
-import { ControlValueAccessor, NgControl } from '@angular/forms';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { NgControl } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
@@ -19,10 +14,7 @@ import { TextInputComponentBase } from '../text-input-base';
   styleUrl: './text-input.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TextInputComponent
-  extends TextInputComponentBase
-  implements DoCheck, ControlValueAccessor
-{
+export class TextInputComponent extends TextInputComponentBase {
   public override get errorMessage(): string {
     if (this.control.hasError('email')) return 'Некорректный формат почты';
     return super.errorMessage;
@@ -30,10 +22,5 @@ export class TextInputComponent
 
   public constructor(control: NgControl) {
     super(control);
-  }
-
-  @HostListener('focusout')
-  public onBlur(): void {
-    if (this.onTouched) this.onTouched();
   }
 }

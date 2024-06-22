@@ -22,9 +22,7 @@
       <p-inputGroupAddon>
         <i class="pi pi-lock"></i>
       </p-inputGroupAddon>
-      <app-password-input
-        [control]="formGroup.controls.password"
-      ></app-password-input>
+      <app-password-input [formControlName]="'password'"></app-password-input>
     </p-inputGroup>
 
     <p-button

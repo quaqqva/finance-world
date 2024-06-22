@@ -31,13 +31,14 @@
       <app-password-input
         class="change-password-form__password-input"
         [placeholder]="'Новый пароль'"
-        [control]="passwordForm.controls.password"
+        [formControlName]="'password'"
+        [withCreationHints]="true"
       ></app-password-input>
 
       <app-password-input
         class="change-password-form__password-input"
         [placeholder]="'Подтвердите пароль'"
-        [control]="passwordForm.controls.passwordConfirm"
+        [formControlName]="'passwordConfirm'"
       ></app-password-input>
     </div>
 

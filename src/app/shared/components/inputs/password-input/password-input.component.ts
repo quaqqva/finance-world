@@ -1,19 +1,17 @@
-import { KeyValuePipe, NgFor } from '@angular/common';
+import { KeyValuePipe, NgFor, NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   Input,
   OnInit,
 } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { FormsModule, NgControl } from '@angular/forms';
 import { DividerModule } from 'primeng/divider';
-import { InputGroupModule } from 'primeng/inputgroup';
-import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { PasswordModule } from 'primeng/password';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { FormatPasswordRequirementPipe } from './format-password-requirement.pipe';
+import { TextInputComponentBase } from '../text-input-base';
 
-@UntilDestroy()
 @Component({
   selector: 'app-password-input',
   templateUrl: './password-input.component.html',
@@ -21,33 +19,50 @@ import { FormatPasswordRequirementPipe } from './format-password-requirement.pip
   standalone: true,
   imports: [
     PasswordModule,
-    InputGroupModule,
-    InputGroupAddonModule,
     DividerModule,
+    OverlayPanelModule,
     NgFor,
+    NgIf,
+    FormsModule,
     KeyValuePipe,
-    ReactiveFormsModule,
     FormatPasswordRequirementPipe,
   ],
-  // TODO: стратегия обнаружения изменений OnPush мешает помечиванию полей ввода как touched, из-за чего border не меняет цвет
-  changeDetection: ChangeDetectionStrategy.Default,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PasswordInputComponent implements OnInit {
-  @Input({ required: true }) public control!: FormControl;
+export class PasswordInputComponent
+  extends TextInputComponentBase
+  implements OnInit
+{
+  @Input() public override placeholder: string = 'Пароль';
 
-  @Input() public placeholder: string = 'Пароль';
+  @Input() public withCreationHints: boolean = false;
 
-  public requrements: { [key: string]: boolean } = {};
+  public hints: { [error: string]: boolean } = {};
 
-  public ngOnInit(): void {
-    this.control.valueChanges.pipe(untilDestroyed(this)).subscribe(() => {
-      this.updateRequirements();
-    });
-    this.updateRequirements();
+  public override get errorMessage(): string {
+    if (this.control.hasError('mismatch')) return 'Пароли не совпадают';
+    if (this.control.invalid && this.withCreationHints)
+      return 'Пароль не соответсвует требованиям';
+    return super.errorMessage;
   }
 
-  private updateRequirements(): void {
-    this.requrements = {
+  public constructor(control: NgControl) {
+    super(control);
+  }
+
+  public ngOnInit(): void {
+    this.updateHints();
+  }
+
+  override writeValue(value: string): void {
+    super.writeValue(value);
+    this.updateHints();
+  }
+
+  private updateHints(): void {
+    if (!this.withCreationHints) return;
+
+    this.hints = {
       'Только цифры и латинские буквы':
         this.control.hasError('hasSpecialSymbols'),
       'Одна строчная буква': this.control.hasError('noLowerCaseLetter'),

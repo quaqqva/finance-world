@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Login } from '../../../../redux/actions/user/login.action';
 import { RouteUrls } from '../../../../shared/enums/routes';
-import { passwordValidator } from '../../../../shared/components/inputs/password-input/password.validator';
 
 @UntilDestroy()
 @Component({
@@ -30,7 +29,6 @@ export class LoginPageComponent {
         Validators.minLength(8),
         Validators.maxLength(150),
         Validators.required,
-        passwordValidator(),
       ],
     }),
   });

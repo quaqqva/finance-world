@@ -29,13 +29,15 @@
   --hover-transition: ease-in-out 300ms;
 
   // Z-index layers
-  --header-layer: 2;
-  --scrolltop-layer: 3;
-  --footer-layer: 4;
-  --toast-layer: 5;
-  --dialog-layer: 6;
-  --confirm-dialog-layer: 7;
-  --dialog-toast-layer: 8;
+  --header-layer: 1;
+  --scrolltop-layer: 2;
+  --footer-layer: 3;
+  --toast-layer: 4;
+  --dialog-layer: 5;
+  --overlay-panel-layer: 6;
+  --password-hints-layer: 7;
+  --confirm-dialog-layer: 8;
+  --dialog-toast-layer: 9;
 
   --section-border-radius: 50px;
 

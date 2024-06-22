@@ -18,7 +18,6 @@ export class ProfileComponent {
     header: 'Ваши данные',
     draggable: false,
     modal: true,
-    dismissableMask: true,
     closeOnEscape: false,
   };
 
@@ -28,29 +27,27 @@ export class ProfileComponent {
 
   public email$: Observable<string>;
 
-  public passwordForm = new FormGroup(
-    {
-      password: new FormControl('', {
-        nonNullable: true,
-        validators: [
-          Validators.minLength(8),
-          Validators.maxLength(150),
-          Validators.required,
-          passwordValidator(),
-        ],
-      }),
-      passwordConfirm: new FormControl('', {
-        nonNullable: true,
-        validators: [
-          Validators.minLength(8),
-          Validators.maxLength(150),
-          Validators.required,
-          passwordValidator(),
-        ],
-      }),
-    },
-    { validators: [matchValidator('password', 'passwordConfirm')] },
-  );
+  public passwordForm = new FormGroup({
+    password: new FormControl('', {
+      nonNullable: true,
+      validators: [
+        Validators.minLength(8),
+        Validators.maxLength(150),
+        Validators.required,
+        passwordValidator(),
+      ],
+    }),
+    passwordConfirm: new FormControl('', {
+      nonNullable: true,
+      validators: [
+        Validators.minLength(8),
+        Validators.maxLength(150),
+        Validators.required,
+        passwordValidator(),
+        matchValidator('password'),
+      ],
+    }),
+  });
 
   public constructor(
     private confirmationService: ConfirmationService,

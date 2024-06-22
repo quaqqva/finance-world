@@ -2,6 +2,7 @@ import {
   Directive,
   DoCheck,
   ElementRef,
+  HostListener,
   Input,
   ViewChild,
 } from '@angular/core';
@@ -37,7 +38,8 @@ export abstract class TextInputComponentBase
 
   @ViewChild('errorPanel') protected errorPanel!: OverlayPanel;
 
-  @ViewChild('input') protected input!: ElementRef<HTMLInputElement>;
+  @ViewChild('input', { read: ElementRef })
+  protected input!: ElementRef<HTMLElement>;
 
   protected value: string = '';
 
@@ -77,5 +79,10 @@ export abstract class TextInputComponentBase
 
   public setDisabledState?(isDisabled: boolean): void {
     this.disabled = isDisabled;
+  }
+
+  @HostListener('focusout')
+  public onBlur(): void {
+    if (this.onTouched) this.onTouched();
   }
 }
