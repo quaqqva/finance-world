@@ -4,7 +4,7 @@ import { Store } from '@ngxs/store';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { passwordValidator } from '../../../../shared/components/password-input/password.validator';
+import { passwordValidator } from '../../../../shared/components/inputs/password-input/password.validator';
 import { matchValidator } from '../../../../shared/validators/match.validator';
 
 @Component({

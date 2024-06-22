@@ -31,7 +31,7 @@ import { CurrenciesChartComponent } from './components/home-page/home-currencies
 import { ChartSettingsComponent } from './components/home-page/home-currencies-section/chart-settings/chart-settings.component';
 import { TradesToChartDataPipe } from './pipes/trades-to-chart-data.pipe';
 import { ProfileComponent } from './components/profile/profile.component';
-import { PasswordInputComponent } from '../../shared/components/password-input/password-input.component';
+import { PasswordInputComponent } from '../../shared/components/inputs/password-input/password-input.component';
 import { ProfilePhotoComponent } from './components/profile/profile-photo/profile-photo.component';
 import { ProfileImageCropperComponent } from './components/profile/profile-image-cropper/profile-image-cropper.component';
 

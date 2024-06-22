@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Login } from '../../../../redux/actions/user/login.action';
 import { RouteUrls } from '../../../../shared/enums/routes';
-import { passwordValidator } from '../../../../shared/components/password-input/password.validator';
+import { passwordValidator } from '../../../../shared/components/inputs/password-input/password.validator';
 
 @UntilDestroy()
 @Component({

@@ -11,8 +11,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { RouterModule } from '@angular/router';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { routes } from './auth.routes';
-import { PasswordInputComponent } from '../../shared/components/password-input/password-input.component';
-import { TextInputComponent } from '../../shared/components/text-input/text-input.component';
+import { PasswordInputComponent } from '../../shared/components/inputs/password-input/password-input.component';
+import { TextInputComponent } from '../../shared/components/inputs/text-input/text-input.component';
 
 @NgModule({
   declarations: [LoginPageComponent],
