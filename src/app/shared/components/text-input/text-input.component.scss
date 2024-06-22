@@ -1,0 +1,47 @@
+@import 'mixins';
+
+$clear-button-width: 2.5em;
+
+:host {
+  @include flex();
+
+  width: 100%;
+
+  &.ng-invalid.ng-touched .text-input {
+    border-color: var(--red-500);
+  }
+
+  &:has(.text-input__clear-button) .text-input {
+    padding-right: $clear-button-width;
+  }
+}
+
+.p-inputgroup-addon + :host {
+  .text-input {
+    border-radius: 0 6px 6px 0;
+  }
+}
+
+.text-input {
+  width: 100%;
+
+  &__clear-button {
+    width: $clear-button-width;
+    margin-left: -$clear-button-width;
+
+    padding: 0.25em 0;
+    @include flex();
+
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+
+    color: var(--text);
+    font-size: 1em;
+  }
+
+  &__error-message {
+    margin: 0;
+    color: var(--red-500);
+  }
+}

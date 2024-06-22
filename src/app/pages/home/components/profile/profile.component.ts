@@ -63,16 +63,6 @@ export class ProfileComponent {
 
   public onPasswordFormSubmit(): void {
     if (this.passwordForm.invalid) {
-      let errorText: string = 'Пожалуйста, заполните форму корректно';
-      if (this.passwordForm.errors && this.passwordForm.errors['matching']) {
-        errorText = 'Пароли должны совпадать';
-      }
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Ошибка',
-        detail: errorText,
-        key: 'dialog-toast',
-      });
       this.passwordForm.markAllAsTouched();
       return;
     }
