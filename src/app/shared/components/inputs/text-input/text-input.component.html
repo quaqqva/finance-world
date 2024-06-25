@@ -1,0 +1,25 @@
+<input
+  #input
+  class="text-input"
+  pInputText
+  [value]="currentValue"
+  [disabled]="disabled"
+  [placeholder]="placeholder"
+  (input)="writeValue(input.value)"
+/>
+<button
+  *ngIf="withClearButton"
+  class="text-input__clear-button"
+  (click)="writeValue('')"
+>
+  <i class="pi pi-times"></i>
+</button>
+<p-overlayPanel
+  #errorPanel
+  [dismissable]="false"
+  [appendTo]="elementRef.nativeElement"
+>
+  <ng-template pTemplate="content">
+    <h5 class="text-input__error-message">{{ errorMessage }}</h5>
+  </ng-template>
+</p-overlayPanel>

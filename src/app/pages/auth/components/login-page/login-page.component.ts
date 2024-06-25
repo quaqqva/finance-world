@@ -1,12 +1,10 @@
-import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { OverlayPanel } from 'primeng/overlaypanel';
 import { Store } from '@ngxs/store';
 import { Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Login } from '../../../../redux/actions/user/login.action';
 import { RouteUrls } from '../../../../shared/enums/routes';
-import { passwordValidator } from '../../../../shared/components/password-input/password.validator';
 
 @UntilDestroy()
 @Component({
@@ -16,8 +14,6 @@ import { passwordValidator } from '../../../../shared/components/password-input/
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginPageComponent {
-  @ViewChild('submitErrorPanel') private submitErrorPanel!: OverlayPanel;
-
   public formGroup = new FormGroup({
     login: new FormControl('', {
       nonNullable: true,
@@ -33,7 +29,6 @@ export class LoginPageComponent {
         Validators.minLength(8),
         Validators.maxLength(150),
         Validators.required,
-        passwordValidator(),
       ],
     }),
   });
@@ -45,10 +40,9 @@ export class LoginPageComponent {
     private router: Router,
   ) {}
 
-  public onSubmit(event: Event): void {
+  public onSubmit(): void {
     if (this.formGroup.invalid) {
       this.formGroup.markAllAsTouched();
-      this.submitErrorPanel.show(event);
       return;
     }
 
@@ -61,9 +55,5 @@ export class LoginPageComponent {
         this.isLoading = false;
         this.router.navigate([RouteUrls.Home]);
       });
-  }
-
-  public onSubmitButtonMouseOut(): void {
-    this.submitErrorPanel.hide();
   }
 }
