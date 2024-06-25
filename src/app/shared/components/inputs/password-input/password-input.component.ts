@@ -41,9 +41,13 @@ export class PasswordInputComponent
   public hints: { [error: string]: boolean } = {};
 
   public override get errorMessage(): string {
+    if (this.withCreationHints) {
+      if (this.control.hasError('required'))
+        return 'Поле обязательно для заполнения';
+      if (this.control.invalid) return 'Пароль не соответсвует требованиям';
+      return '';
+    }
     if (this.control.hasError('mismatch')) return 'Пароли не совпадают';
-    if (this.control.invalid && this.withCreationHints)
-      return 'Пароль не соответсвует требованиям';
     return super.errorMessage;
   }
 
