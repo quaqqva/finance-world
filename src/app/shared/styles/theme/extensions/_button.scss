@@ -1,0 +1,37 @@
+@keyframes submit-button-gradient-bg {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.p-button-wrapper {
+  &_center-text .p-button {
+    justify-content: center;
+  }
+
+  &_full-width .p-button {
+    width: 100%;
+  }
+}
+
+.p-button-submit {
+  background: var(--primary-secondary-gradient);
+  border: 2px solid var(--primary-500);
+  font-weight: bold;
+}
+
+.p-button-text {
+  color: var(--teal-600);
+}
+
+form.ng-valid .p-button-submit {
+  background-size: 180% 180%;
+  background-color: var(--primary-secondary-darkened-gradient);
+  animation: submit-button-gradient-bg 2s ease-in-out infinite;
+}

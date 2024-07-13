@@ -1,0 +1,40 @@
+.p-menubar {
+  @media (min-width: 960px) {
+    &-root-list {
+      gap: 20px;
+    }
+  }
+
+  &.menubar-align-right {
+    & > .p-element {
+      flex-grow: 1;
+    }
+    .p-menubar-root-list {
+      justify-content: flex-end;
+      width: 100%;
+    }
+  }
+
+  .p-menuitem-link:has(.p-menuitem-text) .p-menuitem-icon {
+    margin-right: 0.5rem;
+  }
+
+  .p-menuitem-icon {
+    font-size: 1.5rem;
+    margin-right: 0;
+  }
+
+  @media screen and (max-width: 960px) {
+    &.menubar-large-icon .p-icon {
+      width: 2rem;
+      height: 2rem;
+    }
+
+    &.menubar-align-right {
+      .p-menubar-button {
+        order: 2;
+        justify-content: flex-end;
+      }
+    }
+  }
+}

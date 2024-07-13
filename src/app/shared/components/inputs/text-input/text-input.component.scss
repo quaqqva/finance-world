@@ -1,0 +1,32 @@
+@import 'mixins';
+@import '../text-input-base.component.scss';
+
+:host {
+  position: relative;
+  @include flex();
+
+  width: 100%;
+
+  &.ng-invalid.ng-touched .text-input {
+    border-color: var(--red-500);
+  }
+
+  &:has(.text-input__clear-button) .text-input {
+    padding-right: $clear-button-width;
+  }
+
+  ::ng-deep .p-overlaypanel {
+    top: 100% !important;
+    left: 0% !important;
+  }
+}
+
+.p-inputgroup-addon + :host {
+  .text-input {
+    border-radius: 0 6px 6px 0;
+  }
+}
+
+.text-input {
+  @include custom-input();
+}

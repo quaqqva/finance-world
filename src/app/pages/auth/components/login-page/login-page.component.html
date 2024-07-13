@@ -1,0 +1,39 @@
+<div class="login-page">
+  <form
+    *ngIf="!isLoading; else loader"
+    class="login-page__form"
+    [formGroup]="formGroup"
+  >
+    <div class="login-page__heading-wrapper">
+      <h2 class="login-page__heading">Вход</h2>
+      <p-divider></p-divider>
+    </div>
+    <p-inputGroup class="login-input">
+      <p-inputGroupAddon>
+        <i class="pi pi-user"></i>
+      </p-inputGroupAddon>
+      <app-text-input
+        class="login-page__login-input"
+        [formControlName]="'login'"
+        [placeholder]="'Почта'"
+      ></app-text-input>
+    </p-inputGroup>
+    <p-inputGroup class="login-page__password-input">
+      <p-inputGroupAddon>
+        <i class="pi pi-lock"></i>
+      </p-inputGroupAddon>
+      <app-password-input [formControlName]="'password'"></app-password-input>
+    </p-inputGroup>
+
+    <p-button
+      class="login-page__submit-button p-button-wrapper_center-text p-button-wrapper_full-width"
+      (click)="onSubmit()"
+      [raised]="formGroup.valid"
+      severity="submit"
+      >Войти</p-button
+    >
+  </form>
+</div>
+<ng-template #loader>
+  <p-progressSpinner ariaLabel="loading" />
+</ng-template>

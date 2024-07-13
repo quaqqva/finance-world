@@ -1,0 +1,14 @@
+<p-tabMenu
+  class="currencies-menu"
+  [model]="(currenciesMenuItems$ | async) || undefined"
+  #tabMenu
+>
+  <ng-template pTemplate="item" let-item>
+    <a class="currencies-menu__tab p-menuitem-link">
+      <img [alt]="item.label" [src]="item.icon" class="currencies-menu__icon" />
+      <span>
+        {{ item.label }}
+      </span>
+    </a>
+  </ng-template>
+</p-tabMenu>

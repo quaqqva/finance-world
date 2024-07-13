@@ -1,0 +1,6 @@
+@import 'mixins';
+
+.loader {
+  padding: 3em 0;
+  @include flex();
+}

@@ -1,0 +1,74 @@
+@import 'mixins';
+
+.currencies-section {
+  padding: 50px 0;
+  background-color: var(--surface-50);
+
+  &__charts {
+    margin: 0 auto;
+  }
+
+  &__description {
+    width: max(300px, 50%);
+
+    margin: 0 auto;
+    padding: 2.5rem;
+
+    font-size: 1.5em;
+    text-align: justify;
+  }
+
+  &__heading {
+    display: block;
+    margin: 0 auto;
+    width: max(300px, 75%);
+  }
+}
+
+.heading {
+  &__inner {
+    @include flex();
+  }
+
+  &__text {
+    color: var(--surface-200);
+    text-align: center;
+    font-size: 1em;
+
+    @media (max-width: 750px) {
+      width: min-content;
+    }
+  }
+
+  &__emoji {
+    font-size: 1.25em;
+  }
+}
+
+.charts {
+  width: max(300px, 90%);
+
+  background-color: var(--surface-0);
+
+  border-radius: 0 0 50px 50px;
+
+  &__chart {
+    display: block;
+    padding: 0 50px 25px;
+    max-height: 90%;
+  }
+
+  &__options {
+    @include flex($justify-content: space-around);
+  }
+}
+
+.enable-ws-block {
+  @include flex($direction: column);
+
+  flex-grow: 1 1;
+
+  &__description {
+    text-align: center;
+  }
+}
