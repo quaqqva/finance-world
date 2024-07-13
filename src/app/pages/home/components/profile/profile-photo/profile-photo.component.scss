@@ -1,0 +1,26 @@
+@import 'mixins';
+@import 'functions';
+
+:host {
+  @include flex($direction: column, $justify-content: space-between);
+  min-width: 300px;
+}
+
+.profile-photo {
+  &__image,
+  &__upload {
+    width: 90%;
+  }
+
+  &__image {
+    object-fit: cover;
+    object-position: center;
+
+    border-radius: 10px;
+    border: 2px solid var(--surface-500);
+  }
+
+  &__upload {
+    padding-top: 10px;
+  }
+}

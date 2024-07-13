@@ -1,0 +1,27 @@
+<section class="currencies-section">
+  <app-text-block
+    class="currencies-section__heading heading"
+    [heading]="textblockHeading"
+    [colorVariant]="'bright'"
+    [shadowEffect]="'duplicate'"
+  >
+  </app-text-block>
+  <p class="currencies-section__description">
+    В этой секции вы найдете графики курсов криптовалют, которые позволят вам
+    проникнуть в сердце финансового мира будущего. Отслеживайте динамику курсов,
+    анализируйте тренды и делайте обоснованные решения.
+  </p>
+  <div class="currencies-section__charts charts">
+    <app-currencies-menu class="charts__currencies-menu"></app-currencies-menu>
+    <app-chart-settings></app-chart-settings>
+    <app-currencies-chart class="charts__chart"></app-currencies-chart>
+  </div>
+</section>
+
+<ng-template #textblockHeading>
+  <div class="heading__inner">
+    <span class="heading__emoji">📈</span>
+    <h2 class="heading__text">Изучите пульс криптовалюты</h2>
+    <span class="heading__emoji">📉</span>
+  </div>
+</ng-template>

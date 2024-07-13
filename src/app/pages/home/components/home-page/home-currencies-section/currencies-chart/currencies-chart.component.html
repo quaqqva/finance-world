@@ -1,0 +1,13 @@
+<p-chart
+  *ngIf="!isLoading; else loader"
+  #chart
+  [type]="'line'"
+  [data]="currencyTrades | tradesToChartData"
+  [options]="chartOptions"
+></p-chart>
+<ng-template #loader>
+  <p-progressSpinner
+    [className]="'loader'"
+    ariaLabel="loading"
+  ></p-progressSpinner>
+</ng-template>

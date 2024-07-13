@@ -1,0 +1,18 @@
+@import 'mixins';
+
+.p-confirm-dialog-message {
+  padding: 1.5em 0;
+}
+
+.p-dialog-content {
+  @include scrollbar();
+}
+
+.p-dialog-mask {
+  backdrop-filter: blur(5px);
+  z-index: var(--dialog-layer) !important;
+}
+
+.confirm-dialog-mask {
+  z-index: var(--confirm-dialog-layer) !important;
+}

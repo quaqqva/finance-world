@@ -1,0 +1,42 @@
+@mixin flex(
+  $justify-content: center,
+  $align-items: center,
+  $direction: row,
+  $gap: 0px
+) {
+  display: flex;
+  justify-content: $justify-content;
+  align-items: $align-items;
+  flex-direction: $direction;
+  gap: $gap;
+}
+
+@mixin drop-shadow() {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+@mixin gradient-font-color($font-color) {
+  background: $font-color;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@mixin scrollbar() {
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: var(--surface-0);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--surface-200);
+    border-radius: 20px;
+
+    &:hover {
+      background-color: var(--pink-600);
+    }
+  }
+}

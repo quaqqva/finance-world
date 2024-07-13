@@ -1,0 +1,10 @@
+@import '../functions';
+
+@font-face {
+  font-family: Roboto;
+  src: url('../../../../assets/RobotoFlex.ttf');
+}
+
+html {
+  font-size: to-responsive(16px, $relative-to: 1500px, $min: 10px);
+}

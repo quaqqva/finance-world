@@ -1,0 +1,33 @@
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+.home {
+  &__header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: var(--header-layer);
+
+    width: 95%;
+  }
+
+  &__main {
+    padding-top: 90px;
+  }
+
+  &__footer {
+    display: block;
+    width: 95%;
+    margin-left: auto;
+
+    position: relative;
+    z-index: var(--footer-layer);
+  }
+
+  &__scrolltop {
+    position: relative;
+    z-index: var(--scrolltop-layer);
+  }
+}

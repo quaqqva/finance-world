@@ -1,0 +1,36 @@
+<div
+  class="text-block"
+  [ngClass]="{
+    'text-block_bright': colorVariant === 'bright',
+    'text-block_shadow_duplicate': shadowEffect === 'duplicate'
+  }"
+>
+  <h2
+    *ngIf="!headingAsTemplateRef; else complexHeading"
+    class="text-block__heading"
+  >
+    {{ heading }}
+  </h2>
+  <p
+    *ngIf="!descriptionAsTemplateRef && description; else complexDescription"
+    class="text-block__description"
+    [ngClass]="{ 'text-block__description_offset': offsetDescription }"
+  >
+    {{ description }}
+  </p>
+</div>
+
+<ng-template #complexHeading>
+  <div class="text-block__heading">
+    <ng-container *ngTemplateOutlet="headingAsTemplateRef"> </ng-container>
+  </div>
+</ng-template>
+
+<ng-template #complexDescription>
+  <div
+    class="text-block__description"
+    [ngClass]="{ 'text-block__description_offset': offsetDescription }"
+  >
+    <ng-container *ngTemplateOutlet="descriptionAsTemplateRef"></ng-container>
+  </div>
+</ng-template>

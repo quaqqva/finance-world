@@ -1,0 +1,9 @@
+@import 'mixins';
+
+.p-fileupload {
+  @include flex($direction: column);
+
+  .p-message-wrapper {
+    font-size: 0.65em;
+  }
+}
